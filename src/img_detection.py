@@ -1,5 +1,4 @@
 import argparse # to parse command line arg
-import imutils # resize img
 import cv2 # OpenCV bindings
 import sys # detect exit 
 from dictlib import ARUCO_DICT
