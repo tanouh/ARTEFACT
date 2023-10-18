@@ -3,8 +3,6 @@ import time
 import cv2
 from cv2 import aruco as arU
 import sys
-from dictlib import ARUCO_DICT
-
 
 dict = cv2.aruco.DICT_6X6_50
 
@@ -22,7 +20,6 @@ def detect_aruco_tags(video_source=0):
         ret, frame = vc.read()
         if not ret:
             break
-     
 
         (corners, ids, rejected) = detector.detectMarkers(frame)
         if ids == None:
@@ -40,7 +37,7 @@ def detect_aruco_tags(video_source=0):
                     
                     # TO DO : (FILL ME) Get distance approximation 
                     # Etape 1 : Calibrer la caméra cf doc
-                height = topRight[1] - bottomRight[1]
+                height = abs(topRight[1] - bottomRight[1])
                 print("Height of ArUco marker: ", height)
 
 
