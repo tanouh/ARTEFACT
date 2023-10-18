@@ -52,13 +52,15 @@ while True :
 			bottomRight = (int(bottomRight[0]), int(bottomRight[1]))
 			bottomLeft = (int(bottomLeft[0]), int(bottomLeft[1]))
 			topLeft = (int(topLeft[0]), int(topLeft[1]))
+
+			print(topRight, topLeft, bottomRight, bottomLeft)
 			
-	# show the output frame
-	cv2.imshow("Frame", frame)
-	key = cv2.waitKey(1) & 0xFF
-	# if the `q` key was pressed, break from the loop
-	if key == ord("q"):
-		break
+	# # show the output frame
+	# cv2.imshow("Frame", frame)
+	# key = cv2.waitKey(1) & 0xFF
+	# # if the `q` key was pressed, break from the loop
+	# if key == ord("q"):
+	# 	break
 # do a bit of cleanup
 cv2.destroyAllWindows()
 vc.release()
