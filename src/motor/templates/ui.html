@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Motors Control</title>
+</head>
+<body>
+    <h1>Motors control</h1>
+    <button onclick="moveForward()">Move Forward</button>
+    <button onclick="moveBackward()">Move Backward</button>
+    <button onclick="turnLeft()">Turn left</button>
+    <button onclick="turnRight()">Turn right</button>
+    <script>
+        function moveForward() {
+            fetch('/move_forward');
+        }
+
+        function moveBackward() {
+            fetch('/move_backward');
+        }
+
+        function turnLeft() {
+            fetch('/turn_left');
+        }
+
+        function turnRight() {
+            fetch('/turn_right');
+        }
+    </script>
+</body>
+</html>
