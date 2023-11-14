@@ -46,3 +46,4 @@ if __name__ == '__main__':
         move_forward(motor)
         turn_left(motor)
         turn_right(motor)
+        stop_motor(motor)
