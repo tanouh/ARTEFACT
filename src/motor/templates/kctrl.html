@@ -7,9 +7,13 @@
         document.addEventListener('keydown', (event) => {
             var name = event.key;
             var code = event.code;
+            
             if (event.ctrlKey && code === 'KeyC') {
                 alert ('End of control.');
                 // stop program
+            }
+            if (code == 'ShiftLeft'){
+                fetch('/start')
             }
             if (code === 'ArrowUp') {
                 fetch('/move_forward');
@@ -24,9 +28,6 @@
                 fetch('/turn_right');
             }
             else if (code === 'ShiftRight') {
-                fetch('/stop');
-            }
-            else if (code === 'C') {
                 fetch('/stop');
             }
 
