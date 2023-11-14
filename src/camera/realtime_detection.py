@@ -46,10 +46,10 @@ def detect_aruco_tags(video_source=0):
                     # distance  = (markerSize * longueurfocale)/pixel_width
                     
 
-        cv2.imshow("Frame", frame)
-        key = cv2.waitKey(1) & 0xFF
-        if key == ord("q"):
-            break
+        # cv2.imshow("Frame", frame)
+        # key = cv2.waitKey(1) & 0xFF
+        # if key == ord("q"):
+        #     break
 
     cv2.destroyAllWindows()
     vc.release()
