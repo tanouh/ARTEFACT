@@ -66,5 +66,10 @@ class MotorDriver():
             time.sleep(acceleration_time / abs(target_speed - start_speed))
 
 
+Motor = MotorDriver()
+
+Motor.MotorRun(0, 'forward', 100)
+# Motor.MotorRun(1, 'forward', 100)
+time.sleep(2)
 
 
