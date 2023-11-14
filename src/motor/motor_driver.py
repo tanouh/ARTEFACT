@@ -20,7 +20,7 @@ pwm = PCA9685(0x40, debug=False)
 pwm.setPWMFreq(50)
 
 class MotorDriver():
-    def __init__(self, speed=0):
+    def __init__(self, speed=50):
         self.PWMA = 0
         self.AIN1 = 1 # right positive
         self.AIN2 = 2 # right negative
@@ -66,10 +66,6 @@ class MotorDriver():
             time.sleep(acceleration_time / abs(target_speed - start_speed))
 
 
-Motor = MotorDriver()
 
-Motor.MotorRun(0, 'forward', 100)
-# Motor.MotorRun(1, 'forward', 100)
-time.sleep(2)
 
 
