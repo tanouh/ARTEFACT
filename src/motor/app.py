@@ -58,5 +58,5 @@ def stop():
     return 'Stopping'
 
 if __name__ == '__main__':
-    app.run(ip_adress, port, debug=True) #add port = rpi port
+    app.run('0.0.0.0', port, debug=True) #add port = rpi port
       
