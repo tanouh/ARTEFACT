@@ -40,7 +40,7 @@ def turn_right(motor):
 # functions : 
 #       - "speed up"
 #       - "slow down"
-if __name__ == '__main':
+if __name__ == '__main__':
         motor = start_motor()
         move_forward(motor)
         move_forward(motor)
