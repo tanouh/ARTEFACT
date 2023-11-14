@@ -43,7 +43,6 @@ def turn_right(motor):
 if __name__ == '__main__':
         motor = start_motor()
         move_forward(motor)
-        move_forward(motor)
         turn_left(motor)
         turn_right(motor)
         stop_motor(motor)
