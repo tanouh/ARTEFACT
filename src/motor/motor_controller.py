@@ -40,9 +40,9 @@ def turn_right(motor):
 # functions : 
 #       - "speed up"
 #       - "slow down"
-
-motor = start_motor()
-move_forward(motor)
-move_forward(motor)
-turn_left(motor)
-turn_right(motor)
+if __name__ == '__main':
+        motor = start_motor()
+        move_forward(motor)
+        move_forward(motor)
+        turn_left(motor)
+        turn_right(motor)
