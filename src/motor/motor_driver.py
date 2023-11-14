@@ -22,11 +22,11 @@ pwm.setPWMFreq(50)
 class MotorDriver():
     def __init__(self, speed=0):
         self.PWMA = 0
-        self.AIN1 = 1
-        self.AIN2 = 2
+        self.AIN1 = 1 # right positive
+        self.AIN2 = 2 # right negative
         self.PWMB = 5
-        self.BIN1 = 3
-        self.BIN2 = 4
+        self.BIN1 = 3 # left positive
+        self.BIN2 = 4 # left negative
         self.speed = speed
     
     def set_speed(self, new_speed):
@@ -57,6 +57,14 @@ class MotorDriver():
             pwm.setDutycycle(self.PWMA, 0)
         else:
             pwm.setDutycycle(self.PWMB, 0)
+
+    def accelerate(self, target_speed, acceleration_time):
+        start_speed = self.speed
+        increment = 1 if target_speed > start_speed else -1
+        for i in range(start_speed, target_speed, increment):
+            self.set_speed(i)
+            time.sleep(acceleration_time / abs(target_speed - start_speed))
+
 
 
 
