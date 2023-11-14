@@ -4,6 +4,7 @@ import motor_controller as mc
 app = Flask(__name__)
 
 hostname = 'robotpi-40'
+ip_adress = '137.194.173.40'
 port = 80
 motor = None
 
@@ -57,5 +58,5 @@ def stop():
     return 'Stopping'
 
 if __name__ == '__main':
-    app.run(hostname, port, debug=True) #add port = rpi port
+    app.run(ip_adress, port, debug=True) #add port = rpi port
       
