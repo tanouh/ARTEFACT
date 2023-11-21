@@ -23,7 +23,8 @@ def button():
 
 @app.route("/start")
 def start():
-    motor = mc.start_motor()
+    global motor 
+    motor = mc.start_motor() #ce n'est oas modifé autre part ! A voir
     print("Starting")
     return 'Starting...'
 

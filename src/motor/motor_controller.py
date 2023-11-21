@@ -14,6 +14,7 @@ def set_speed(motor, new_speed):
         motor.set_speed(new_speed)
 
 def set_step_duration(duration):
+        global step_duration
         step_duration = duration
 
 def move_forward(motor):
