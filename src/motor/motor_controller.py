@@ -43,11 +43,15 @@ def turn_right(motor):
         time.sleep(step_duration)
         stop_motor(motor)
 
+def modify_speed(motor, new_speed):
+    set_speed(motor, new_speed)
+    time.sleep(step_duration)
+    stop_motor(motor)
 
 # to do : 
 # functions : 
 #       - "speed up"
-# #       - "slow down"
+#       - "slow down"
 # if __name__ == '__main__':
 #         motor = start_motor()
 #         move_forward(motor)
