@@ -126,7 +126,7 @@ def move_left_forward(motor):
 # to do : 
 # functions : 
 #       - "speed up"
-# #       - "slow down"
+#       - "slow down"
 # if __name__ == '__main__':
 #         motor = start_motor()
 #         move_forward(motor)
