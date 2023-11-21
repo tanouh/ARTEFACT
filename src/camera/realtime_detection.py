@@ -6,6 +6,14 @@ import sys
 
 dict = cv2.aruco.DICT_6X6_50
 
+def get_distance(height):
+    if height <= 0 : 
+        return 0 
+    elif height <= 300 :
+        return 13793/height
+    else :
+        return -0.0814*height + 53.412
+ 
 def detect_aruco_tags(video_source=0):
     print("[INFO] starting video stream...")
     vc = cv2.VideoCapture(video_source)
@@ -24,7 +32,6 @@ def detect_aruco_tags(video_source=0):
         (corners, ids, rejected) = detector.detectMarkers(frame)
         if ids == None:
             continue
-        print(ids)
         if len(corners) > 0:
             ids = ids.flatten()
             for (markerCorner, markerID) in zip(corners, ids):
@@ -35,16 +42,15 @@ def detect_aruco_tags(video_source=0):
                 bottomLeft = (int(bottomLeft[0]), int(bottomLeft[1]))
                 topLeft = (int(topLeft[0]), int(topLeft[1]))
                     
-                    # TO DO : (FILL ME) Get distance approximation 
-                    # Etape 1 : Calibrer la caméra cf doc
+
                 height = abs(topRight[1] - bottomRight[1])
-                print("Height of ArUco marker: ", height)
 
-
-                    # Etape 2: 
-                    # pixel_width = abs(topRight - topLeft)
-                    # distance  = (markerSize * longueurfocale)/pixel_width
-                    
+                dist_marker = get_distance(height)
+                if (dist_marker > 20) : 
+                    print("Avancer")
+                else : 
+                    print("Stop") 
+ 
 
         # cv2.imshow("Frame", frame)
         # key = cv2.waitKey(1) & 0xFF
