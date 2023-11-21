@@ -1,5 +1,129 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>TEAM 8 B</title>
 
-{% block content %}
-    <h1>{% block title %} Navigation {% endblock %}</h1>
-{% endblock %}
+    <script>
+    function changerTexteEtCouleur() {
+      var bouton = document.getElementById("monBouton");
+      if (bouton.classList.contains("active")) {
+        bouton.classList.remove("active");
+        bouton.innerHTML = "Manuel";
+      } else {
+        bouton.classList.add("active");
+        bouton.innerHTML = "Automatique";
+      }
+    }
+
+
+  </script>
+</head>
+<body>
+  <header>
+    <h1>TEAM 8 B</h1>
+    <p>Bienvenue sur le site de conduite de la voiture du groupe 8 équipe B</p>
+     <button id="monBouton" onclick="changerTexteEtCouleur()">Manuel</button>
+  </header>
+  <div id='image1'>
+            <p class="image-superposee"> <img src="https://media.ldlc.com/r1600/ld/products/00/06/01/38/LD0006013848.jpg" width="300" height="300">
+        </div>
+<div >
+        <button id="nord" class="direction-button nord" onclick="moveForward()">N</button>
+        <button class="direction-button nord-est"N>NE</buttonv>
+        <button class="direction-button est" onclick="turnRight()">E</button>
+        <button class="direction-button sud-est">SE</button>
+        <button class="direction-button sud" onclick="moveBackward()">S</button>
+        <button class="direction-button sud-ouest">SO</button>
+        <button class="direction-button ouest" onclick="turnLeft()">O</button>
+        <button class="direction-button nord-ouest">NO</button>
+        <button class="direction-button centre" onclick="Stop()">Stop</button>
+    </div>
+  <main>
+    <div id="live-video">
+      <video controls autoplay>
+        <!-- Insérez l'URL de votre flux vidéo en direct ici -->
+        <source src="https://www.youtube.com/watch?v=jfKfPfyJRdk" type="video/mp4">
+        <!-- Fallback content en cas de non-support de la vidéo -->
+        Votre navigateur ne supporte pas la lecture de vidéos en direct.
+      </video>
+    </div>
+  </main>
+  <div id="barre">
+  <input type="range" min="0" max="100" value="0" id="slider">
+  <!-- Affichage de la valeur sélectionnée -->
+  <p>Vitesse en %: <span id="valeurSelectionnee"></span></p>
+    </div>
+  
+  <script>
+    // Récupérer l'élément input range
+    var slider = document.getElementById("slider");
+    // Récupérer l'élément span pour afficher la valeur sélectionnée
+    var output = document.getElementById("valeurSelectionnee");
+
+    // Afficher la valeur sélectionnée initiale
+    output.innerHTML = slider.value;
+
+    // Mettre à jour la valeur affichée lorsque la barre de défilement est déplacée
+    slider.oninput = function() {
+      output.innerHTML = this.value;
+    };
+
+    function start(){
+            fetch('/start')
+        }
+        function moveForward() {
+            fetch('/move_forward');
+        }
+
+        function moveBackward() {
+            fetch('/move_backward');
+        }
+
+        function turnLeft() {
+            fetch('/turn_left');
+        }
+
+        function turnRight() {
+            fetch('/turn_right');
+        }
+        function stop() {
+            fetch('/stop');
+        }
+
+  // Add event listener on keydown
+  document.addEventListener('keydown', (event) => {
+            var name = event.key;
+            var code = event.code;
+            
+            if (event.ctrlKey && code === 'KeyC') {
+                alert ('End of control.');
+                fetch('/stop');
+                // stop program
+            }
+            if (code == 'ShiftLeft'){
+                fetch('/start')
+            }
+            if (code === 'ArrowUp') {
+               fetch('/move_forward'); //envoie l'info au code python
+            }
+            else if (code === 'ArrowDown') {
+                fetch('/move_backward');
+            }
+            else if (code === 'ArrowLeft') {
+                fetch('/turn_left');
+            }
+            else if (code === 'ArrowRight'){
+                fetch('/turn_right');
+            }
+            else if (code === 'ShiftRight') {
+                fetch('/stop');
+            }
+        }, false);
+</script>
+  <footer>
+    <p>&copy; 2023 TEAM 8 B. Tous droits réservés.</p>
+  </footer>
+</body>
+</html>
