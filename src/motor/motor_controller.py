@@ -1,7 +1,7 @@
 import motor_driver
 import time
 
-step_duration = 2
+step_duration = 0.1
 
 def start_motor():
         return motor_driver.MotorDriver()
