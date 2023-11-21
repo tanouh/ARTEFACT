@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Navigation {% endblock %}</h1>
+    <script>
+        // Add event listener on keydown
+        document.addEventListener('keydown', (event) => {
+            var name = event.key;
+            var code = event.code;
+            
+            if (event.ctrlKey && code === 'KeyC') {
+                alert ('End of control.');
+                fetch('/stop');
+                // stop program
+            }
+            if (code == 'ShiftLeft'){
+                fetch('/start')
+            }
+            if (code === 'ArrowUp') {
+                fetch('/move_forward');
+            }
+            else if (code === 'ArrowDown') {
+                fetch('/move_backward');
+            }
+            else if (code === 'ArrowLeft') {
+                fetch('/turn_left');
+            }
+            else if (code === 'ArrowRight'){
+                fetch('/turn_right');
+            }
+            else if (code === 'ShiftRight') {
+                fetch('/stop');
+            }
+
+        
+        }, false);
+    </script>
+{% endblock %}
+
+
+<!-- suite : configurer les autres touches : 
+- shiftleft := accélérer
+- ctrl := ralentir -->
