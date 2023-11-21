@@ -31,7 +31,7 @@
         </div>
 <div >
         <button id="nord" class="direction-button nord" onclick="moveForward()">N</button>
-        <button class="direction-button nord-est"N>NE</buttonv>
+        <button class="direction-button nord-est" onclick="moveForwardRight()">NE</buttonv>
         <button class="direction-button est" onclick="turnRight()">E</button>
         <button class="direction-button sud-est">SE</button>
         <button class="direction-button sud" onclick="moveBackward()">S</button>
@@ -49,7 +49,7 @@
         Votre navigateur ne supporte pas la lecture de vidéos en direct.
       </video>
     </div>
-  </main>
+  </main>moveforwardright()
   <div id="barre">
   <input type="range" min="0" max="100" value="0" id="slider">
   <!-- Affichage de la valeur sélectionnée -->
@@ -90,6 +90,9 @@
         }
         function stop() {
             fetch('/stop');
+        }
+        function moveForwardRight(){
+          fetch('move_right_forward')
         }
 
   // Add event listener on keydown

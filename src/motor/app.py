@@ -52,6 +52,12 @@ def turn_right():
     print("Turning right")
     return 'Turning right'
 
+@app.route("/move_right_forward")
+def move_right_forward():
+    mc.move_right_forward(motor)
+    print("Turning right forward")
+    return 'Turning right forward'
+
 @app.route("/stop")
 def stop():
     mc.stop_motor(motor)
@@ -60,5 +66,3 @@ def stop():
 
 if __name__ == '__main__':
     app.run(host=ip_adress, port=rpi_port, debug=True) #add port = rpi port
-      un(host=ip_adress, port=rpi_port, debug=True) #add port = rpi port
-      

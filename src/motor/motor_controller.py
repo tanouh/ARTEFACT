@@ -17,11 +17,24 @@ def set_step_duration(duration):
         global step_duration
         step_duration = duration
 
+(a1,b1)=(0,False)
 def move_forward(motor):
+        global a1
+        global b1
+        b1=True
+        a1+=1
         motor.MotorRun(0, 'forward')
         motor.MotorRun(1, 'forward')
         time.sleep(step_duration)
-        stop_motor(motor)
+        a1-=1
+        if not b1:
+                a1=0
+        elif a1==0:
+                b1=False
+                stop_motor(motor)
+        else:
+                a1=0
+
 
 def move_backward(motor):
         motor.MotorRun(0, 'backward')
@@ -43,6 +56,10 @@ def turn_right(motor):
         time.sleep(step_duration)
         stop_motor(motor)
 
+def move_right_forward(motor):
+         motor.MotorRun(1, 'forward')
+         time.sleep(step_duration)
+         stop_motor(motor)
 
 # to do : 
 # functions : 
