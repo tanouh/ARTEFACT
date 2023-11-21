@@ -10,12 +10,13 @@ mode_auto = 1
 
 if __name__ == '__main__':
         streamer = s.Streamer()
+        app.start()
         if mode_auto == 0 : 
-                streamer.streaming(None)
+                streamer.streaming(app.motor, None)
         else :
                 detector = rd.Detector()
                 streamer.streaming(app.motor, detector.detect_aruco_tags)
 
-        # app.run(host='0.0.0.0', port=rpi_port, debug=True)
+        #app.run(host='0.0.0.0', port=rpi_port, debug=True)
 
 

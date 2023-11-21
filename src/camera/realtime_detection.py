@@ -4,7 +4,10 @@ import cv2
 from cv2 import aruco as arU
 import sys
 
+from .. import motor_controller as mc
+
 dict = cv2.aruco.DICT_6X6_50
+
 
 def get_distance(height):
     if height <= 0 : 
@@ -20,7 +23,9 @@ class Detector():
         self.params = arU.DetectorParameters()
         self.detector = arU.ArucoDetector(self.dict, self.params)
     
-    def detect_aruco_tags(self,frame):
+
+    def detect_aruco_tags(self,frame,motor):
+
         (corners, ids, rejected) = self.detector.detectMarkers(frame)
         if ids == None:
             return
@@ -42,16 +47,12 @@ class Detector():
                 # execute appropriate move
                 if (dist_marker > 20) : 
                     print("Avancer")
+                    mc.move_forward(motor)
+                    mc.modify_speed(motor, 25)
                 else : 
                     print("Stop") 
+                    mc.stop_motor(motor)
 
 
 
-# if __name__ == "__main__":
-#     # construct the argument parser and parse the arguments
-#     ap = argparse.ArgumentParser()
-#     ap.add_argument("-t", "--type", type=str, default="DICT_6X6_50", help="type of ArUCo tag to detect")
-#     args = vars(ap.parse_args())
 
-    # Call the function with the supplied arguments
-    # detect_aruco_tags(0)

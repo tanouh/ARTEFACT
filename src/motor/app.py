@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-# import motor_controller as mc 
+import motor_controller as mc 
 
 app = Flask(__name__)
 
@@ -24,49 +24,49 @@ def button():
 @app.route("/start")
 def start():
     global motor 
-    # motor = mc.start_motor() #ce n'est oas modifé autre part ! A voir
+    motor = mc.start_motor() #ce n'est oas modifé autre part ! A voir
     print("Starting")
     return 'Starting...'
 
 @app.route("/move_forward")
 def move_forward():
-    # mc.move_forward(motor)
+    mc.move_forward(motor)
     print('Moving forward')
     return 'Moving forward'
 
 @app.route("/move_backward")
 def move_backward():
-    # mc.move_backward(motor)
+    mc.move_backward(motor)
     print('Moving backward')
     return 'Moving backward'
 
 @app.route("/turn_left")
 def turn_left():
-    # mc.turn_left(motor)
+    mc.turn_left(motor)
     print('Turning left')
     return 'Turning left'
 
 @app.route("/turn_right")
 def turn_right():
-    # mc.turn_right(motor)
+    mc.turn_right(motor)
     print("Turning right")
     return 'Turning right'
 
 @app.route("/move_right_forward")
 def move_right_forward():
-    # mc.move_right_forward(motor)
+    mc.move_right_forward(motor)
     print("Turning right forward")
     return 'Turning right forward'
 
 @app.route("/move_left_forward")
 def move_left_forward():
-    # mc.move_left_forward(motor)
+    mc.move_left_forward(motor)
     print("Turning left forward")
     return 'Turning left forward'
 
 @app.route("/stop")
 def stop():
-    # mc.stop_motor(motor)
+    mc.stop_motor(motor)
     print("Stopping")
     return 'Stopping'
 
