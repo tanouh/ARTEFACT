@@ -4,6 +4,8 @@ import cv2
 from cv2 import aruco as arU
 import sys
 
+from motor_controller import start_motor, stop_motor, set_step_duration, move_forward, move_backward, turn_left, turn_right, modify_speed
+
 dict = cv2.aruco.DICT_6X6_50
 
 def get_distance(height):
@@ -49,8 +51,11 @@ def detect_aruco_tags(video_source=0):
                 print(dist_marker)
                 if (dist_marker > 20) : 
                     print("Avancer")
+                    move_forward(motor)
+                    modify_speed(motor, 40)
                 else : 
                     print("Stop") 
+                    stop_motor(motor)
  
 
         # cv2.imshow("Frame", frame)
