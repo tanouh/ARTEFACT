@@ -10,10 +10,11 @@ dict = cv2.aruco.DICT_6X6_50
 def get_distance(height):
     if height <= 0 : 
         return 0 
-    elif height <= 300 :
-        return 13793/height
+    elif 0 < height and height <= 300 :
+        return 13793/(height**1.07)
     else :
         return -0.0814*height + 53.412
+
  
 class Detector():
     def __init__(self, dico = dict):
@@ -42,13 +43,22 @@ class Detector():
                 dist_marker = get_distance(height)
 
                 # execute appropriate move
-                if (dist_marker > 20) : 
+                if dist_marker > 20 : 
                     print("Avancer")
                     mc.move_forward(motor)
-                    mc.modify_speed(motor, 25)
-                else : 
-                    print("Stop") 
-                    mc.stop_motor(motor)
+                    # mc.modify_speed(motor, 25)
+                elif 0 < dist_marker and dist_marker <= 20 : 
+                    if markerID % 2 == 1:  # marqueur impair
+                        print("Marqueur Impair: Demi-tour & tourner à gauche * 2")
+                        mc.modify_speed(motor, 40) # modifier la vitesse 
+                        mc.turn_left(motor)
+                        mc.turn_left(motor)
+                    else:
+                        print("Marqueur Pair: Arrêter") 
+                        mc.stop_motor(motor)
+                else:
+                    print("Trop proche")
+
 
 
 
