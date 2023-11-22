@@ -49,9 +49,10 @@ class Detector():
                 # get distance from cam to marker
                 dist_marker = get_distance(height)
                 global flag
-
+                global right
                 if markerID % 2 == 1 and not flag: # Impair marqueur et flag = false
                     if right :
+            
                         mc.modify_speed(motor, 30)
                         mc.turn_left(motor)
                         right = False
