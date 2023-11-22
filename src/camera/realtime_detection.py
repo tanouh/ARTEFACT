@@ -34,6 +34,7 @@ class Detector():
             mc.modify_speed(motor,35)
             mc.turn_right(motor)
             time.sleep(hstep)
+            mc.stop_motor(motor)
             return
         
         mc.stop_motor(motor)
@@ -85,7 +86,8 @@ class Detector():
                         print("Avancer")
                         mc.modify_speed(motor, 40)
                         mc.move_forward(motor)
-                        time
+                        time.sleep(hstep)
+                        mc.stop_motor(motor)
                     else : 
                         print("Marqueur Pair: Arrêter")
                         mc.stop_motor(motor)
@@ -93,6 +95,7 @@ class Detector():
                     mc.modify_speed(motor,35)
                     mc.turn_right(motor)
                     time.sleep(hstep)
+                    mc.stop_motor(motor)
                     return
                         
                 
