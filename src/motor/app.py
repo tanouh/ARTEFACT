@@ -1,5 +1,6 @@
 from flask import Flask, render_template , request
 import motor_controller as mc 
+import time
 import sys
 sys.path.append("..")
 from camera import stream_cam as s, realtime_detection as rd
@@ -17,6 +18,7 @@ auto_mode = False
 
 def launch_streaming():
         streamer = s.Streamer()
+        time.sleep(0.5)
         if not auto_mode : 
                 s.streamer.streaming(motor, None)
         else :
