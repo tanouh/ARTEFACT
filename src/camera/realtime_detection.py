@@ -33,8 +33,8 @@ class Detector():
         if ids == None:
             mc.modify_speed(motor,35)
             mc.turn_right(motor)
-            time.sleep(10*hstep)
             mc.stop_motor(motor)
+            time.sleep(10*hstep)
             return
         
         mc.stop_motor(motor)
