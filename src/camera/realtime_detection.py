@@ -4,7 +4,10 @@ import cv2
 from cv2 import aruco as arU
 import sys
 
+from .. import motor_controller as mc
+
 dict = cv2.aruco.DICT_6X6_50
+
 
 def get_distance(height):
     if height <= 0 : 
@@ -14,24 +17,18 @@ def get_distance(height):
     else :
         return -0.0814*height + 53.412
  
-def detect_aruco_tags(video_source=0):
-    print("[INFO] starting video stream...")
-    vc = cv2.VideoCapture(video_source)
-    time.sleep(2.0)
+class Detector():
+    def __init__(self, dico = dict):
+        self.dict = arU.getPredefinedDictionary(dico)
+        self.params = arU.DetectorParameters()
+        self.detector = arU.ArucoDetector(self.dict, self.params)
+    
 
-    arucoDict = arU.getPredefinedDictionary(dict)
-    arucoParams = arU.DetectorParameters()
-    detector = arU.ArucoDetector(arucoDict, arucoParams)
+    def detect_aruco_tags(self,frame,motor):
 
-
-    while True:
-        ret, frame = vc.read()
-        if not ret:
-            break
-
-        (corners, ids, rejected) = detector.detectMarkers(frame)
+        (corners, ids, rejected) = self.detector.detectMarkers(frame)
         if ids == None:
-            continue
+            return
         if len(corners) > 0:
             ids = ids.flatten()
             for (markerCorner, markerID) in zip(corners, ids):
@@ -39,33 +36,22 @@ def detect_aruco_tags(video_source=0):
                 (topLeft, topRight, bottomRight, bottomLeft) = corners
                 topRight = (int(topRight[0]), int(topRight[1]))
                 bottomRight = (int(bottomRight[0]), int(bottomRight[1]))
-                bottomLeft = (int(bottomLeft[0]), int(bottomLeft[1]))
-                topLeft = (int(topLeft[0]), int(topLeft[1]))
-                    
-
+                
+                # get marker' s height
                 height = abs(topRight[1] - bottomRight[1])
 
+                # get distance from cam to marker
                 dist_marker = get_distance(height)
-                print(dist_marker)
+
+                # execute appropriate move
                 if (dist_marker > 20) : 
                     print("Avancer")
+                    mc.move_forward(motor)
+                    mc.modify_speed(motor, 25)
                 else : 
                     print("Stop") 
- 
+                    mc.stop_motor(motor)
 
-        # cv2.imshow("Frame", frame)
-        # key = cv2.waitKey(1) & 0xFF
-        # if key == ord("q"):
-        #     break
 
-    cv2.destroyAllWindows()
-    vc.release()
 
-if __name__ == "__main__":
-    # construct the argument parser and parse the arguments
-    ap = argparse.ArgumentParser()
-    ap.add_argument("-t", "--type", type=str, default="DICT_6X6_50", help="type of ArUCo tag to detect")
-    args = vars(ap.parse_args())
 
-    # Call the function with the supplied arguments
-    detect_aruco_tags(0)

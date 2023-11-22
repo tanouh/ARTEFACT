@@ -2,8 +2,7 @@
 
 # Left motor 0
 # Right motor 1 
-
-from PCA9685 import PCA9685
+from . import PCA9685 as p
 import time
 
 Dir = [
@@ -16,7 +15,7 @@ Dir = [
 # left := m0 forward + m1 backward
 # right := m0 backward + m1 forward
 
-pwm = PCA9685(0x40, debug=False)
+pwm = p.PCA9685(0x40, debug=False)
 pwm.setPWMFreq(50)
 
 class MotorDriver():
