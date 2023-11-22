@@ -62,6 +62,7 @@ class Detector():
                         mc.stop_motor(motor)
                         mc.modify_speed(motor, 60) # modifier la vitesse 
                         flag = True
+                        time.sleep(2)
                         mc.turn_left(motor)
                         print("Marqueur Impair: tourner à gauche * 1")
                         mc.turn_left(motor)
