@@ -54,4 +54,4 @@ class Detector():
 #     args = vars(ap.parse_args())
 
     # Call the function with the supplied arguments
-    detect_aruco_tags(0)
+    # detect_aruco_tags(0)

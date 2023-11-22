@@ -14,7 +14,7 @@ if __name__ == '__main__':
                 streamer.streaming()
         else :
                 detector = rd.Detector()
-                streamer.streaming(detector.detect_aruco_tags(None))
+                streamer.streaming(detector.detect_aruco_tags)
 
         # app.run(host='0.0.0.0', port=rpi_port, debug=True)
 
