@@ -30,7 +30,7 @@
             <p class="image-superposee"> <img src="https://media.ldlc.com/r1600/ld/products/00/06/01/38/LD0006013848.jpg" width="300" height="300">
         </div>
 <div >
-        <button id="nord" class="direction-button nord" onclick="moveForward()">N</button>
+        <button class="direction-button nord" onclick="moveForward()">N</button>
         <button class="direction-button nord-est" onclick="moveForwardRight()">NE</buttonv>
         <button class="direction-button est" onclick="turnRight()">E</button>
         <button class="direction-button sud-est">SE</button>
@@ -38,7 +38,8 @@
         <button class="direction-button sud-ouest">SO</button>
         <button class="direction-button ouest" onclick="turnLeft()">O</button>
         <button class="direction-button nord-ouest">NO</button>
-        <button class="direction-button centre" onclick="Stop()">Stop</button>
+        <button class="direction-button centre" onclick="stop()">Stop</button>
+        <button class="direction-button top" onclick="start()">Start</button>
     </div>
   <main>
     <div id="live-video">
@@ -49,7 +50,7 @@
         Votre navigateur ne supporte pas la lecture de vidéos en direct.
       </video>
     </div>
-  </main>moveforwardright()
+  </main>
   <div id="barre">
   <input type="range" min="0" max="100" value="0" id="slider">
   <!-- Affichage de la valeur sélectionnée -->
