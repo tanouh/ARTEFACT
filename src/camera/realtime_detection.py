@@ -68,7 +68,11 @@ class Detector():
                         time.sleep(hstep)
                         mc.stop_motor(motor)
 
-                        mc.modify_speed(motor, 50)
+
+                        if dist_marker > 150 :
+                            mc.modify_speed(motor, 60)
+                        else :
+                            mc.modify_speed(motor, 50)
                         mc.move_forward(motor)
                         time.sleep(2*step)
                         mc.stop_motor(motor)
