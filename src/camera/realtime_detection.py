@@ -15,8 +15,8 @@ vhstep = 0.05
 def get_distance(height):
     if height <= 0 : 
         return 0 
-    elif 0 < height and height <= 300 :
-        return 13793/(height**1.07)
+    # elif 0 < height and height <= 300 :
+    #     return 13793/(height**1.07)
     else :
         return -0.0814*height + 53.412
 
