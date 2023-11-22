@@ -20,16 +20,7 @@ def move_forward(motor):
         motor.MotorRun(0, 'forward')
         motor.MotorRun(1, 'forward')
         time.sleep(step_duration)
-        a1-=1
-        if not b1:
-                a1=0
-        elif a1==0:
-                b1=False
-                #stop_motor(motor)
-        else:
-                a1=0
 
-(a2,b2)=(0,False)
 def move_backward(motor):
         motor.MotorRun(0, 'backward')
         motor.MotorRun(1, 'backward')
@@ -44,6 +35,15 @@ def turn_right(motor):
         motor.MotorRun(0, 'backward') # ou stop ?
         motor.MotorRun(1, 'forward')
         time.sleep(step_duration)
+
+def move_right_forward(motor):
+        motor.MotorRun(1, 'forward')
+        time.sleep(step_duration)
+
+def move_left_forward(motor):
+        motor.MotorRun(0, 'forward')
+        time.sleep(step_duration)
+
 
 # to do : 
 # functions : 
