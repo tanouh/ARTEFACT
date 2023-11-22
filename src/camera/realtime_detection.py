@@ -10,6 +10,7 @@ flag = False
 
 step = 0.2
 hstep = 0.1
+vhstep = 0.05
 
 def get_distance(height):
     if height <= 0 : 
@@ -61,20 +62,23 @@ class Detector():
                     # execute appropriate move
                     if dist_marker > 30 : 
                         print("Avancer")
-                        mc.modify_speed(motor, 30)
+
+                        mc.modify_speed(motor, 20)
                         mc.turn_left(motor)
-                        time.sleep(hstep)
+                        time.sleep(vhstep)
+                        mc.stop_motor(motor)
 
                         mc.modify_speed(motor, 40)
                         mc.move_forward(motor)
                         time.sleep(2*step)
                         mc.stop_motor(motor)
 
-                        mc.modify_speed(motor, 30)
+                        mc.modify_speed(motor, 20)
                         mc.turn_left(motor)
-                        time.sleep(hstep)
+                        time.sleep(vhstep)
 
                         mc.stop_motor(motor)
+                        time.sleep(hstep)
                         
                     else : 
                         flag = True
