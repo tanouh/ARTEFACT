@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 hostname = 'robotpi-40'
 ip_adress = '137.194.173.40'
-rpi_port = 80
+rpi_port = 8080
 motor = None
 auto_mode = 0
 
@@ -95,7 +95,6 @@ def manu():
 def launch_site():
     app.run(host=ip_adress, port=rpi_port, debug=True) #add port = rpi port
       
-
 if __name__ == '__main__':
     app.run(host=ip_adress, port=rpi_port, debug=True) #add port = rpi port
       
