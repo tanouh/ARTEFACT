@@ -27,7 +27,7 @@ class Detector():
 
         (corners, ids, rejected) = self.detector.detectMarkers(frame)
         if ids == None:
-            mc.modify_speed(motor,20)
+            mc.modify_speed(motor,35)
             mc.turn_right(motor)
             return
         mc.stop_motor(motor)
@@ -47,7 +47,7 @@ class Detector():
                 # get distance from cam to marker
                 dist_marker = get_distance(height)
                 global flag
-                
+
                 if markerID % 2 == 1 and not flag: # Impair marqueur et flag = false
                     
                     flag = True
