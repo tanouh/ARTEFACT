@@ -24,6 +24,7 @@ def index():
 
 @app.route("/start")
 def start():
+    global motor
     motor = mc.start_motor()
     print("Starting")
     return 'Starting...'
