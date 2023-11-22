@@ -1,5 +1,7 @@
 from flask import Flask, render_template , request
 import motor_controller as mc 
+import sys
+sys.path.append("..")
 from camera.stream_cam import launch_streaming
 
 app = Flask(__name__)
