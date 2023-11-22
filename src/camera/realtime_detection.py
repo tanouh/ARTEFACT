@@ -1,5 +1,6 @@
 import cv2
 from cv2 import aruco as arU
+import time
 import sys
 sys.path.append("..")
 from motor import motor_controller as mc
@@ -55,6 +56,7 @@ class Detector():
                         print("Avancer")
                         mc.modify_speed(motor, 40)
                         mc.move_forward(motor)
+                        time.sleep(2)
                     else : 
                         print("Marqueur Impair: Demi-tour & tourner à gauche * 2")
                         mc.stop_motor(motor)
