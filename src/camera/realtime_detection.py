@@ -4,7 +4,7 @@ import cv2
 from cv2 import aruco as arU
 import sys
 
-from motor_controller import start_motor, stop_motor, set_step_duration, move_forward, move_backward, turn_left, turn_right, modify_speed
+from .. import motor_controller as mc
 
 dict = cv2.aruco.DICT_6X6_50
 
@@ -51,11 +51,11 @@ def detect_aruco_tags(video_source=0):
                 print(dist_marker)
                 if (dist_marker > 20) : 
                     print("Avancer")
-                    move_forward(motor)
-                    modify_speed(motor, 40)
+                    mc.move_forward(motor)
+                    mc.modify_speed(motor, 40)
                 else : 
                     print("Stop") 
-                    stop_motor(motor)
+                    mc.stop_motor(motor)
  
 
         # cv2.imshow("Frame", frame)
@@ -72,5 +72,6 @@ if __name__ == "__main__":
     ap.add_argument("-t", "--type", type=str, default="DICT_6X6_50", help="type of ArUCo tag to detect")
     args = vars(ap.parse_args())
 
+    motor = mc.start_motor() 
     # Call the function with the supplied arguments
     detect_aruco_tags(0)
