@@ -7,7 +7,9 @@ from motor import motor_controller as mc
 
 dict = cv2.aruco.DICT_6X6_50
 flag = False
-right = False
+
+step = step
+hstep = hstep
 
 def get_distance(height):
     if height <= 0 : 
@@ -31,10 +33,13 @@ class Detector():
         if ids == None:
             mc.modify_speed(motor,35)
             mc.turn_right(motor)
+            time.sleep(hstep)
             return
+        
         mc.stop_motor(motor)
         if len(corners) > 0:
             ids = ids.flatten()
+
             for (markerCorner, markerID) in zip(corners, ids):
                 corners = markerCorner.reshape((4, 2))
                 (topLeft, topRight, bottomRight, bottomLeft) = corners
@@ -49,39 +54,46 @@ class Detector():
                 # get distance from cam to marker
                 dist_marker = get_distance(height)
                 global flag
-                global right
+
                 if markerID % 2 == 1 and not flag: # Impair marqueur et flag = false
-                    if right :
-            
-                        mc.modify_speed(motor, 30)
-                        mc.turn_left(motor)
-                        right = False
+
+
                     # execute appropriate move
                     if dist_marker > 30 : 
                         print("Avancer")
                         mc.modify_speed(motor, 40)
                         mc.move_forward(motor)
-                        time.sleep(0.5)
+                        time.sleep(step)
+                        mc.stop_motor(motor)
+                        mc.modify_speed(motor, 30)
+                        mc.turn_left(motor)
+                        time.sleep(step)
+                        mc.stop_motor(motor)
+                        
                     else : 
+                        flag = True
                         print("Marqueur Impair: Demi-tour & tourner à gauche * 2")
                         mc.stop_motor(motor)
                         mc.modify_speed(motor, 60) # modifier la vitesse 
-                        flag = True
-                        right = True
-                        time.sleep(2)
                         mc.turn_left(motor)
-                        print("Marqueur Impair: tourner à gauche * 1")
-                        mc.turn_left(motor)
-                        print("Marqueur Impair: tourner à gauche * 2")
+                        time.sleep(step)
+                        mc.stop_motor(motor)
+
                 elif markerID % 2 == 0 and flag: # Pair marqueur et flag = true
                     # execute appropriate move
                     if dist_marker > 20 : 
                         print("Avancer")
                         mc.modify_speed(motor, 40)
                         mc.move_forward(motor)
+                        time
                     else : 
                         print("Marqueur Pair: Arrêter")
                         mc.stop_motor(motor)
+                else:
+                    mc.modify_speed(motor,35)
+                    mc.turn_right(motor)
+                    time.sleep(hstep)
+                    return
                         
                 
                         
