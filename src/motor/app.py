@@ -1,5 +1,5 @@
 from flask import Flask, render_template , request
-from . import motor_controller as mc 
+import motor_controller as mc 
 
 app = Flask(__name__)
 
