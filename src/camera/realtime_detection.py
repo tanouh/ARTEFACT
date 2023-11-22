@@ -52,11 +52,11 @@ class Detector():
                 if markerID % 2 == 1 and not flag: # Impair marqueur et flag = false
                     
                     # execute appropriate move
-                    if dist_marker > 20 : 
+                    if dist_marker > 30 : 
                         print("Avancer")
                         mc.modify_speed(motor, 40)
                         mc.move_forward(motor)
-                        time.sleep(2)
+                        time.sleep(0.5)
                     else : 
                         print("Marqueur Impair: Demi-tour & tourner à gauche * 2")
                         mc.stop_motor(motor)
