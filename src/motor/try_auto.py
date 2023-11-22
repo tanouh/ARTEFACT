@@ -4,6 +4,8 @@ import cv2
 from cv2 import aruco as arU
 import sys
 
+import motor_controller as mc
+
 dict = cv2.aruco.DICT_6X6_50
 
 def get_distance(height):
@@ -49,8 +51,11 @@ def detect_aruco_tags(video_source=0):
                 print(dist_marker)
                 if (dist_marker > 20) : 
                     print("Avancer")
+                    mc.move_forward(motor)
+                    mc.modify_speed(motor, 40)
                 else : 
                     print("Stop") 
+                    mc.stop_motor(motor)
  
 
         # cv2.imshow("Frame", frame)
@@ -67,5 +72,6 @@ if __name__ == "__main__":
     ap.add_argument("-t", "--type", type=str, default="DICT_6X6_50", help="type of ArUCo tag to detect")
     args = vars(ap.parse_args())
 
+    motor = mc.start_motor() 
     # Call the function with the supplied arguments
     detect_aruco_tags(0)
