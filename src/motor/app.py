@@ -1,6 +1,6 @@
 from flask import Flask, render_template , request
 import motor_controller as mc 
-from .. import stream_cam as s
+from camera import stream_cam as s
 
 app = Flask(__name__)
 
