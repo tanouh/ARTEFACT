@@ -2,7 +2,7 @@
 
 # Left motor 0
 # Right motor 1 
-from . import PCA9685 as p
+import PCA9685 as p
 import time
 
 Dir = [

@@ -1,4 +1,4 @@
-from . import motor_driver
+import motor_driver
 import time
 
 step_duration = 0.1
