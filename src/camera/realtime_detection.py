@@ -15,8 +15,8 @@ def get_distance(height):
         return -0.0814*height + 53.412
  
 class Detector():
-    def __init__(self, dict):
-        self.dict = arU.getPredefinedDictionary(dict)
+    def __init__(self, dico = dict):
+        self.dict = arU.getPredefinedDictionary(dico)
         self.params = arU.DetectorParameters()
         self.detector = arU.ArucoDetector(self.dict, self.params)
     
