@@ -72,9 +72,9 @@ def stop():
 
 @app.route('/speed', methods=['POST'])
 def speed():
-    data = request.get_json() # Récupère les données envoyées
-    speed = data.get('value') # Accède à la valeur entière
-    mc.modify_speed(motor,speed) #Change la vitesse
+    #data = request.get_json() # Récupère les données envoyées
+    #speed = data.get('value') # Accède à la valeur entière
+    #mc.modify_speed(motor,speed) #Change la vitesse
     print(speed) # Affiche la valeur reçue dans la console
     return 'speed'
 
