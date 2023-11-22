@@ -11,7 +11,7 @@ mode_auto = 0
 if __name__ == '__main__':
         streamer = s.Streamer()
         if mode_auto == 0 : 
-                streamer.streaming()
+                streamer.streaming(None)
         else :
                 detector = rd.Detector()
                 streamer.streaming(detector.detect_aruco_tags)
