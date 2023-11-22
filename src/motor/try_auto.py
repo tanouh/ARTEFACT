@@ -52,7 +52,7 @@ def detect_aruco_tags(video_source=0):
                 if (dist_marker > 20) : 
                     print("Avancer")
                     mc.move_forward(motor)
-                    mc.modify_speed(motor, 10)
+                    mc.modify_speed(motor, 25)
                     break
                 else : 
                     print("Stop") 
