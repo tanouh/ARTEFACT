@@ -7,8 +7,8 @@ device_path = '/dev/v4l/by-id/usb-Suyin_HD_Camera_200910120001-video-index0'
 
 class Streamer():
         def __init__(self):
-                self.camera = cv2.VideoCapture(0, cv2.CAP_V4L2)
-                self.camera.set(cv2.CAP_PROP_BUFFERSIZE, 1)
+                self.camera = cv2.VideoCapture(0)
+                # self.camera.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
                
         def streaming (self,motor, func):
