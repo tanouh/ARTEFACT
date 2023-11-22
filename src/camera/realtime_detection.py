@@ -15,8 +15,8 @@ vhstep = 0.05
 def get_distance(height):
     if height <= 0 : 
         return 0 
-    # elif 0 < height and height <= 300 :
-    #     return 13793/(height**1.07)
+    elif 0 < height and height <= 300 :
+        return 13793/(height**1.07)
     else :
         return -0.0814*height + 53.412
 
@@ -60,7 +60,7 @@ class Detector():
                 if markerID % 2 == 1 and not flag: # Impair marqueur et flag = false
                     print(dist_marker)
                     # execute appropriate move
-                    if dist_marker > 30 : 
+                    if dist_marker > 40 : 
                         print("Avancer")
 
                         mc.modify_speed(motor, 20)
@@ -93,7 +93,7 @@ class Detector():
 
                 elif markerID % 2 == 0 and flag: # Pair marqueur et flag = true
                     # execute appropriate move
-                    if dist_marker > 20 : 
+                    if dist_marker > 40 : 
                         print("Avancer")
                         mc.modify_speed(motor, 40)
                         mc.move_forward(motor)
