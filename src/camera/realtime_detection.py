@@ -1,7 +1,8 @@
 import cv2
 from cv2 import aruco as arU
-
-from .. import motor_controller as mc
+import sys
+sys.path.append("..")
+from motor import motor_controller as mc
 
 dict = cv2.aruco.DICT_6X6_50
 
