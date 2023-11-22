@@ -46,9 +46,10 @@ class Detector():
 
                 # get distance from cam to marker
                 dist_marker = get_distance(height)
-
+                global flag
+                
                 if markerID % 2 == 1 and not flag: # Impair marqueur et flag = false
-                    global flag
+                    
                     flag = True
                     # execute appropriate move
                     if dist_marker > 20 : 
