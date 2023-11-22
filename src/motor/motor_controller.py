@@ -16,19 +16,18 @@ def set_speed(motor, new_speed):
 def set_step_duration(duration):
         step_duration = duration
 
-(a1,b1)=(0,False)
 def move_forward(motor):
         motor.MotorRun(0, 'forward')
         motor.MotorRun(1, 'forward')
         time.sleep(step_duration)
-        # a1-=1
-        # if not b1:
-        #         a1=0
-        # elif a1==0:
-        #         b1=False
-        #         #stop_motor(motor)
-        # else:
-        #         a1=0
+        a1-=1
+        if not b1:
+                a1=0
+        elif a1==0:
+                b1=False
+                #stop_motor(motor)
+        else:
+                a1=0
 
 (a2,b2)=(0,False)
 def move_backward(motor):
