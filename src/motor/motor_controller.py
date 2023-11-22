@@ -49,6 +49,10 @@ def move_left_forward(motor):
         time.sleep(step_duration)
         stop_motor(motor)
 
+def modify_speed(motor, new_speed):
+    set_speed(motor, new_speed)
+    time.sleep(step_duration)  # Optionally, wait for some duration to see the effect
+    stop_motor(motor)
 
 # to do : 
 # functions : 
