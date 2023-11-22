@@ -57,8 +57,7 @@ class Detector():
                 global flag
 
                 if markerID % 2 == 1 and not flag: # Impair marqueur et flag = false
-
-
+                    print(dist_marker)
                     # execute appropriate move
                     if dist_marker > 30 : 
                         print("Avancer")
@@ -98,10 +97,8 @@ class Detector():
                         print("Marqueur Pair: Arrêter")
                         mc.stop_motor(motor)
                 else:
-                    mc.modify_speed(motor,35)
-                    mc.turn_right(motor)
-                    time.sleep(hstep)
                     mc.stop_motor(motor)
+                    time.sleep(hstep)
                     return
                         
                 
