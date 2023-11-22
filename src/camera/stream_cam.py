@@ -23,14 +23,14 @@ class Streamer():
                         print(f"[STREAM] Failed to open {device_path}")
 
                 
-        def streaming (self, func):
+        def streaming (self,motor, func):
                 print("[STREAM] starting video stream...")
                 while True :
                         ret, frame = self.camera.read()
                         if not ret:
                                 break
                         if func is not None :
-                                func(frame)
+                                func(frame, motor)
                         else : 
                                 print("[STREAM] No function to read")
 
