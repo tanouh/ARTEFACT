@@ -101,11 +101,7 @@ def auto():
     print("go auto")
     global auto_mode
     auto_mode = True
-    try:
-        launch_streaming()
-    except KeyboardInterrupt:
-         mc.stop_motor(motor)
-         print("[AUTO] Auto mode interrupted")
+    launch_streaming()
     return 'go auto'
 
 @app.route("/Manu")
@@ -120,6 +116,10 @@ def launch_site():
     app.run(host=ip_adress, port=rpi_port, debug=True) #add port = rpi port
       
 if __name__ == '__main__':
-    app.run(host=ip_adress, port=rpi_port, debug=True) #add port = rpi port
+    try:
+        app.run(host=ip_adress, port=rpi_port, debug=True) #add port = rpi port
+    except KeyboardInterrupt:
+        start()
+        stop()
     
     
