@@ -13,18 +13,18 @@ rpi_port = 8080
 motor = None
 auto_mode = False
 
+
+def launch_streaming():
+        streamer = s.Streamer()
+        if app.mode_auto == 0 : 
+                s.streamer.streaming(app.motor, None)
+        else :
+                detector = rd.Detector()
+                streamer.streaming(app.motor, detector.detect_aruco_tags)
+
 @app.route("/")
 def index():
         return render_template('ui.html')
-
-# enable mode choices for keyboard navigation or mouse navigation
-# """@app.route("/kctrl")
-# def keyboard():
-#     return render_template('kctrl.html')
-
-# @app.route("/bctrl")
-# def button():
-#     return render_template('bctrl.html')"""
 
 @app.route("/start")
 def start():
@@ -108,13 +108,6 @@ def manu():
     auto_mode = False
     return 'go manu'
 
-def launch_streaming():
-        streamer = s.Streamer()
-        if app.mode_auto == 0 : 
-                s.streamer.streaming(app.motor, None)
-        else :
-                detector = rd.Detector()
-                streamer.streaming(app.motor, detector.detect_aruco_tags)
 
 def launch_site():
     app.run(host=ip_adress, port=rpi_port, debug=True) #add port = rpi port
