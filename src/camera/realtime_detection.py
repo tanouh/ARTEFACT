@@ -8,8 +8,8 @@ from motor import motor_controller as mc
 dict = cv2.aruco.DICT_6X6_50
 flag = False
 
-step = step
-hstep = hstep
+step = 0.2
+hstep = 0.1
 
 def get_distance(height):
     if height <= 0 : 
