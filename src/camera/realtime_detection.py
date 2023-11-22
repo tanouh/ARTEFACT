@@ -14,6 +14,39 @@ def get_distance(height):
     else :
         return -0.0814*height + 53.412
  
+class Detector():
+    def __init__(self, dict):
+        self.dict = arU.getPredefinedDictionary(dict)
+        self.params = arU.DetectorParameters()
+        self.detector = arU.ArucoDetector(self.dict, self.params)
+    
+    def detect_aruco_tags(self,frame):
+        (corners, ids, rejected) = self.detector.detectMarkers(frame)
+        if ids == None:
+            return
+        if len(corners) > 0:
+            ids = ids.flatten()
+            for (markerCorner, markerID) in zip(corners, ids):
+                corners = markerCorner.reshape((4, 2))
+                (topLeft, topRight, bottomRight, bottomLeft) = corners
+                topRight = (int(topRight[0]), int(topRight[1]))
+                bottomRight = (int(bottomRight[0]), int(bottomRight[1]))
+                
+                # get marker' s height
+
+                height = abs(topRight[1] - bottomRight[1])
+
+                # get distance from cam to marker
+                dist_marker = get_distance(height)
+
+                # execute appropriate move
+                if (dist_marker > 20) : 
+                    print("Avancer")
+                else : 
+                    print("Stop") 
+
+
+
 def detect_aruco_tags(video_source=0):
     print("[INFO] starting video stream...")
     vc = cv2.VideoCapture(video_source)
