@@ -30,6 +30,7 @@ class Detector():
             mc.turn_right(motor)
             mc.move_forward(motor)
             return
+        
         if len(corners) > 0:
             ids = ids.flatten()
             for (markerCorner, markerID) in zip(corners, ids):
