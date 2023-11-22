@@ -2,7 +2,8 @@ from flask import Flask, render_template , request
 import motor_controller as mc 
 import sys
 sys.path.append("..")
-from camera.stream_cam import launch_streaming
+from camera import stream_cam as s, realtime_detection as rd
+
 
 app = Flask(__name__)
 
@@ -106,6 +107,14 @@ def manu():
     global auto_mode
     auto_mode = False
     return 'go manu'
+
+def launch_streaming():
+        streamer = s.Streamer()
+        if app.mode_auto == 0 : 
+                s.streamer.streaming(app.motor, None)
+        else :
+                detector = rd.Detector()
+                streamer.streaming(app.motor, detector.detect_aruco_tags)
 
 def launch_site():
     app.run(host=ip_adress, port=rpi_port, debug=True) #add port = rpi port

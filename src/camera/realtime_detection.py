@@ -1,8 +1,5 @@
-import argparse
-import time
 import cv2
 from cv2 import aruco as arU
-import sys
 
 from .. import motor_controller as mc
 
