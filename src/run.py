@@ -1,14 +1,21 @@
-from camera.realtime_detection import detect_aruco_tags
+from camera  import stream_cam as s
+from camera import realtime_detection as rd
 from motor.app import app
 
 hostname = 'robotpi-40'
 ip_adress = '137.194.173.40'
 rpi_port = 8080
 
-mode = 0
+mode_auto = 1
 
 if __name__ == '__main__':
-        detect_aruco_tags()
-        app.run(host='0.0.0.0', port=rpi_port, debug=True)
+        streamer = s.Streamer()
+        if mode_auto == 0 : 
+                streamer.streaming(None)
+        else :
+                detector = rd.Detector()
+                streamer.streaming(detector.detect_aruco_tags)
+
+        # app.run(host='0.0.0.0', port=rpi_port, debug=True)
 
 
