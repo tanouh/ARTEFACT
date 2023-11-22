@@ -104,6 +104,8 @@ class Detector():
                         print("Marqueur Pair: Arrêter")
                         mc.stop_motor(motor)
                 else:
+                    mc.modify_speed(motor,35)
+                    mc.turn_right(motor)
                     mc.stop_motor(motor)
                     time.sleep(hstep)
                     return
