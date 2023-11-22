@@ -7,6 +7,7 @@ hostname = 'robotpi-40'
 ip_adress = '137.194.173.40'
 rpi_port = 80
 motor = None
+auto_mode = 0
 
 @app.route("/")
 def index():
