@@ -67,7 +67,7 @@ class Detector():
                         time.sleep(step)
                         mc.stop_motor(motor)
 
-                        mc.modify_speed(motor, 30)
+                        mc.modify_speed(motor, 25)
                         mc.turn_left(motor)
                         time.sleep(hstep)
 
@@ -81,7 +81,7 @@ class Detector():
                         mc.modify_speed(motor, 60) # modifier la vitesse 
                         mc.turn_left(motor)
                         time.sleep(step)
-                        
+
                         mc.stop_motor(motor)
 
                 elif markerID % 2 == 0 and flag: # Pair marqueur et flag = true
