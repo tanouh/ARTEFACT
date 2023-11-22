@@ -63,17 +63,17 @@ class Detector():
                     if dist_marker > 50 : 
                         print("Avancer")
 
-                        mc.modify_speed(motor, 20)
+                        mc.modify_speed(motor, 30)
                         mc.turn_left(motor)
                         time.sleep(hstep)
                         mc.stop_motor(motor)
 
-                        mc.modify_speed(motor, 40)
+                        mc.modify_speed(motor, 50)
                         mc.move_forward(motor)
                         time.sleep(2*step)
                         mc.stop_motor(motor)
 
-                        mc.modify_speed(motor, 20)
+                        mc.modify_speed(motor, 30)
                         mc.turn_left(motor)
                         time.sleep(hstep)
 
