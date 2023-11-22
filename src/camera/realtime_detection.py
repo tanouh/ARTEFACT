@@ -70,7 +70,7 @@ class Detector():
 
                         mc.modify_speed(motor, 30)
                         mc.turn_left(motor)
-                        time.sleep(hstep)
+                        time.sleep(step)
 
                         mc.stop_motor(motor)
                         
