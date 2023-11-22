@@ -5,7 +5,7 @@ sys.path.append("..")
 from motor import motor_controller as mc
 
 dict = cv2.aruco.DICT_6X6_50
-
+flag = False
 
 def get_distance(height):
     if height <= 0 : 
@@ -47,22 +47,33 @@ class Detector():
                 # get distance from cam to marker
                 dist_marker = get_distance(height)
 
-                # execute appropriate move
-                if dist_marker > 20 : 
-                    print("Avancer")
-                    mc.move_forward(motor)
-                    # mc.modify_speed(motor, 25)
-                elif 0 < dist_marker and dist_marker <= 20 : 
-                    if markerID % 2 == 1:  # marqueur impair
+                if markerID % 2 == 1 and not flag: # Impair marqueur et flag = false
+                    global flag
+                    flag = True
+                    # execute appropriate move
+                    if dist_marker > 20 : 
+                        print("Avancer")
+                        mc.modify_speed(motor, 40)
+                        mc.move_forward(motor)
+                    else : 
                         print("Marqueur Impair: Demi-tour & tourner à gauche * 2")
-                        mc.modify_speed(motor, 40) # modifier la vitesse 
-                        mc.turn_left(motor)
-                        mc.turn_left(motor)
-                    else:
-                        print("Marqueur Pair: Arrêter") 
                         mc.stop_motor(motor)
-                else:
-                    print("Trop proche")
+                        mc.modify_speed(motor, 30) # modifier la vitesse 
+                        mc.turn_left(motor)
+                        mc.turn_left(motor)
+                elif markerID % 2 == 0 and flag: # Pair marqueur et flag = true
+                    # execute appropriate move
+                    if dist_marker > 20 : 
+                        print("Avancer")
+                        mc.modify_speed(motor, 40)
+                        mc.move_forward(motor)
+                    else : 
+                        print("Marqueur Pair: Arrêter")
+                        mc.stop_motor(motor)
+                        
+                
+                        
+            
 
 
 
