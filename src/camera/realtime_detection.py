@@ -46,6 +46,7 @@ def detect_aruco_tags(video_source=0):
                 height = abs(topRight[1] - bottomRight[1])
 
                 dist_marker = get_distance(height)
+                print(dist_marker)
                 if (dist_marker > 20) : 
                     print("Avancer")
                 else : 
