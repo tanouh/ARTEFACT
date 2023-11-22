@@ -18,10 +18,10 @@ auto_mode = False
 def launch_streaming():
         streamer = s.Streamer()
         if not auto_mode : 
-                s.streamer.streaming(app.motor, None)
+                s.streamer.streaming(motor, None)
         else :
                 detector = rd.Detector()
-                streamer.streaming(app.motor, detector.detect_aruco_tags)
+                streamer.streaming(motor, detector.detect_aruco_tags)
 
 @app.route("/")
 def index():
