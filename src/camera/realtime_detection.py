@@ -60,7 +60,7 @@ class Detector():
                 if markerID % 2 == 1 and not flag: # Impair marqueur et flag = false
                     print(dist_marker)
                     # execute appropriate move
-                    if dist_marker > 40 : 
+                    if dist_marker > 50 : 
                         print("Avancer")
 
                         mc.modify_speed(motor, 20)
@@ -93,7 +93,7 @@ class Detector():
 
                 elif markerID % 2 == 0 and flag: # Pair marqueur et flag = true
                     # execute appropriate move
-                    if dist_marker > 40 : 
+                    if dist_marker > 50 : 
                         print("Avancer")
                         mc.modify_speed(motor, 40)
                         mc.move_forward(motor)
