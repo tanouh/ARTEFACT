@@ -66,18 +66,22 @@ class Detector():
                         mc.move_forward(motor)
                         time.sleep(step)
                         mc.stop_motor(motor)
+
                         mc.modify_speed(motor, 30)
                         mc.turn_left(motor)
-                        time.sleep(step)
+                        time.sleep(hstep)
+
                         mc.stop_motor(motor)
                         
                     else : 
                         flag = True
                         print("Marqueur Impair: Demi-tour & tourner à gauche * 2")
                         mc.stop_motor(motor)
+
                         mc.modify_speed(motor, 60) # modifier la vitesse 
                         mc.turn_left(motor)
                         time.sleep(step)
+                        
                         mc.stop_motor(motor)
 
                 elif markerID % 2 == 0 and flag: # Pair marqueur et flag = true
@@ -87,6 +91,7 @@ class Detector():
                         mc.modify_speed(motor, 40)
                         mc.move_forward(motor)
                         time.sleep(hstep)
+
                         mc.stop_motor(motor)
                     else : 
                         print("Marqueur Pair: Arrêter")
