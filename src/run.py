@@ -8,6 +8,7 @@ rpi_port = 8080
 mode = 0
 
 if __name__ == '__main__':
+        detect_aruco_tags()
         app.run(host='0.0.0.0', port=rpi_port, debug=True)
 
 
