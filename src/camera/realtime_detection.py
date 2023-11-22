@@ -65,7 +65,7 @@ class Detector():
 
                         mc.modify_speed(motor, 20)
                         mc.turn_left(motor)
-                        time.sleep(vhstep)
+                        time.sleep(hstep)
                         mc.stop_motor(motor)
 
                         mc.modify_speed(motor, 40)
@@ -75,7 +75,7 @@ class Detector():
 
                         mc.modify_speed(motor, 20)
                         mc.turn_left(motor)
-                        time.sleep(vhstep)
+                        time.sleep(hstep)
 
                         mc.stop_motor(motor)
                         time.sleep(hstep)
