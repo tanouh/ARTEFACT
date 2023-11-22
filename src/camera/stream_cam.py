@@ -1,6 +1,8 @@
 import os
 import time
 import cv2
+from ..motor import app
+from . import stream_cam as s, realtime_detection as rd
 
 device_path = '/dev/v4l/by-id/usb-Suyin_HD_Camera_200910120001-video-index0'
 
@@ -37,3 +39,12 @@ class Streamer():
                 print("[STREAM] ending video stream...")
                 cv2.destroyAllWindows()
                 self.camera.release()
+
+
+def launch_streaming():
+        streamer = s.Streamer()
+        if app.mode_auto == 0 : 
+                s.streamer.streaming(app.motor, None)
+        else :
+                detector = rd.Detector()
+                streamer.streaming(app.motor, detector.detect_aruco_tags)

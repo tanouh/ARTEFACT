@@ -1,22 +1,19 @@
 from camera  import stream_cam as s
 from camera import realtime_detection as rd
 from motor.app import app
-
-hostname = 'robotpi-40'
-ip_adress = '137.194.173.40'
-rpi_port = 8080
-
-mode_auto = 1
+from threading import Thread as th
 
 if __name__ == '__main__':
-        streamer = s.Streamer()
-        app.start()
-        if mode_auto == 0 : 
-                streamer.streaming(app.motor, None)
-        else :
-                detector = rd.Detector()
-                streamer.streaming(app.motor, detector.detect_aruco_tags)
+        # Créez deux threads, un pour le serveur Flask et un pour la détection d'image
+        flask_thread = th(target=app.launch_site)
+        detection_thread = th(target=s.launch_streaming)
 
-        #app.run(host='0.0.0.0', port=rpi_port, debug=True)
+        # Lancez les deux threads
+        flask_thread.start()
+        detection_thread.start()
+        
+        # Attendez que les deux threads se terminent (ce qui ne se produira pas dans cet exemple)
+        flask_thread.join()
+        detection_thread.join()
 
 
