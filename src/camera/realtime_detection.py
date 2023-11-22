@@ -37,9 +37,11 @@ class Detector():
                 (topLeft, topRight, bottomRight, bottomLeft) = corners
                 topRight = (int(topRight[0]), int(topRight[1]))
                 bottomRight = (int(bottomRight[0]), int(bottomRight[1]))
+                bottomLeft=(int(bottomLeft[0]), int(bottomLeft[1]))
                 
                 # get marker' s height
                 height = abs(topRight[1] - bottomRight[1])
+                middle= abs(topRight[0]-bottomLeft[0])
 
                 # get distance from cam to marker
                 dist_marker = get_distance(height)
