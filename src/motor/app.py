@@ -72,3 +72,4 @@ def stop():
 
 if __name__ == '__main__':
     app.run(host=ip_adress, port=rpi_port, debug=True) #add port = rpi port
+      

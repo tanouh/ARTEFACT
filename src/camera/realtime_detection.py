@@ -60,11 +60,11 @@ def detect_aruco_tags(video_source=0):
     cv2.destroyAllWindows()
     vc.release()
 
-if __name__ == "__main__":
-    # construct the argument parser and parse the arguments
-    ap = argparse.ArgumentParser()
-    ap.add_argument("-t", "--type", type=str, default="DICT_6X6_50", help="type of ArUCo tag to detect")
-    args = vars(ap.parse_args())
+# if __name__ == "__main__":
+#     # construct the argument parser and parse the arguments
+#     ap = argparse.ArgumentParser()
+#     ap.add_argument("-t", "--type", type=str, default="DICT_6X6_50", help="type of ArUCo tag to detect")
+#     args = vars(ap.parse_args())
 
-    # Call the function with the supplied arguments
-    detect_aruco_tags(0)
+#     # Call the function with the supplied arguments
+#     detect_aruco_tags(0)
