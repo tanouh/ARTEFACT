@@ -26,6 +26,7 @@ def detect_aruco_tags(aruco_dict_type="DICT_6X6_50", video_source=0):
     arucoParams = arU.DetectorParameters()
     detector = arU.ArucoDetector(arucoDict, arucoParams)
 
+    turn_left_flag = False
 
     while True:
         ret, frame = vc.read()
@@ -33,7 +34,10 @@ def detect_aruco_tags(aruco_dict_type="DICT_6X6_50", video_source=0):
             break
 
         (corners, ids, rejected) = detector.detectMarkers(frame)
-        if ids == None:
+        if ids == None: # does not find marquer: continue move forward
+            print("Move forward")
+            #move_forward(motor)
+            turn_left_flag = False
             continue
         if len(corners) > 0:
             ids = ids.flatten()
@@ -52,15 +56,19 @@ def detect_aruco_tags(aruco_dict_type="DICT_6X6_50", video_source=0):
                 if (dist_marker > 20) : 
                     print("Avancer")
                     move_forward(motor)
+                    turn_left_flag = False
                 else : # quand la distance <= 20, faire la demi-tour
                     print("Stop and turn left") 
+                    stop_motor(motor)
                     if markerID % 2 == 1:  # marqueur impair
                         print("Turn left * 2")
                         modify_speed(motor, 40) # modifier la vitesse 
                         turn_left(motor)
                         turn_left(motor)
+                        turn_left_flag = True
                     else:  # marqueur pair
                         print("Stop")
+                        turn_left_flag = False
  
 
         cv2.imshow("Frame", frame)
@@ -78,7 +86,7 @@ if __name__ == "__main__":
     ap.add_argument("-t", "--type", type=str, default="DICT_ARUCO_ORIGINAL", help="type of ArUCo tag to detect")
     args = vars(ap.parse_args())
 
-    motor = start_motor()  # 初始化电机控制
+    motor = start_motor()  
 
     try:
         detect_aruco_tags(0)
