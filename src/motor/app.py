@@ -1,5 +1,6 @@
 from flask import Flask, render_template , request
 import motor_controller as mc 
+from .. import stream_cam as s
 
 app = Flask(__name__)
 
@@ -7,7 +8,7 @@ hostname = 'robotpi-40'
 ip_adress = '137.194.173.40'
 rpi_port = 8080
 motor = None
-auto_mode = 0
+auto_mode = False
 
 @app.route("/")
 def index():
@@ -31,30 +32,34 @@ def start():
 
 @app.route("/move_forward")
 def move_forward():
-    mc.move_forward(motor)
-    mc.move_forward(motor)
-    print('Moving forward')
+    if not auto_mode : 
+        mc.move_forward(motor)
+        mc.move_forward(motor)
+        print('Moving forward')
     return 'Moving forward'
 
 @app.route("/move_backward")
 def move_backward():
-    mc.move_backward(motor)
-    mc.move_backward(motor)
-    print('Moving backward')
+    if not auto_mode : 
+        mc.move_backward(motor)
+        mc.move_backward(motor)
+        print('Moving backward')
     return 'Moving backward'
 
 @app.route("/turn_left")
 def turn_left():
-    mc.turn_left(motor)
-    mc.turn_left(motor)
-    print('Turning left')
+    if not auto_mode : 
+        mc.turn_left(motor)
+        mc.turn_left(motor)
+        print('Turning left')
     return 'Turning left'
 
 @app.route("/turn_right")
 def turn_right():
-    mc.turn_right(motor)
-    mc.turn_right(motor)
-    print("Turning right")
+    if not auto_mode : 
+        mc.turn_right(motor)
+        mc.turn_right(motor)
+        print("Turning right")
     return 'Turning right'
 
 @app.route("/stop")
@@ -65,14 +70,16 @@ def stop():
 
 @app.route("/move_right_forward")
 def move_right_forward():
-    mc.move_right_forward(motor)
-    print("Turning right forward")
+    if not auto_mode:
+        mc.move_right_forward(motor)
+        print("Turning right forward")
     return 'Turning right forward'
 
 @app.route("/move_left_forward")
 def move_left_forward():
-    mc.move_left_forward(motor)
-    print("Turning left forward")
+    if not auto_mode :
+        mc.move_left_forward(motor)
+        print("Turning left forward")
     return 'Turning left forward'
 
 @app.route('/speed', methods=['POST'])
@@ -86,11 +93,16 @@ def speed():
 @app.route("/Auto")
 def auto():
     print("go auto")
+    global auto_mode
+    auto_mode = True
+    s.launch_streaming()
     return 'go auto'
 
 @app.route("/Manu")
 def manu():
     print("go manu")
+    global auto_mode
+    auto_mode = False
     return 'go manu'
 
 def launch_site():
