@@ -177,12 +177,14 @@ video {
     .top {top:25%; left:9%}
 
     #barre{
-        left:20%;
+      position: absolute;
+      right:90px;
+      top:220px
     }
 
-        input[type=range] {
-  width: 60%; /* Largeur de la barre */
-  height: 20px; /* Hauteur de la barre */
+input[type=range] {
+  width: 35px; /* Largeur de la barre */
+  height: 550px; /* Hauteur de la barre */
   -webkit-appearance: none; /* Empêche les styles par défaut pour WebKit */
   appearance: none; /* Empêche les styles par défaut */
   background: #ddd; /* Couleur de fond de la barre */
@@ -195,9 +197,18 @@ video {
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none; /* Empêche les styles par défaut pour WebKit */
   appearance: none; /* Empêche les styles par défaut */
-  width: 25px; /* Largeur du curseur */
-  height: 25px; /* Hauteur du curseur */
+  width: 40px; /* Largeur du curseur */
+  height: 40px; /* Hauteur du curseur */
   border-radius: 50%; /* Rend le curseur rond */
-  background: red; /* Couleur du curseur */
+  background: darkred; /* Couleur du curseur */
+  cursor: pointer; /* Change le curseur lorsqu'il est survolé */
+}
+input[type=range]::-moz-range-thumb {
+  -webkit-appearance: none; /* Empêche les styles par défaut pour WebKit */
+  appearance: none; /* Empêche les styles par défaut */
+  width: 40px; /* Largeur du curseur */
+  height: 40px; /* Hauteur du curseur */
+  border-radius: 50%; /* Rend le curseur rond */
+  background: darkred; /* Couleur du curseur */
   cursor: pointer; /* Change le curseur lorsqu'il est survolé */
 }

@@ -13,13 +13,13 @@ def index():
         return render_template('ui.html')
 
 # enable mode choices for keyboard navigation or mouse navigation
-@app.route("/kctrl")
+"""@app.route("/kctrl")
 def keyboard():
     return render_template('kctrl.html')
 
 @app.route("/bctrl")
 def button():
-    return render_template('bctrl.html')
+    return render_template('bctrl.html')"""
 
 @app.route("/start")
 def start():
@@ -69,6 +69,14 @@ def stop():
     # mc.stop_motor(motor)
     print("Stopping")
     return 'Stopping'
+
+@app.route('/speed', methods=['POST'])
+def speed():
+    data = request.get_json() # Récupère les données envoyées
+    speed = data.get('value') # Accède à la valeur entière
+    mc.set_speed(motor,speed) #Change la vitesse
+    print(speed) # Affiche la valeur reçue dans la console
+    return 'speed'
 
 if __name__ == '__main__':
     app.run(host=ip_adress, port=rpi_port, debug=True) #add port = rpi port

@@ -52,7 +52,7 @@
     </div>
   </main>
   <div id="barre">
-  <input type="range" min="0" max="100" value="0" id="slider">
+  <input type="range" orient="vertical" min="0" max="100" value="0" id="slider">
   <!-- Affichage de la valeur sélectionnée -->
   <p>Vitesse en %: <span id="valeurSelectionnee"></span></p>
     </div>
@@ -69,9 +69,17 @@
     // Mettre à jour la valeur affichée lorsque la barre de défilement est déplacée
     slider.oninput = function() {
       output.innerHTML = this.value;
-    };
+      fetch('/speed', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json', // Spécifie le type de contenu JSON
+},
+  body: JSON.stringify({value : slider.value }), // Données à envoyer sous forme JSON
+})};
 
     function start(){
+            slider.value=50;
+            output.innerHTML = 50;
             fetch('/start')
         }
         function moveForward() {
@@ -90,6 +98,8 @@
             fetch('/turn_right');
         }
         function stop() {
+            slider.value=0;
+            output.innerHTML = 0;
             fetch('/stop');
         }
         function moveForwardRight(){
@@ -125,6 +135,7 @@
                 fetch('/stop');
             }
         }, false);
+
 </script>
   <footer>
     <p>&copy; 2023 TEAM 8 B. Tous droits réservés.</p>
