@@ -57,6 +57,7 @@ def detect_aruco_tags(aruco_dict_type="DICT_6X6_50", video_source=0):
                     print("Avancer")
                     move_forward(motor)
                     turn_left_flag = False
+                    continue
                 else : # quand la distance <= 20, faire la demi-tour
                     print("Stop and turn left") 
                     stop_motor(motor)
