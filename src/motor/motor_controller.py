@@ -31,7 +31,7 @@ def move_forward(motor):
                 a1=0
         elif a1==0:
                 b1=False
-                stop_motor(motor)
+                #stop_motor(motor)
         else:
                 a1=0
 
