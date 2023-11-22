@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template , request
 import motor_controller as mc 
 
 app = Flask(__name__)
