@@ -7,6 +7,7 @@ from motor import motor_controller as mc
 
 dict = cv2.aruco.DICT_6X6_50
 flag = False
+right = False
 
 def get_distance(height):
     if height <= 0 : 
@@ -50,7 +51,10 @@ class Detector():
                 global flag
 
                 if markerID % 2 == 1 and not flag: # Impair marqueur et flag = false
-                    
+                    if right :
+                        mc.modify_speed(motor, 30)
+                        mc.turn_left(motor)
+                        right = False
                     # execute appropriate move
                     if dist_marker > 30 : 
                         print("Avancer")
@@ -62,6 +66,7 @@ class Detector():
                         mc.stop_motor(motor)
                         mc.modify_speed(motor, 60) # modifier la vitesse 
                         flag = True
+                        right = True
                         time.sleep(2)
                         mc.turn_left(motor)
                         print("Marqueur Impair: tourner à gauche * 1")

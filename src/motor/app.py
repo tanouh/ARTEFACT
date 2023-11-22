@@ -19,6 +19,7 @@ auto_mode = False
 def launch_streaming():
         streamer = s.Streamer()
         time.sleep(0.5)
+        global motor
         if not auto_mode : 
                 s.streamer.streaming(motor, None)
         else :
