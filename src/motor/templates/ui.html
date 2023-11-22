@@ -37,7 +37,7 @@
         <button class="direction-button sud" onclick="moveBackward()">S</button>
         <button class="direction-button sud-ouest">SO</button>
         <button class="direction-button ouest" onclick="turnLeft()">O</button>
-        <button class="direction-button nord-ouest">NO</button>
+        <button class="direction-button nord-ouest" onclick="moveForwardLeft()">NO</button>
         <button class="direction-button centre" onclick="stop()">Stop</button>
         <button class="direction-button top" onclick="start()">Start</button>
     </div>
@@ -103,7 +103,10 @@
             fetch('/stop');
         }
         function moveForwardRight(){
-          fetch('move_right_forward')
+          fetch('/move_right_forward')
+        }
+        function moveForwardLeft(){
+          fetch('/move_left_forward')
         }
 
   // Add event listener on keydown
@@ -133,6 +136,24 @@
             }
             else if (code === 'ShiftRight') {
                 fetch('/stop');
+            }
+            else if (code === 'z') {
+                fetch('/move_forward');
+            }
+            else if (code === 's') {
+                fetch('/move_backward');
+            }
+            else if (code === 'q') {
+                fetch('/turn_left');
+            }
+            else if (code === 'd'){
+                fetch('/turn_right');
+            }
+            else if (code === 'a'){
+                fetch('/move_left_forward');
+            }
+            else if (code === 'e'){
+                fetch('/move_right_forward');
             }
         }, false);
 
