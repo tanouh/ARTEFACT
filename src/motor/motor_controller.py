@@ -44,7 +44,7 @@ def move_backward(motor):
         motor.MotorRun(0, 'backward')
         motor.MotorRun(1, 'backward')
         time.sleep(step_duration)
-        a1-=1
+        a2-=1
         if not b2:
                 a2=0
         elif a2==0:
