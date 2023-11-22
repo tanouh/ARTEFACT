@@ -27,17 +27,19 @@ class Detector():
         self.params = arU.DetectorParameters()
         self.detector = arU.ArucoDetector(self.dict, self.params)
     
+    # search mode on 
+    def hunting (motor, sleep):
+        mc.modify_speed(motor,35)
+        mc.turn_right(motor)
+        mc.stop_motor(motor)
+        time.sleep(sleep)
 
     def detect_aruco_tags(self,frame,motor):
 
         (corners, ids, rejected) = self.detector.detectMarkers(frame)
         if ids == None:
-            mc.modify_speed(motor,35)
-            mc.turn_right(motor)
-            mc.stop_motor(motor)
-            time.sleep(10*hstep)
+            self.hunting(motor, 10*hstep)
             return
-        
         mc.stop_motor(motor)
         if len(corners) > 0:
             ids = ids.flatten()
@@ -60,63 +62,53 @@ class Detector():
                 if markerID % 2 == 1 and not flag: # Si trouver Impair marqueur et flag = false
                     print(dist_marker)
                     # execute appropriate move
-                    if dist_marker > 50 : 
-                        print("Avancer")
+                    if dist_marker > 55 : 
+                        # print("Avancer")
 
-                        mc.modify_speed(motor, 40) # patrametre??
-                        mc.turn_left(motor)  # tourner a gauche avec v=40 avant d'avancer pour modifier la direction
-                        time.sleep(hstep)
-                        mc.stop_motor(motor)
+                        # mc.modify_speed(motor, 45) # ??
+                        # mc.turn_left(motor)  # tourner a gauche avant d'avancer pour modifier la direction
+                        # time.sleep(hstep)
+                        # mc.stop_motor(motor)
 
 
-                        if dist_marker > 80 :
-                            mc.modify_speed(motor, 60) # Si tres loin marcher plus vite
-                        else :
-                            mc.modify_speed(motor, 30) # parametre??
+                        # if dist_marker > 80 :
+                        #     mc.modify_speed(motor, 60) # Si tres loin marcher plus vite
+                        # else :
+                        #     mc.modify_speed(motor, 30) # ??
                         
-                        mc.move_forward(motor) # Avancer
-                        time.sleep(2*step)
-                        mc.stop_motor(motor)
+                        # mc.move_forward(motor) # Avancer
+                        # time.sleep(2*step)
+                        # mc.stop_motor(motor)
 
-                        # mc.modify_speed(motor, 30)
-                        # mc.turn_left(motor) # Tourner a gauche trop
-                        time.sleep(hstep)
+                        # # mc.modify_speed(motor, 30)
+                        # # mc.turn_left(motor) # Tourner a gauche trop
+                        # time.sleep(hstep)
 
-                        mc.stop_motor(motor)
-                        time.sleep(hstep)
+                        # mc.stop_motor(motor)
+                        # time.sleep(hstep)
+                        mc.reach_target(motor, dist_marker)
                         
                     else : 
                         flag = True
                         print("Marqueur Impair: Demi-tour & tourner à gauche * 2")
                         mc.stop_motor(motor)
 
-                        mc.modify_speed(motor, 60) # modifier la vitesse 
-                        mc.turn_left(motor) # En fait il continue a tourner droit apres trouver MI .
-                        # Quand il fait 180 degre en tournant a droit, il a 'markerID'%2==0 et flag=True donc il est bien dans les 'elif'
-                        # Pas besoin de tourner a gauche pour faire le demi-tour...et je sais pas pourquoi je vois pas tourner gauche.
-                        time.sleep(step)
-
-                        mc.stop_motor(motor)
+                        # mc.modify_speed(motor, 60) # modifier la vitesse 
+                        # mc.turn_left(motor)
+                        # time.sleep(step)
+                        # mc.stop_motor(motor)
+                        
+                        mc.turn_around(motor, mc.turn_left)
 
                 elif markerID % 2 == 0 and flag: # Si trouver Pair marqueur et flag = true
                     # execute appropriate move
                     if dist_marker > 50 : 
-                        print("Avancer")
-                        mc.modify_speed(motor, 60)
-                        mc.move_forward(motor) # Si loin marcher plus vite
-                        mc.modify_speed(motor, 40)
-                        mc.turn_left(motor) # tourner a gauche avec v=40 avant d'avancer pour modifier la direction
-                        time.sleep(hstep)
-
-                        mc.stop_motor(motor)
+                        mc.reach_target(dist_marker, motor)
                     else : 
                         print("Marqueur Pair: Arrêter")
                         mc.stop_motor(motor)
                 else:
-                    mc.modify_speed(motor,35) # cycle avec v=35 pour trouver la bonne direction
-                    mc.turn_right(motor)
-                    mc.stop_motor(motor)
-                    time.sleep(hstep)
+                    self.hunting(motor, hstep)
                     return
                         
                 

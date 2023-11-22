@@ -21,7 +21,7 @@ def launch_streaming():
         time.sleep(0.5)
         global motor
         if not auto_mode : 
-                s.streamer.streaming(motor, None)
+                streamer.streaming(motor, None)
         else :
                 detector = rd.Detector()
                 streamer.streaming(motor, detector.detect_aruco_tags)
@@ -102,7 +102,7 @@ def auto():
     print("go auto")
     global auto_mode
     auto_mode = True
-    launch_streaming()
+    launch_streaming() # open camera streaming and start auto mode
     return 'go auto'
 
 @app.route("/Manu")
