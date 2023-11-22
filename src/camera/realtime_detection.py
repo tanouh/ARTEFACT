@@ -28,7 +28,6 @@ class Detector():
         (corners, ids, rejected) = self.detector.detectMarkers(frame)
         if ids == None:
             mc.turn_right(motor)
-            mc.move_forward(motor)
             return
         
         if len(corners) > 0:
