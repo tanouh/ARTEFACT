@@ -58,6 +58,12 @@ def move_right_forward():
     print("Turning right forward")
     return 'Turning right forward'
 
+@app.route("/move_left_forward")
+def move_left_forward():
+    mc.move_left_forward(motor)
+    print("Turning left forward")
+    return 'Turning left forward'
+
 @app.route("/stop")
 def stop():
     mc.stop_motor(motor)
