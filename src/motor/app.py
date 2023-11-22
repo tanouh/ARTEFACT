@@ -11,12 +11,13 @@ hostname = 'robotpi-40'
 ip_adress = '137.194.173.40'
 rpi_port = 8080
 motor = None
+
 auto_mode = False
 
 
 def launch_streaming():
         streamer = s.Streamer()
-        if app.mode_auto == 0 : 
+        if not auto_mode : 
                 s.streamer.streaming(app.motor, None)
         else :
                 detector = rd.Detector()
