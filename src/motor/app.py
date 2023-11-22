@@ -82,6 +82,16 @@ def speed():
     print(speed) # Affiche la valeur reçue dans la console
     return 'speed'
 
+@app.route("/Auto")
+def auto():
+    print("go auto")
+    return 'go auto'
+
+@app.route("/Manu")
+def manu():
+    print("go manu")
+    return 'go manu'
+
 def launch_site():
     app.run(host=ip_adress, port=rpi_port, debug=True) #add port = rpi port
       

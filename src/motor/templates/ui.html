@@ -224,9 +224,11 @@
       if (bouton.classList.contains("active")) {
         bouton.classList.remove("active");
         bouton.innerHTML = "Manuel";
+        fetch('/Manu')
       } else {
         bouton.classList.add("active");
         bouton.innerHTML = "Automatique";
+        fetch('/Auto')
       }
     }
 
