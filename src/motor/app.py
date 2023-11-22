@@ -1,6 +1,6 @@
 from flask import Flask, render_template , request
 import motor_controller as mc 
-from camera import stream_cam as s
+from camera.stream_cam import launch_streaming
 
 app = Flask(__name__)
 
@@ -95,7 +95,7 @@ def auto():
     print("go auto")
     global auto_mode
     auto_mode = True
-    s.launch_streaming()
+    launch_streaming()
     return 'go auto'
 
 @app.route("/Manu")
