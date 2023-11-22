@@ -63,7 +63,7 @@ class Detector():
                     if dist_marker > 50 : 
                         print("Avancer")
 
-                        mc.modify_speed(motor, 30) # ??
+                        mc.modify_speed(motor, 45) # ??
                         mc.turn_left(motor)  # tourner a gauche avant d'avancer pour modifier la direction
                         time.sleep(hstep)
                         mc.stop_motor(motor)
