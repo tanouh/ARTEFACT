@@ -68,7 +68,7 @@ class Detector():
 
                         mc.modify_speed(motor, 30) # ??
                         mc.turn_left(motor)  # tourner a gauche avant d'avancer pour modifier la direction
-                        time.sleep(hstep)
+                        # time.sleep(hstep)
                         mc.stop_motor(motor)
 
 
