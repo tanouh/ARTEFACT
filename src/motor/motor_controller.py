@@ -58,11 +58,11 @@ def turn_around(motor, orientation = turn_right):
         stop_motor(motor)
 
 def adjusting_speed(target, motor):
-        modify_speed(motor, motor.speed * (target / 20))
-        # if target > 80 :
-        #         modify_speed(motor, 60) # Si tres loin marcher plus vite
-        # else :
-        #         modify_speed(motor, 30) # ??
+        # modify_speed(motor, motor.speed * (target / 20))
+        if target > 80 :
+                modify_speed(motor, 60) # Si tres loin marcher plus vite
+        else :
+                modify_speed(motor, 30) # ??
         
 
 def reach_target(target, motor):
