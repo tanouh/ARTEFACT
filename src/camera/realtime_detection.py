@@ -29,7 +29,7 @@ class Detector():
         self.detector = arU.ArucoDetector(self.dict, self.params)
     
     # search mode on 
-    def hunting (motor, sleep):
+    def hunting (self, motor, sleep):
         mc.modify_speed(motor,35)
         mc.turn_right(motor)
         mc.stop_motor(motor)
@@ -39,7 +39,6 @@ class Detector():
 
         (corners, ids, rejected) = self.detector.detectMarkers(frame)
         if ids == None:
-
             self.hunting(motor, sec)
             return
         mc.stop_motor(motor)
