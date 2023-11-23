@@ -110,7 +110,7 @@ class Detector():
                 elif markerID % 2 == 0 and flag: # Si trouver Pair marqueur et flag = true
                     # execute appropriate move
                     if dist_marker > 50 : 
-                        pprint("Avancer")
+                        print("Avancer")
 
                         mc.modify_speed(motor, 30) # ??
                         mc.turn_left(motor)  # tourner a gauche avant d'avancer pour modifier la direction
