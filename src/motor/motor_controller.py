@@ -73,10 +73,7 @@ def reach_target(target, motor):
         time.sleep(hstep)
         stop_motor(motor)
 
-        if target > 80 :
-                modify_speed(motor, 60) # Si tres loin marcher plus vite
-        else :
-                modify_speed(motor, 30) # ??
+        adjusting_speed(target, motor)
         
         move_forward(motor) # Avancer
         time.sleep(2*step)

@@ -104,7 +104,7 @@ class Detector():
                 elif markerID % 2 == 0 and flag: # Si trouver Pair marqueur et flag = true
                     # execute appropriate move
                     if dist_marker > 50 : 
-                        mc.reach_target(dist_marker, motor)
+                        mc.reach_target(motor, dist_marker)
                     else : 
                         print("Marqueur Pair: Arrêter")
                         mc.stop_motor(motor)
