@@ -66,7 +66,7 @@ class Detector():
                     if dist_marker > 55 : 
                         print("Avancer")
 
-                        mc.modify_speed(motor, 45) # ??
+                        mc.modify_speed(motor, 30) # ??
                         mc.turn_left(motor)  # tourner a gauche avant d'avancer pour modifier la direction
                         time.sleep(hstep)
                         mc.stop_motor(motor)
@@ -104,7 +104,30 @@ class Detector():
                 elif markerID % 2 == 0 and flag: # Si trouver Pair marqueur et flag = true
                     # execute appropriate move
                     if dist_marker > 50 : 
-                        mc.reach_target(motor, dist_marker)
+                        print("Avancer")
+
+                        mc.modify_speed(motor, 30) # ??
+                        mc.turn_left(motor)  # tourner a gauche avant d'avancer pour modifier la direction
+                        time.sleep(hstep)
+                        mc.stop_motor(motor)
+
+
+                        if dist_marker > 80 :
+                            mc.modify_speed(motor, 60) # Si tres loin marcher plus vite
+                        else :
+                            mc.modify_speed(motor, 30) # ??
+                        
+                        mc.move_forward(motor) # Avancer
+                        time.sleep(2*step)
+                        mc.stop_motor(motor)
+
+                        # mc.modify_speed(motor, 30)
+                        # mc.turn_left(motor) # Tourner a gauche trop
+                        time.sleep(hstep)
+
+                        mc.stop_motor(motor)
+                        time.sleep(hstep)
+                        # mc.reach_target(motor, dist_marker)
                     else : 
                         print("Marqueur Pair: Arrêter")
                         mc.stop_motor(motor)
