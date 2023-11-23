@@ -81,9 +81,9 @@ class Detector():
                         time.sleep(2*step)
                         mc.stop_motor(motor)
 
-                        # mc.modify_speed(motor, 30)
-                        # mc.turn_left(motor) # Tourner a gauche trop
-                        time.sleep(hstep)
+                        mc.modify_speed(motor, 30)
+                        mc.turn_left(motor) # Tourner a gauche trop
+                        # time.sleep(hstep)
 
                         mc.stop_motor(motor)
                         time.sleep(hstep)
