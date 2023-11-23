@@ -72,7 +72,7 @@ class Detector():
                         mc.stop_motor(motor)
 
 
-                        if dist_marker > 80 :
+                        if dist_marker > 100 :
                             mc.modify_speed(motor, 60) # Si tres loin marcher plus vite
                         else :
                             mc.modify_speed(motor, 30) # ??
@@ -94,12 +94,12 @@ class Detector():
                         print("Marqueur Impair: Demi-tour & tourner à gauche * 2")
                         mc.stop_motor(motor)
 
-                        # mc.modify_speed(motor, 60) # modifier la vitesse 
-                        # mc.turn_left(motor)
-                        # time.sleep(step)
-                        # mc.stop_motor(motor)
+                        mc.modify_speed(motor, 60) # modifier la vitesse 
+                        mc.turn_left(motor)
+                        time.sleep(step)
+                        mc.stop_motor(motor)
                         
-                        mc.turn_around(motor, mc.turn_left)
+                        # mc.turn_around(motor, mc.turn_left)
 
                 elif markerID % 2 == 0 and flag: # Si trouver Pair marqueur et flag = true
                     # execute appropriate move
@@ -112,7 +112,7 @@ class Detector():
                         mc.stop_motor(motor)
 
 
-                        if dist_marker > 80 :
+                        if dist_marker > 100 :
                             mc.modify_speed(motor, 60) # Si tres loin marcher plus vite
                         else :
                             mc.modify_speed(motor, 30) # ??
