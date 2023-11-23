@@ -72,13 +72,15 @@ class Detector():
                         mc.stop_motor(motor)
 
 
-                        if dist_marker > 100 :
+                        if dist_marker > 150 :
                             mc.modify_speed(motor, 60) # Si tres loin marcher plus vite
+                            mc.move_forward(motor) # Avancer
+                            time.sleep(sec)
                         else :
                             mc.modify_speed(motor, 30) # ??
+                            mc.move_forward(motor) # Avancer
+                            time.sleep(2*step)
                         
-                        mc.move_forward(motor) # Avancer
-                        time.sleep(2*step)
                         mc.stop_motor(motor)
 
                         mc.modify_speed(motor, 20)
