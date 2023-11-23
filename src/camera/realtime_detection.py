@@ -11,6 +11,7 @@ flag = False
 step = 0.2
 hstep = 0.1
 vhstep = 0.05
+sec = 10*hstep
 
 def get_distance(height):
     if height <= 0 : 
@@ -38,7 +39,8 @@ class Detector():
 
         (corners, ids, rejected) = self.detector.detectMarkers(frame)
         if ids == None:
-            self.hunting(motor, 10*hstep)
+
+            self.hunting(motor, sec)
             return
         mc.stop_motor(motor)
         if len(corners) > 0:
