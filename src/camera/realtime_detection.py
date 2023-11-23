@@ -98,7 +98,7 @@ class Detector():
 
                         mc.modify_speed(motor, 70) # modifier la vitesse 
                         mc.turn_left(motor)
-                        time.sleep(sec + 5*step)
+                        time.sleep(sec)
 
                         mc.stop_motor(motor)
                         mc.move_forward(motor)
