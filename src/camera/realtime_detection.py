@@ -139,6 +139,7 @@ class Detector():
                     else : 
                         print("Marqueur Pair: Arrêter")
                         mc.stop_motor(motor)
+                        time.sleep(20)
                 else:
                     self.hunting(motor, hstep)
                     return
