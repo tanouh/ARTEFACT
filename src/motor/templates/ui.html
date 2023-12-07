@@ -258,7 +258,7 @@
     <div id="live-video">
       <video controls autoplay>
         <!-- Insérez l'URL de votre flux vidéo en direct ici -->
-        <source src="https://www.youtube.com/watch?v=jfKfPfyJRdk" type="video/mp4">
+        <img src="{{ url_for('video_stream') }}" alt="Live Video">
         <!-- Fallback content en cas de non-support de la vidéo -->
         Votre navigateur ne supporte pas la lecture de vidéos en direct.
       </video>

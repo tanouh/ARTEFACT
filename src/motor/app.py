@@ -21,9 +21,11 @@ def launch_streaming():
         time.sleep(0.5)
         global motor
         if not auto_mode : 
+                app.jinja_env.globals['video_stream'] = streamer.streaming(motor, None)
                 streamer.streaming(motor, None)
         else :
                 detector = rd.Detector()
+                app.jinja_env.globals['video_stream'] = streamer.streaming(motor, detector.detect_aruco_tags)
                 streamer.streaming(motor, detector.detect_aruco_tags)
 
 @app.route("/")

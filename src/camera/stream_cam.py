@@ -11,18 +11,45 @@ class Streamer():
                 self.camera.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
                
-        def streaming (self,motor, func):
-                print("[STREAM] starting video stream...")
-                while True :
+        # def streaming (self,motor, func):
+        #         print("[STREAM] starting video stream...")
+        #         while True :
+        #                 ret, frame = self.camera.read()
+        #                 if not ret:
+        #                         break
+        #                 if func is not None :
+        #                         func(frame, motor)
+        #                 else : 
+        #                         print("[STREAM] No function to read")
+
+        #         print("[STREAM] ending video stream...")
+        #         cv2.destroyAllWindows()
+        #         self.camera.release()
+
+        def generate_frames(self, motor, func):
+                print("[STREAM] Starting video stream...")
+                while True:
                         ret, frame = self.camera.read()
                         if not ret:
                                 break
-                        if func is not None :
-                                func(frame, motor)
-                        else : 
+                        if func is not None:
+                                func(frame, motor)  # 处理图像的函数，如果需要的话
+                        else:
                                 print("[STREAM] No function to read")
 
-                print("[STREAM] ending video stream...")
+                        ret, buffer = cv2.imencode('.jpg', frame)
+                        if not ret:
+                                break
+
+                        frame_bytes = buffer.tobytes()
+                        yield (b'--frame\r\n'
+                                b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
+
+        def streaming(self, func):
+                return self.generate_frames(func)
+
+        def release(self):
+                print("[STREAM] Ending video stream...")
                 cv2.destroyAllWindows()
                 self.camera.release()
 
