@@ -21,7 +21,7 @@ def launch_streaming():
         time.sleep(0.5)
         global motor
         if not auto_mode : 
-                return streamer.streaming(motor, detector.detect_aruco_tags)
+                return streamer.streaming(motor, None)
         else :
                 detector = rd.Detector()
                 return streamer.streaming(motor, detector.detect_aruco_tags)
