@@ -1,4 +1,4 @@
-from flask import Flask, render_template , request
+from flask import Flask, render_template , request, Response
 import motor_controller as mc 
 import time
 import sys
@@ -22,11 +22,11 @@ def launch_streaming():
         global motor
         if not auto_mode : 
                 app.jinja_env.globals['video_stream'] = streamer.streaming(motor, None)
-                streamer.streaming(motor, None)
+                return streamer.streaming(motor, None)
         else :
                 detector = rd.Detector()
                 app.jinja_env.globals['video_stream'] = streamer.streaming(motor, detector.detect_aruco_tags)
-                streamer.streaming(motor, detector.detect_aruco_tags)
+                return streamer.streaming(motor, detector.detect_aruco_tags)
 
 @app.route("/")
 def index():
@@ -114,6 +114,9 @@ def manu():
     auto_mode = False
     return 'go manu'
 
+@app.route("/video_stream")
+def video_stream():
+    return Response(launch_streaming(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 def launch_site():
     app.run(host=ip_adress, port=rpi_port, debug=True) #add port = rpi port
