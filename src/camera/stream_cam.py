@@ -45,8 +45,8 @@ class Streamer():
                         yield (b'--frame\r\n'
                                 b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
 
-        def streaming(self, func):
-                return self.generate_frames(func)
+        def streaming(self, motor, func):
+                return self.generate_frames(motor, func)
 
         def release(self):
                 print("[STREAM] Ending video stream...")
