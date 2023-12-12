@@ -36,7 +36,7 @@ class MotorDriver():
     def set_speed_right(self, new_speed):
         self.speed_right = new_speed
     
-    def set_speed_right(self, new_speed):
+    def set_speed_left(self, new_speed):
         self.speed_left = new_speed
 
     def MotorRun(self, motor, index):
