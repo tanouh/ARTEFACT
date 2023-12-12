@@ -81,8 +81,8 @@ def reach_target(target, motor):
         stop_motor(motor)
         time.sleep(hstep)
 
-def left(target,motor):
-        set
+# def left(target,motor):
+#         set
         # modify_speed(motor, 30)
         # turn_left(motor) # Tourner a gauche trop
 
