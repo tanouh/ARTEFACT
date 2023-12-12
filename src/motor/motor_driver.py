@@ -27,15 +27,23 @@ class MotorDriver():
         self.BIN1 = 3 # left positive
         self.BIN2 = 4 # left negative
         self.speed = speed
+        self.speed_right= speed
+        self.speed_left= speed
     
     def set_speed(self, new_speed):
         self.speed = new_speed
 
+    def set_speed_right(self, new_speed):
+        self.speed_right = new_speed
+    
+    def set_speed_right(self, new_speed):
+        self.speed_left = new_speed
+
     def MotorRun(self, motor, index):
-        if self.speed > 100:
+        if self.speed_right > 100 or self.speed_left >100:
             return
         if(motor == 0):
-            pwm.setDutycycle(self.PWMA, self.speed)
+            pwm.setDutycycle(self.PWMA, self.speed_right)
             if(index == Dir[0]):
                 pwm.setLevel(self.AIN1, 0)
                 pwm.setLevel(self.AIN2, 1)
@@ -43,7 +51,7 @@ class MotorDriver():
                 pwm.setLevel(self.AIN1, 1)
                 pwm.setLevel(self.AIN2, 0)
         else:
-            pwm.setDutycycle(self.PWMB, self.speed)
+            pwm.setDutycycle(self.PWMB, self.speed_left)
             if(index == Dir[0]):
                 pwm.setLevel(self.BIN1, 0)
                 pwm.setLevel(self.BIN2, 1)
