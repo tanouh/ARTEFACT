@@ -7,7 +7,7 @@ device_path = '/dev/v4l/by-id/usb-Suyin_HD_Camera_200910120001-video-index0'
 
 class Streamer():
         def __init__(self):
-                self.camera = cv2.VideoCapture(cv2.CAP_ANY)
+                self.camera = cv2.VideoCapture(device_path)
                 self.camera.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
                
@@ -20,7 +20,8 @@ class Streamer():
                         if func is not None :
                                 func(frame, motor)
                         else : 
-                                print("[STREAM] No function to read")
+                                # print("[STREAM] No function to read")
+                                continue
 
                 print("[STREAM] ending video stream...")
                 cv2.destroyAllWindows()
