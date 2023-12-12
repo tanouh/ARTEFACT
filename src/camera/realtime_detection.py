@@ -56,6 +56,8 @@ class Detector():
             if len(corners) > 0:
                 ids = ids.flatten()
 
+
+                print("###### BALISE DETECTE #########")
                 for (markerCorner, markerID) in zip(corners, ids):
                     corners = markerCorner.reshape((4, 2))
                     (topLeft, topRight, bottomRight, bottomLeft) = corners
@@ -67,19 +69,22 @@ class Detector():
                     marker_center = int(topRight[0] + topLeft[0])/2
 
                     deviation = frame_center - marker_center
-
+                    print("Deviation : ", deviation)
+                    
                     # get marker' s height
                     height = abs(topRight[1] - bottomRight[1])
 
                     # get distance from cam to marker
                     dist_marker = get_distance(height)
-                
+                    print("DDDDDDDDistance : ", dist_marker)
                     if (dist_marker > 30):
                         if (deviation < 0):
                             if(dist_marker > 100 ):
                                 mc.right(deviation, motor)
+                                print("\tAVANCER DROITE VITE \n")
                             else:
-                                mc.right_slow(deviation, motor)                        
+                                mc.right_slow(deviation, motor)    
+                                print("\tAVANCER DROITE LENTEMENT \n")                      
                             # move to the right
                             # speed_right ++
                             # speed_left --
@@ -87,8 +92,10 @@ class Detector():
                         else:
                             if(dist_marker > 100 ):
                                 mc.left(deviation, motor)
+                                print("\tAVANCER GAUCHE VITE \n")
                             else:
-                                mc.left_slow(deviation, motor)                            
+                                mc.left_slow(deviation, motor)  
+                                print("\tAVANCER GAUCHE LENTEMENT \n")                          
                                 # move to the right
                                 # inverse 
                                 mc.move_forward(motor)
