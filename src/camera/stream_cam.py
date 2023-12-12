@@ -11,20 +11,20 @@ class Streamer():
                 self.camera.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
                
-        # def streaming (self,motor, func):
-        #         print("[STREAM] starting video stream...")
-        #         while True :
-        #                 ret, frame = self.camera.read()
-        #                 if not ret:
-        #                         break
-        #                 if func is not None :
-        #                         func(frame, motor)
-        #                 else : 
-        #                         print("[STREAM] No function to read")
+        def streaming (self,motor, func):
+                print("[STREAM] starting video stream...")
+                while True :
+                        ret, frame = self.camera.read()
+                        if not ret:
+                                break
+                        if func is not None :
+                                func(frame, motor)
+                        else : 
+                                print("[STREAM] No function to read")
 
-        #         print("[STREAM] ending video stream...")
-        #         cv2.destroyAllWindows()
-        #         self.camera.release()
+                print("[STREAM] ending video stream...")
+                cv2.destroyAllWindows()
+                self.camera.release()
 
         def generate_frames(self, motor, func):
                 print("[STREAM] Starting video stream...")
@@ -43,11 +43,11 @@ class Streamer():
                         yield (b'--frame\r\n'
                                 b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
 
-        def streaming(self, motor, func):
-                if func is None:
-                        return self.generate_frames_without_processing(motor)
-                else:
-                        return self.generate_frames(motor, func)
+        # def streaming(self, motor, func):
+        #         if func is None:
+        #                 return self.generate_frames_without_processing(motor)
+        #         else:
+        #                 return self.generate_frames(motor, func)
 
         def generate_frames_without_processing(self, motor):
                 print("[STREAM] Starting video stream without processing...")
