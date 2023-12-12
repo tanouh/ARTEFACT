@@ -7,11 +7,14 @@ from motor import motor_controller as mc
 
 dict = cv2.aruco.DICT_6X6_50
 flag = False
+tolerance = 20 # should be replaced depending on experimental settings
 
 step = 0.2
 hstep = 0.1
 vhstep = 0.05
 sec = 10*hstep
+
+
 
 def get_distance(height):
     if height <= 0 : 
@@ -37,6 +40,10 @@ class Detector():
         time.sleep(sleep)
 
     def detect_aruco_tags(self,frame,motor):
+        # Get frame coordinates
+        frame_height, frame_width, _ = frame.shape
+        #we only need the center of x coordinate
+        frame_center = frame_width / 2 
 
         if self.flag_is_move == False:
             (corners, ids, rejected) = self.detector.detectMarkers(frame)
@@ -55,14 +62,34 @@ class Detector():
                     bottomRight = (int(bottomRight[0]), int(bottomRight[1]))
                     bottomLeft=(int(bottomLeft[0]), int(bottomLeft[1]))
                     
+                    # get marker 's center position
+                    marker_center = int(topRight[0] + topLeft[0])/2
+
+                    deviation = frame_center - marker_center
+
                     # get marker' s height
                     height = abs(topRight[1] - bottomRight[1])
-                    middle = abs(topRight[0]-bottomLeft[0])
 
                     # get distance from cam to marker
                     dist_marker = get_distance(height)
-                    global flag
+                
 
+                    if (deviation < - tolerance):
+                        break 
+                        # move to the right
+                        # speed_right ++
+                        # speed_left --
+                    elif (deviation > tolerance):
+                        break 
+                        # move to the left
+                        # inverse
+                    else: 
+                        #move forward
+                        print("Moving forward")
+
+
+                        global flag
+                    
                     if markerID % 2 == 1 and not flag: # Si trouver Impair marqueur et flag = false
                         print(dist_marker)
                         # execute appropriate move
