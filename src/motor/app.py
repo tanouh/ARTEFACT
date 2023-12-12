@@ -1,4 +1,5 @@
 from flask import Flask, render_template , request, Response
+import webbrowser
 import motor_controller as mc 
 import time
 import sys
@@ -14,7 +15,6 @@ rpi_port = 8080
 motor = None
 
 auto_mode = False
-
 
 def launch_streaming():
         streamer = s.Streamer()
@@ -55,7 +55,7 @@ def move_backward():
 
 @app.route("/turn_left")
 def turn_left():
-    if not auto_mode : 
+    if not auto_mode :  
         mc.turn_left(motor)
         mc.turn_left(motor)
         print('Turning left')
@@ -93,7 +93,7 @@ def move_left_forward():
 def speed():
     data = request.get_json() # Récupère les données envoyées
     speed = data.get('value') # Accède à la valeur entière
-    mc.modify_speed(motor,speed) #Change la vitesse
+    mc.modify_speed(motor,speed) # Change la vitesse
     print(speed) # Affiche la valeur reçue dans la console
     return 'speed'
 
@@ -122,7 +122,10 @@ def launch_site():
       
 if __name__ == '__main__':
     try:
-        app.run(host=ip_adress, port=rpi_port, debug=True) #add port = rpi port
+        app.run(host=ip_adress, port=rpi_port, debug=True) # add port = rpi port
+        # Ouvrir le navigateur vers l'URL du serveur
+        url = f"http://{ip_adress}:{rpi_port}"
+        webbrowser.open_new(url)
     except KeyboardInterrupt:
         start()
         stop()

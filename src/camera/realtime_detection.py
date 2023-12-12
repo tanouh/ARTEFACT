@@ -46,7 +46,7 @@ class Detector():
         #we only need the center of x coordinate
         frame_center = frame_width / 2 
 
-        if self.flag_is_move == False:
+        if self.flag_is_move == False: 
             (corners, ids, rejected) = self.detector.detectMarkers(frame)
             if ids == None:
                 self.hunting(motor, sec)
