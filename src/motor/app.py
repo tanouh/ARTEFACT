@@ -112,9 +112,10 @@ def manu():
     auto_mode = False
     return 'go manu'
 
-# @app.route("/video_stream")
-# def video_stream():
-#     return Response(launch_streaming(), mimetype='multipart/x-mixed-replace; boundary=frame')
+@app.route("/video_stream")
+def video_stream():
+    return 'video_stream'
+    # return Response(launch_streaming(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 def launch_site():
     app.run(host=ip_adress, port=rpi_port, debug=True) #add port = rpi port
