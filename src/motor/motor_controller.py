@@ -14,7 +14,8 @@ def stop_motor(motor):
         motor.MotorStop(1)
 
 def set_speed(motor, new_speed):
-        motor.set_speed(new_speed)
+        motor.set_speed_right(new_speed)
+        motor.set_speed_left(new_speed)
 
 def set_step_duration(duration):
         step_duration = duration
@@ -80,6 +81,8 @@ def reach_target(target, motor):
         stop_motor(motor)
         time.sleep(hstep)
 
+def left(target,motor):
+        set
         # modify_speed(motor, 30)
         # turn_left(motor) # Tourner a gauche trop
         
