@@ -26,12 +26,12 @@ class MotorDriver():
         self.PWMB = 5
         self.BIN1 = 3 # left positive
         self.BIN2 = 4 # left negative
-        self.speed = speed
         self.speed_right= speed
         self.speed_left= speed
     
     def set_speed(self, new_speed):
-        self.speed = new_speed
+        self.speed_right = new_speed
+        self.speed_left = new_speed
 
     def set_speed_right(self, new_speed):
         self.speed_right = new_speed
