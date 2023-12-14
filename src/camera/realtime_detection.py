@@ -38,6 +38,7 @@ class Detector():
         mc.turn_right(motor)
         mc.stop_motor(motor)
         time.sleep(sleep)
+        flagtest=0
 
     # return the marker id to be found next 
     # it makes sure that the previous marker is found                  
@@ -53,6 +54,7 @@ class Detector():
 
 
     def detect_aruco_tags(self,frame,motor):
+            global flagtest
             # Get frame coordinates
             frame_height, frame_width, _ = frame.shape
             #we only need the center of x coordinate
@@ -78,6 +80,11 @@ class Detector():
                     global flag
                     global marker_index
                     #if markerID == self.get_marker_to_find() :
+                    if flagtest==0:
+                        mc.modify_speed(motor,25)
+                        mc.turn_left(motor)
+                        mc.stop_motor(motor)
+                        time.sleep(sec)
                     if True:
                         # get marker 's center position
                         marker_center = int(topRight[0] + topLeft[0])/2
