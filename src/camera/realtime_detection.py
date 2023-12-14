@@ -59,9 +59,9 @@ class Detector():
             frame_center = frame_width / 2 
       #  if self.flag_is_move == False: 
             (corners, ids, rejected) = self.detector.detectMarkers(frame)
-      #      if ids == None:
-      #          self.hunting(motor, sec)
-      #          return
+            if ids == None:
+                    self.hunting(motor, sec)
+                    return
             mc.stop_motor(motor)
             self.flag_is_move = True
             if len(corners) > 0:
