@@ -85,6 +85,7 @@ class Detector():
                         mc.turn_left(motor)
                         mc.stop_motor(motor)
                         time.sleep(sec)
+                        flagtest=1
                     if True:
                         # get marker 's center position
                         marker_center = int(topRight[0] + topLeft[0])/2
