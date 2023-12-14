@@ -17,6 +17,9 @@ class Streamer():
                
         def streaming (self,motor, func):
                 print("[STREAM] starting video stream...")
+                ret, frame = self.camera.read()
+                time.sleep(0.2)
+                
                 while True :
                         ret, frame = self.camera.read()
                         if not ret:

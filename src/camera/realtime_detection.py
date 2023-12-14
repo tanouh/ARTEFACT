@@ -37,7 +37,7 @@ class Detector():
         mc.modify_speed(motor,25)
         mc.turn_right(motor)
         mc.stop_motor(motor)
-        # time.sleep(sleep)
+        time.sleep(sleep)
         flagtest=0
 
     # return the marker id to be found next 
@@ -63,8 +63,9 @@ class Detector():
             if self.flag_is_move == False: 
                 (corners, ids, rejected) = self.detector.detectMarkers(frame)
                 if ids == None:
-                    self.hunting(motor, sec)
+                    self.hunting(motor, hstep)
                     return
+                
                 mc.stop_motor(motor)
                 # Si ids != False, un balise est trouve:
                 self.flag_is_move = True
@@ -72,7 +73,6 @@ class Detector():
                 if len(corners) > 0:
                     ids = ids.flatten()
                     print("###### BALISE DETECTE #########")
-
 
                     for (markerCorner, markerID) in zip(corners, ids):
                         corners = markerCorner.reshape((4, 2))
@@ -156,7 +156,7 @@ class Detector():
                     #     self.hunting(motor, hstep)
                     #     return
                     
-                    
+            return        
 
 # Pour les détections des balises numérotées, 
 # peut-être faire un tableau à trois dimension avec éléments True ou False 
