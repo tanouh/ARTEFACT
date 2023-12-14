@@ -34,10 +34,10 @@ class Detector():
     # search mode on 
     def hunting (self, motor, sleep):
         global flagtest
-        # mc.modify_speed(motor,25)
+        mc.modify_speed(motor,25)
         mc.turn_right(motor)
         mc.stop_motor(motor)
-        time.sleep(sleep)
+        # time.sleep(sleep)
         flagtest=0
 
     # return the marker id to be found next 
@@ -86,7 +86,7 @@ class Detector():
                         global marker_index
                         #if markerID == self.get_marker_to_find() :
                         if flagtest==0:
-                            # mc.modify_speed(motor,25)
+                            mc.modify_speed(motor,25)
                             mc.turn_left(motor)
                             mc.stop_motor(motor)
                             time.sleep(sec)
