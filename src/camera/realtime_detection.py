@@ -62,86 +62,89 @@ class Detector():
             frame_height, frame_width, _ = frame.shape
             #we only need the center of x coordinate
             frame_center = frame_width / 2 
-      #  if self.flag_is_move == False: 
-            (corners, ids, rejected) = self.detector.detectMarkers(frame)
-            if ids == None:
-                self.hunting(motor, sec)
-                return
-            mc.stop_motor(motor)
-            self.flag_is_move = True
+            if self.flag_is_move == False: 
+                (corners, ids, rejected) = self.detector.detectMarkers(frame)
+                if ids == None:
+                    self.hunting(motor, sec)
+                    return
+                mc.stop_motor(motor)
+                # Si ids != False, un balise est trouve:
+                self.flag_is_move = True
 
-            if len(corners) > 0:
-                ids = ids.flatten()
-                print("###### BALISE DETECTE #########")
-                for (markerCorner, markerID) in zip(corners, ids):
-                    corners = markerCorner.reshape((4, 2))
-                    (topLeft, topRight, bottomRight, bottomLeft) = corners
-                    topRight = (int(topRight[0]), int(topRight[1]))
-                    bottomRight = (int(bottomRight[0]), int(bottomRight[1]))
-                    bottomLeft=(int(bottomLeft[0]), int(bottomLeft[1]))
-                    
-                    # test if the marker detected is the current marker we are looking for
-                    global flag
-                    global marker_index
-                    #if markerID == self.get_marker_to_find() :
-                    if flagtest==0:
-                        mc.modify_speed(motor,25)
-                        mc.turn_left(motor)
-                        mc.stop_motor(motor)
-                        time.sleep(sec)
-                        flagtest=1
-
-                    if True:
-                        # get marker 's center position
-                        marker_center = int(topRight[0] + topLeft[0])/2
-
-                        deviation = frame_center - marker_center
-                        print("Deviation : ", deviation)
+                if len(corners) > 0:
+                    ids = ids.flatten()
+                    print("###### BALISE DETECTE #########")
+                    for (markerCorner, markerID) in zip(corners, ids):
+                        corners = markerCorner.reshape((4, 2))
+                        (topLeft, topRight, bottomRight, bottomLeft) = corners
+                        topRight = (int(topRight[0]), int(topRight[1]))
+                        bottomRight = (int(bottomRight[0]), int(bottomRight[1]))
+                        bottomLeft=(int(bottomLeft[0]), int(bottomLeft[1]))
                         
-                        # get marker' s height
-                        height = abs(topRight[1] - bottomRight[1])
+                        # test if the marker detected is the current marker we are looking for
+                        global flag
+                        global marker_index
+                        #if markerID == self.get_marker_to_find() :
+                        if flagtest==0:
+                            mc.modify_speed(motor,25)
+                            mc.turn_left(motor)
+                            mc.stop_motor(motor)
+                            time.sleep(sec)
+                            flagtest=1
 
-                        # get distance from cam to marker
-                        dist_marker = get_distance(height)
-                        print("Distance : ", dist_marker)
+                        if True:
+                            # get marker 's center position
+                            marker_center = int(topRight[0] + topLeft[0])/2
+
+                            deviation = frame_center - marker_center
+                            print("Deviation : ", deviation)
+                            
+                            # get marker' s height
+                            height = abs(topRight[1] - bottomRight[1])
+
+                            # get distance from cam to marker
+                            dist_marker = get_distance(height)
+                            print("Distance : ", dist_marker)
 
 
-                        if (dist_marker > 30):
-                            if (deviation < 0):
-                                if(dist_marker > 100 ):
-                                    mc.right(deviation, motor)
-                                    print("\tAVANCER DROITE VITE \n")
-                                else:
-                                    mc.right_slow(deviation, motor)    
-                                    print("\tAVANCER DROITE LENTEMENT \n")                      
-                                # move to the right
-                                # speed_right ++
-                                # speed_left --
-                                mc.move_forward(motor)
-                            else:
-                                if(dist_marker > 100 ):
-                                    mc.left(deviation, motor)
-                                    print("\tAVANCER GAUCHE VITE \n")
-                                    
-                                else:
-                                    mc.left_slow(deviation, motor)  
-                                    print("\tAVANCER GAUCHE LENTEMENT \n")                          
+                            if (dist_marker > 30):
+                                if (deviation < 0):
+                                    if(dist_marker > 100 ):
+                                        mc.right(deviation, motor)
+                                        print("\tAVANCER DROITE VITE \n")
+                                    else:
+                                        mc.right_slow(deviation, motor)    
+                                        print("\tAVANCER DROITE LENTEMENT \n")                      
                                     # move to the right
-                                    # inverse 
-                                mc.move_forward(motor)
-                        else:
-                            # we set the current marker_to_be_found_flag to True
-                            # then we increment the marker_index corresponding to the next one to be found
+                                    # speed_right ++
+                                    # speed_left --
+                                    mc.move_forward(motor)
+                                else:
+                                    if(dist_marker > 100 ):
+                                        mc.left(deviation, motor)
+                                        print("\tAVANCER GAUCHE VITE \n")
+                                        
+                                    else:
+                                        mc.left_slow(deviation, motor)  
+                                        print("\tAVANCER GAUCHE LENTEMENT \n")                          
+                                        # move to the right
+                                        # inverse 
+                                    mc.move_forward(motor)
+                                self.flag_is_move = False
+                            else:
+                                # we set the current marker_to_be_found_flag to True
+                                # then we increment the marker_index corresponding to the next one to be found
 
-                            flag[marker_index] = True
-                            marker_index += 1
-
-                            # at the arrival point
-                            if flag[3] : 
-                                print("ARRIVED TO DESTINATION \n")
-                                mc.stop_motor(motor)
-                                time.sleep(20)
-                                self.flag_is_move = False            
+                                flag[marker_index] = True
+                                marker_index += 1
+                                self.flag_is_move = False
+                                
+                                # at the arrival point
+                                if flag[3] : 
+                                    print("ARRIVED TO DESTINATION \n")
+                                    mc.stop_motor(motor)
+                                    time.sleep(20)
+                                            
                             
                     # else :
                     #     print("\t\tDETECTION D'UN AUTRE MARKER\n")
