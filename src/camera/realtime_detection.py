@@ -9,6 +9,7 @@ dict = cv2.aruco.DICT_6X6_50
 marker_index = 0 
 flag = [False, False, False,False]
 tolerance = 100 # should be replaced depending on experimental settings
+flagtest=0
 
 step = 0.2
 hstep = 0.1
@@ -34,7 +35,8 @@ class Detector():
     
     # search mode on 
     def hunting (self, motor, sleep):
-        mc.modify_speed(motor,35)
+        global flagtest
+        mc.modify_speed(motor,25)
         mc.turn_right(motor)
         mc.stop_motor(motor)
         time.sleep(sleep)
@@ -55,6 +57,7 @@ class Detector():
 
     def detect_aruco_tags(self,frame,motor):
             global flagtest
+
             # Get frame coordinates
             frame_height, frame_width, _ = frame.shape
             #we only need the center of x coordinate
