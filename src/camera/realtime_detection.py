@@ -34,7 +34,7 @@ class Detector():
     
     # search mode on 
     def hunting (self, motor, sleep):
-        mc.modify_speed(motor,25)
+        mc.modify_speed(motor,35)
         mc.turn_right(motor)
         mc.stop_motor(motor)
         time.sleep(sleep)
@@ -42,7 +42,7 @@ class Detector():
 
     # return the marker id to be found next 
     # it makes sure that the previous marker is found                  
-    def get_marker_to_find(self):
+    def get_marker_to_find():
         if not flag[0]:
             return 1
         elif flag[0] and not flag[1]:
@@ -62,8 +62,8 @@ class Detector():
       #  if self.flag_is_move == False: 
             (corners, ids, rejected) = self.detector.detectMarkers(frame)
             if ids == None:
-                    self.hunting(motor, sec)
-                    return
+                self.hunting(motor, sec)
+                return
             mc.stop_motor(motor)
             self.flag_is_move = True
             if len(corners) > 0:
