@@ -11,6 +11,8 @@ flag = [False, False, False,False]
 tolerance = 100 # should be replaced depending on experimental settings
 flagtest=0
 
+
+
 step = 0.2
 hstep = 0.1
 vhstep = 0.05
@@ -85,12 +87,12 @@ class Detector():
                         global flag
                         global marker_index
                         #if markerID == self.get_marker_to_find() :
-                        if flagtest==0:
-                            mc.modify_speed(motor,25)
-                            mc.turn_left(motor)
-                            mc.stop_motor(motor)
-                            time.sleep(sec)
-                            flagtest=1
+                        # if flagtest==0:
+                        #     mc.modify_speed(motor,25)
+                        #     mc.turn_left(motor)
+                        #     mc.stop_motor(motor)
+                        #     time.sleep(sec)
+                        #     flagtest=1
 
                         if True:
                             # get marker 's center position
