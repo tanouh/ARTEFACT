@@ -86,7 +86,7 @@ class Detector():
                         global marker_index
                         #if markerID == self.get_marker_to_find() :
                         if flagtest==0:
-                            mc.modify_speed(motor,25)
+                            # mc.modify_speed(motor,25)
                             mc.turn_left(motor)
                             mc.stop_motor(motor)
                             time.sleep(sec)
