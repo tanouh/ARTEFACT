@@ -109,12 +109,13 @@ class Detector():
                                 if(dist_marker > 100 ):
                                     mc.left(deviation, motor)
                                     print("\tAVANCER GAUCHE VITE \n")
+                                    
                                 else:
                                     mc.left_slow(deviation, motor)  
                                     print("\tAVANCER GAUCHE LENTEMENT \n")                          
                                     # move to the right
                                     # inverse 
-                                    mc.move_forward(motor)
+                                mc.move_forward(motor)
                         else:
                             # we set the current marker_to_be_found_flag to True
                             # then we increment the marker_index corresponding to the next one to be found
