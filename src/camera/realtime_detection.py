@@ -119,6 +119,7 @@ class Detector():
                                     # speed_right ++
                                     # speed_left --
                                     mc.move_forward(motor)
+                                    time.sleep(sec)
                                 else:
                                     if(dist_marker > 100 ):
                                         mc.left(deviation, motor)
@@ -130,6 +131,7 @@ class Detector():
                                         # move to the right
                                         # inverse 
                                     mc.move_forward(motor)
+                                    time.sleep(sec)
                                 self.flag_is_move = False
                             else:
                                 # we set the current marker_to_be_found_flag to True
