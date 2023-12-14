@@ -9,7 +9,7 @@ class Streamer():
         def __init__(self):
                 self.camera = cv2.VideoCapture(0)
                 self.camera.set(cv2.CAP_PROP_BUFFERSIZE, 1)
-                fps = cap.get(cv2.CAP_PROP_FPS)
+                fps = self.camera.get(cv2.CAP_PROP_FPS)
                 print(f"La fréquence d'images par seconde (FPS) de la caméra est : {fps}")
 
 
