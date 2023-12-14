@@ -11,11 +11,7 @@ flag = [False, False, False,False]
 tolerance = 100 # should be replaced depending on experimental settings
 flagtest=0
 
-
-
-step = 0.2
 hstep = 0.1
-vhstep = 0.05
 sec = 10*hstep
 
 
@@ -38,7 +34,7 @@ class Detector():
     # search mode on 
     def hunting (self, motor, sleep):
         global flagtest
-        mc.modify_speed(motor,25)
+        # mc.modify_speed(motor,25)
         mc.turn_right(motor)
         mc.stop_motor(motor)
         time.sleep(sleep)
@@ -76,6 +72,8 @@ class Detector():
                 if len(corners) > 0:
                     ids = ids.flatten()
                     print("###### BALISE DETECTE #########")
+
+
                     for (markerCorner, markerID) in zip(corners, ids):
                         corners = markerCorner.reshape((4, 2))
                         (topLeft, topRight, bottomRight, bottomLeft) = corners
@@ -87,12 +85,12 @@ class Detector():
                         global flag
                         global marker_index
                         #if markerID == self.get_marker_to_find() :
-                        # if flagtest==0:
-                        #     mc.modify_speed(motor,25)
-                        #     mc.turn_left(motor)
-                        #     mc.stop_motor(motor)
-                        #     time.sleep(sec)
-                        #     flagtest=1
+                        if flagtest==0:
+                            mc.modify_speed(motor,25)
+                            mc.turn_left(motor)
+                            mc.stop_motor(motor)
+                            time.sleep(sec)
+                            flagtest=1
 
                         if True:
                             # get marker 's center position
