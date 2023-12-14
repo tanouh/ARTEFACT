@@ -78,7 +78,7 @@ class Detector():
                     global flag
                     global marker_index
                     #if markerID == self.get_marker_to_find() :
-                    if markerID != 0 :
+                    if True:
                         # get marker 's center position
                         marker_center = int(topRight[0] + topLeft[0])/2
 
