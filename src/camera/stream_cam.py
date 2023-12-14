@@ -9,7 +9,6 @@ class Streamer():
         def __init__(self):
                 self.camera = cv2.VideoCapture(0)
                 self.camera.set(cv2.CAP_PROP_BUFFERSIZE, 1)
-                self.camera.set(cv2.CAP_PROP_FPS, 10 )
 
 
                

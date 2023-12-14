@@ -69,6 +69,7 @@ class Detector():
                 return
             mc.stop_motor(motor)
             self.flag_is_move = True
+
             if len(corners) > 0:
                 ids = ids.flatten()
                 print("###### BALISE DETECTE #########")
@@ -89,6 +90,7 @@ class Detector():
                         mc.stop_motor(motor)
                         time.sleep(sec)
                         flagtest=1
+
                     if True:
                         # get marker 's center position
                         marker_center = int(topRight[0] + topLeft[0])/2
@@ -141,13 +143,13 @@ class Detector():
                                 time.sleep(20)
                                 self.flag_is_move = False            
                             
-                    else :
-                        print("\t\tDETECTION D'UN AUTRE MARKER\n")
+                    # else :
+                    #     print("\t\tDETECTION D'UN AUTRE MARKER\n")
 
-                        # if we do not get the marker we need 
-                        self.flag_is_move = False
-                        self.hunting(motor, hstep)
-                        return
+                    #     # if we do not get the marker we need 
+                    #     self.flag_is_move = False
+                    #     self.hunting(motor, hstep)
+                    #     return
                     
                     
 
