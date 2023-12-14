@@ -66,7 +66,7 @@ class MotorDriver():
             pwm.setDutycycle(self.PWMB, 0)
 
     def accelerate(self, target_speed, acceleration_time):
-        start_speed = self.speed
+        start_speed = self.speed_right
         increment = 1 if target_speed > start_speed else -1
         for i in range(start_speed, target_speed, increment):
             self.set_speed(i)
