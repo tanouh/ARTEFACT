@@ -41,7 +41,7 @@ class Detector():
 
     # return the marker id to be found next 
     # it makes sure that the previous marker is found                  
-    def get_marker_to_find():
+    def get_marker_to_find(self):
         if not flag[0]:
             return 1
         elif flag[0] and not flag[1]:
