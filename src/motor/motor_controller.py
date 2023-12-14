@@ -3,8 +3,6 @@ import time
 
 step_duration = 0.3
 step = 0.2
-hstep = 0.1
-vhstep = 0.05
 
 def start_motor():
         return motor_driver.MotorDriver()
