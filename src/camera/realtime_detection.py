@@ -53,16 +53,15 @@ class Detector():
 
 
     def detect_aruco_tags(self,frame,motor):
-        # Get frame coordinates
-        frame_height, frame_width, _ = frame.shape
-        #we only need the center of x coordinate
-        frame_center = frame_width / 2 
-
-        if self.flag_is_move == False: 
-            (corners, ids, rejected) = self.detector.detectMarkers(frame)
-            if ids == None:
-                self.hunting(motor, sec)
-                return
+            # Get frame coordinates
+            frame_height, frame_width, _ = frame.shape
+            #we only need the center of x coordinate
+            frame_center = frame_width / 2 
+      #  if self.flag_is_move == False: 
+      #      (corners, ids, rejected) = self.detector.detectMarkers(frame)
+      #      if ids == None:
+      #          self.hunting(motor, sec)
+      #          return
             mc.stop_motor(motor)
             self.flag_is_move = True
             if len(corners) > 0:
@@ -78,7 +77,8 @@ class Detector():
                     # test if the marker detected is the current marker we are looking for
                     global flag
                     global marker_index
-                    if markerID == self.get_marker_to_find() :
+                    #if markerID == self.get_marker_to_find() :
+                    if markerID != 0 :
                         # get marker 's center position
                         marker_center = int(topRight[0] + topLeft[0])/2
 
