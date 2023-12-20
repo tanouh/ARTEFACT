@@ -111,7 +111,7 @@ class Detector():
                             print("Distance : ", dist_marker)
 
 
-                            if (dist_marker > 90):
+                            if (dist_marker > 70):
                                 if (deviation < 0):
                                     if(dist_marker > 150 ):
                                         mc.right(deviation, motor)
