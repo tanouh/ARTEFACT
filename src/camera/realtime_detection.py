@@ -111,7 +111,7 @@ class Detector():
                             print("Distance : ", dist_marker)
 
 
-                            if (dist_marker > 70):
+                            if (dist_marker > 80):
                                 if (deviation < 0):
                                     if(dist_marker > 150 ):
                                         mc.right(deviation, motor)
@@ -138,6 +138,7 @@ class Detector():
                                     mc.move_forward(motor)
                                     time.sleep(sec)
                                 self.flag_is_move = False
+
                             else:
                                 # now dist_marker <= 30:
                                 # we set the current marker_to_be_found_flag to True
