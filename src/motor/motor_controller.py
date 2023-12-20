@@ -57,16 +57,16 @@ def turn_around(motor,   orientation = turn_right):
         stop_motor(motor)
 
 def left(middle,motor):
-        motor.set_speed_right((40+(abs(middle)*0.05)))
-        motor.set_speed_left(35)
+        motor.set_speed_right((40+(abs(middle)*0.025)))
+        motor.set_speed_left(40)
 
 def left_slow(middle,motor):
         motor.set_speed_right((35+(abs(middle)*0.05)))
         motor.set_speed_left(35)
 
 def right(middle,motor):
-        motor.set_speed_left((40+(abs(middle)*0.05)))
-        motor.set_speed_right(35)
+        motor.set_speed_left((40+(abs(middle)*0.025)))
+        motor.set_speed_right(40)
 
 def right_slow(middle,motor):
         motor.set_speed_left((35+(abs(middle)*0.05)))

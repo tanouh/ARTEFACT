@@ -111,9 +111,9 @@ class Detector():
                             print("Distance : ", dist_marker)
 
 
-                            if (dist_marker > 80):
+                            if (dist_marker > 65):
                                 if (deviation < 0):
-                                    if(dist_marker > 150 ):
+                                    if(dist_marker > 100 ):
                                         mc.right(deviation, motor)
                                         
                                         print("\tAVANCER DROITE VITE \n")
@@ -126,7 +126,7 @@ class Detector():
                                     mc.move_forward(motor)
                                     time.sleep(sec)
                                 else:
-                                    if(dist_marker > 150 ):
+                                    if(dist_marker > 100 ):
                                         mc.left(deviation, motor)
                                         print("\tAVANCER GAUCHE VITE \n")
                                         
@@ -154,6 +154,7 @@ class Detector():
                                     print("ARRIVED TO DESTINATION \n")
                                     mc.stop_motor(motor)
                                     time.sleep(20)
+                                    mc.set_speed(motor,0)
                                     return
                                                 
                                 
