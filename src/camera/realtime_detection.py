@@ -92,67 +92,65 @@ class Detector():
                                 mc.stop_motor(motor)
                                 time.sleep(sec)
                                 flagtest=1
+                            # After seeing the right marquer, 
+                            # continue to get close to this marker
 
-                            if True: 
-                                # After seeing the right marquer, 
-                                # continue to get close to this marker
+                            # get marker 's center position
+                            marker_center = int(topRight[0] + topLeft[0])/2
 
-                                # get marker 's center position
-                                marker_center = int(topRight[0] + topLeft[0])/2
+                            deviation = frame_center - marker_center
+                            print("Deviation : ", deviation)
+                            
+                            # get marker' s height
+                            height = abs(topRight[1] - bottomRight[1])
 
-                                deviation = frame_center - marker_center
-                                print("Deviation : ", deviation)
-                                
-                                # get marker' s height
-                                height = abs(topRight[1] - bottomRight[1])
-
-                                # get distance from cam to marker
-                                dist_marker = get_distance(height)
-                                print("Distance : ", dist_marker)
+                            # get distance from cam to marker
+                            dist_marker = get_distance(height)
+                            print("Distance : ", dist_marker)
 
 
-                                if (dist_marker > 30):
-                                    if (deviation < 0):
-                                        if(dist_marker > 100 ):
-                                            mc.right(deviation, motor)
-                                            print("\tAVANCER DROITE VITE \n")
-                                        else:
-                                            mc.right_slow(deviation, motor)    
-                                            print("\tAVANCER DROITE LENTEMENT \n")                      
-                                        # move to the right
-                                        # speed_right ++
-                                        # speed_left --
-                                        mc.move_forward(motor)
-                                        time.sleep(sec)
+                            if (dist_marker > 30):
+                                if (deviation < 0):
+                                    if(dist_marker > 100 ):
+                                        mc.right(deviation, motor)
+                                        print("\tAVANCER DROITE VITE \n")
                                     else:
-                                        if(dist_marker > 100 ):
-                                            mc.left(deviation, motor)
-                                            print("\tAVANCER GAUCHE VITE \n")
-                                            
-                                        else:
-                                            mc.left_slow(deviation, motor)  
-                                            print("\tAVANCER GAUCHE LENTEMENT \n")                          
-                                            # move to the right
-                                            # inverse 
-                                        mc.move_forward(motor)
-                                        time.sleep(sec)
-                                    self.flag_is_move = False
+                                        mc.right_slow(deviation, motor)    
+                                        print("\tAVANCER DROITE LENTEMENT \n")                      
+                                    # move to the right
+                                    # speed_right ++
+                                    # speed_left --
+                                    mc.move_forward(motor)
+                                    time.sleep(sec)
                                 else:
-                                    # now dist_marker <= 30:
-                                    # we set the current marker_to_be_found_flag to True
-                                    # then we increment the marker_index corresponding to the next one to be found
+                                    if(dist_marker > 100 ):
+                                        mc.left(deviation, motor)
+                                        print("\tAVANCER GAUCHE VITE \n")
+                                        
+                                    else:
+                                        mc.left_slow(deviation, motor)  
+                                        print("\tAVANCER GAUCHE LENTEMENT \n")                          
+                                        # move to the right
+                                        # inverse 
+                                    mc.move_forward(motor)
+                                    time.sleep(sec)
+                                self.flag_is_move = False
+                            else:
+                                # now dist_marker <= 30:
+                                # we set the current marker_to_be_found_flag to True
+                                # then we increment the marker_index corresponding to the next one to be found
 
-                                    flag[marker_index] = True
-                                    print("Status of finding: ", flag) # show which marquers have been detected
-                                    marker_index += 1
-                                    self.flag_is_move = False
-                                    
-                                    # at the arrival point
-                                    if flag[3] : 
-                                        print("ARRIVED TO DESTINATION \n")
-                                        mc.stop_motor(motor)
-                                        time.sleep(20)
-                                        return
+                                flag[marker_index] = True
+                                print("Status of finding: ", flag) # show which marquers have been detected
+                                marker_index += 1
+                                self.flag_is_move = False
+                                
+                                # at the arrival point
+                                if flag[3] : 
+                                    print("ARRIVED TO DESTINATION \n")
+                                    mc.stop_motor(motor)
+                                    time.sleep(20)
+                                    return
                                                 
                                 
                     else :
