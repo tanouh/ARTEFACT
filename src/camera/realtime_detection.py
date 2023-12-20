@@ -85,7 +85,7 @@ class Detector():
                         global flag
                         global marker_index
                         print("Marker to find: ", self.get_marker_to_find())
-                        print ("Marker detected: ," markerID)
+                        print ("Marker detected: ", markerID)
                         if markerID == self.get_marker_to_find() :
                             print("Successfully seen Marquer ID: ", markerID)
                             if flagtest==0:
