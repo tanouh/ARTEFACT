@@ -34,7 +34,7 @@ class Detector():
     # search mode on 
     def hunting (self, motor, sleep):
         global flagtest
-        mc.modify_speed(motor,25)
+        mc.modify_speed(motor,30)
         mc.turn_right(motor)
         mc.stop_motor(motor)
         time.sleep(sleep)
@@ -111,7 +111,7 @@ class Detector():
                             print("Distance : ", dist_marker)
 
 
-                            if (dist_marker > 30):
+                            if (dist_marker > 50):
                                 if (deviation < 0):
                                     if(dist_marker > 100 ):
                                         mc.right(deviation, motor)
