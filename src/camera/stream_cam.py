@@ -19,20 +19,23 @@ class Streamer():
                 print("[STREAM] starting video stream...")
                 ret, frame = self.camera.read()
                 time.sleep(0.2)
-                
-                while True :
-                        ret, frame = self.camera.read()
-                        if not ret:
-                                break
-                        if func is not None :
-                                func(frame, motor)
-                        else : 
-                                # print("[STREAM] No function to read")
-                                continue
+                try :
+                        while True :
+                                ret, frame = self.camera.read()
+                                if not ret:
+                                        break
+                                if func is not None :
+                                        func(frame, motor)
+                                else : 
+                                        # print("[STREAM] No function to read")
+                                        continue
 
-                print("[STREAM] ending video stream...")
-                cv2.destroyAllWindows()
-                self.camera.release()
+                        print("[STREAM] ending video stream...")
+                        cv2.destroyAllWindows()
+                        self.camera.release()
+
+                except : 
+                        print("SHUTDOWN TO DO")
 
         def generate_frames(self, motor, func):
                 print("[STREAM] Starting video stream...")

@@ -1,3 +1,4 @@
+import numpy as np
 import cv2
 from cv2 import aruco as arU
 import time
@@ -30,27 +31,126 @@ class Detector():
         self.params = arU.DetectorParameters()
         self.detector = arU.ArucoDetector(self.dict, self.params)
         self.flag_is_move = False
-    
+
+
+        self.arucoList = []
+        self.arucoToFind = None
+        
+
+        #cahier des charges
+        self.arucoFlag = [False, False, False,False]
+
+        self.rotationDuration = None 
+        self.rotationFix = .3
+        self.rotationFlag = False # flag if rotation is needed
+
+        self.direction = 0 
+        self.speed = 0
+
+
     # search mode on 
-    def hunting (self, motor, sleep):
-        global flagtest
-        mc.modify_speed(motor,25)
-        mc.turn_right(motor)
-        mc.stop_motor(motor)
-        time.sleep(sleep)
-        flagtest=0
+    def hunting (self, motor, direction):
+        # global flagtest
+        # mc.modify_speed(motor,25)
+        # mc.turn_right(motor)
+        # mc.stop_motor(motor)
+        # time.sleep(sleep)
+        # flagtest=0
+
+        if not arucoToFind:
+            if not self.rotationDuration : 
+                self.rotationDuration = time.time()
+        
+            if time.time() - self.rotationDuration < self.rotationFix and self.rotationFlag:
+                self.direction = direction
+                self.speed = .2
+            elif self.rotationFlag: #need more rotation
+                self.rotationDuration = time.time()
+                self.rotationFlag = False #stop
+            
+            if time.time() - self.timerRotation < self.rotationFix and not self.rotationFlag:
+                    self.direction= 0
+                    self.speed = 0
+
+            elif not self.rotationFlag:
+                self.rotationDuration = time.time()
+                self.rotationFlag = True # on se remet a tourner
+        else:
+            print("Marquer ID: ", arucoToFind["id"])
+            self.direction = 0
+            self.speed = 0
+          
 
     # return the marker id to be found next 
     # it makes sure that the previous marker is found                  
     def get_marker_to_find(self):
-        if not flag[0]:
+        if not self.arucoFlag[0]:
             return 1
-        elif flag[0] and not flag[1]:
+        elif self.arucoFlag[0] and not self.arucoFlag[1]:
             return 3
-        elif flag[0] and flag[1] and not flag[2]:
+        elif self.arucoFlag[0] and self.arucoFlag[1] and not self.arucoFlag[2]:
             return 5
         else:
             return 9
+
+
+    def detect_aruco_tag_bis(self, frame, motor):
+        (corners, ids, rejected) = self.detector.detectMarkers(frame)
+        
+        if len(corners) > 0:
+            ids = ids.flatten()
+
+            topRight = (int(topRight[0]), int(topRight[1]))
+            bottomRight = (int(bottomRight[0]), int(bottomRight[1]))
+            bottomLeft = (int(bottomLeft[0]), int(bottomLeft[1]))
+            topLeft = (int(topLeft[0]), int(topLeft[1]))
+            center = (int((topLeft[0] + bottomRight[0]) / 2.0), int((topLeft[1] + bottomRight[1]) / 2.0))
+            
+            aruco = {
+                "id": markerId,
+                "center": center,
+                "tr": topRight,
+                "tl": topLeft,
+                "br": bottomRight,
+                "bl": bottomLeft,
+                "dist": get_distance(0.5*(dist(topLeft, bottomLeft) + dist(bottomRight, topRight))) 
+            }
+            self.arucoList.append(aruco)
+            
+    def catch_aruco():
+        list = self.arucoList
+        self.timerDetection = None
+        for aruco in list : 
+            if aruco["id"] == self.get_marker_to_find():
+                self.arucoToFind = aruco
+   
+    def run(self, frame, motor):
+        self.detect_aruco_tag_bis(frame, motor)
+        self.catch_aruco()
+
+        if (not self.arucoToFind):
+            self.hunting()
+        else:
+            self.go_to(frame)
+        
+        mc.updateMotor(motor, self.direction, self.speed)
+    
+    def go_to_aruco(self, frame):
+        height, width = frame.shape[:2]
+        frame_center = width//2
+
+        if self.arucoToFind and self.arucoToFind["dist"] > tolerance:
+            self.speed = FWD_SPEED
+
+            if self.arucoToFInd["center"][0] < frame_center: 
+                self.direction = -.2
+            else: 
+                self.direction = .2
+
+        else:
+            self.speed = 0 
+            self.direction = 0
+
 
 
     def detect_aruco_tags(self,frame,motor):
