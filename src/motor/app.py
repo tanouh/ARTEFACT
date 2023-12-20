@@ -24,7 +24,7 @@ def launch_streaming():
                 return streamer.streaming(motor, None)
         else :
                 detector = rd.Detector()
-                return streamer.streaming(motor, detector.detect_aruco_tags)
+                return streamer.streaming(motor, detector.run)
 
 @app.route("/")
 def index():
@@ -126,6 +126,7 @@ if __name__ == '__main__':
         # Ouvrir le navigateur vers l'URL du serveur
         url = f"http://{ip_adress}:{rpi_port}"
         webbrowser.open_new(url)
+    
     except KeyboardInterrupt:
         start()
         stop()
