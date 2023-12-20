@@ -153,13 +153,13 @@ class Detector():
                                     return
                                                 
                                 
-                    else :
-                        print("\t\tDETECTION D'UN AUTRE MARKER\n")
+                else :
+                    print("\t\tDETECTION D'UN AUTRE MARKER\n")
 
-                        # if we do not get the marker we need 
-                        self.flag_is_move = False
-                        self.hunting(motor, hstep)
-                        return
+                    # if we do not get the marker we need 
+                    self.flag_is_move = False
+                    self.hunting(motor, hstep)
+                    return
                     
                     
 
