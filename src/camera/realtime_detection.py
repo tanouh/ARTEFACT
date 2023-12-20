@@ -115,6 +115,7 @@ class Detector():
                                 if (deviation < 0):
                                     if(dist_marker > 150 ):
                                         mc.right(deviation, motor)
+                                        
                                         print("\tAVANCER DROITE VITE \n")
                                     else:
                                         mc.right_slow(deviation, motor)    
