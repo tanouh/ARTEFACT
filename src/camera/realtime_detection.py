@@ -34,7 +34,7 @@ class Detector():
     # search mode on 
     def hunting (self, motor, sleep):
         global flagtest
-        mc.modify_speed(motor,30)
+        mc.modify_speed(motor,25)
         mc.turn_right(motor)
         mc.stop_motor(motor)
         time.sleep(sleep)
