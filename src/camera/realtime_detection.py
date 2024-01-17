@@ -11,7 +11,7 @@ from motor import motor_controller as mc
 dict = cv2.aruco.DICT_6X6_50
 marker_index = 0 
 flag = [False, False, False,False]
-tolerance = 100 # should be replaced depending on experimental settings
+tolerance = 70 # should be replaced depending on experimental settings
 flagtest=0
 
 hstep = 0.1
@@ -115,7 +115,7 @@ class Detector():
     def detect_aruco_tag_bis(self, frame, motor):
         (corners, ids, rejected) = self.detector.detectMarkers(frame)
         self.arucoList = [] # initialiser
-        
+
         if len(corners) > 0:
             ids = ids.flatten()
 
@@ -180,7 +180,7 @@ class Detector():
 
         if self.arucoToFind and self.arucoToFind["dist"] < tolerance:
             if self.arucoToFind["id"] not in self.visited_Id :
-                print(" add  ")
+                print(" add  ", self.arucoToFind["id"])
                 self.visited_Id.append(self.arucoToFind["id"])
             # renouveller les flags
             self.arucoFlag[len(self.visited_Id)-1] = True

@@ -101,6 +101,10 @@ def updateMotor(motor, direction, speed):
                 move_right(motor, speed*100, abs(direction))
                 stop_motor(motor)
                 
+        elif direction == 0: # avancer tout droit
+                print(" avancer tout droit ")
+                move_forward(motor)
+                
         else : 
                 stop_motor(motor)        
 
