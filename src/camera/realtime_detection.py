@@ -140,7 +140,7 @@ class Detector():
 
         if (not self.arucoToFind):
             print("########## HUNTING ############")
-            self.hunting(self.direction)
+            self.hunting(-1) 
         else:
             print("########## GO TO MARKER ########")
             self.go_to_aruco(frame)
