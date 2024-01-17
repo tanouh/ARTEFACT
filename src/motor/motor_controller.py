@@ -86,6 +86,7 @@ def updateMotor(motor, direction, speed):
                 stop_motor(motor)
                 print("Right")
         else : 
+                print(speed)
                 set_speed(motor, speed)
                 move_forward(motor)
                 stop_motor(motor)
