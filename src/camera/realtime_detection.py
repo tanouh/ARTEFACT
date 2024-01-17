@@ -50,7 +50,7 @@ class Detector():
         self.rotationFlag = True # flag if rotation is needed
 
         self.direction = 0 
-        self.speed = .5
+        self.speed = 0
 
         self.visited_Id = []
 
@@ -74,7 +74,7 @@ class Detector():
                 # if a rotation is needed
                 print("Turning , direction = ", direction )
                 self.direction = direction
-                self.speed = .5
+                self.speed = .3
 
             elif self.rotationFlag: #no more rotation
                 print("Stop turning " )
