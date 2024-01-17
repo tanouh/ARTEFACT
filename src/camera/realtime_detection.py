@@ -166,9 +166,9 @@ class Detector():
             self.speed = FWD_SPEED
 
             if self.arucoToFind["center"][0] < frame_center: 
-                self.direction = -.2
+                self.direction = -1
             else: 
-                self.direction = .2
+                self.direction = 2
 
         else:
             self.speed = .3 
