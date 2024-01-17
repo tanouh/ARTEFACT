@@ -165,7 +165,6 @@ class Detector():
     def go_to_aruco(self, frame):
         height, width = frame.shape[:2]
         frame_center = width//2
-        print( "GO TO ", self.arucoToFind["id"] )
         if self.arucoToFind and self.arucoToFind["dist"] > tolerance:
             self.speed = FWD_SPEED
 
@@ -188,6 +187,8 @@ class Detector():
                 print("Finish finding all markers")
             self.arucoToFind = None
         
+
+    # TODO : voiture  ne s'arrête pas, cherchez le pbm: n'entre pas dans le hunting mode après première detection
     
 
     def detect_aruco_tags(self,frame,motor):
