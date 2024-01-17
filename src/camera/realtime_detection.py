@@ -61,12 +61,11 @@ class Detector():
         # time.sleep(sleep)
         # flagtest=0
         if not self.arucoToFind: 
-            print("rotation Duration: ", self.rotationDuration)
 
             # no markers found yet, specially the one we need
             if not self.rotationDuration : 
                 self.rotationDuration = time.time() #init du timer
-                self.speed = .3
+                # self.speed = .3
         
             if time.time() - self.rotationDuration < self.rotationFix and self.rotationFlag:
                 # if a rotation is needed
@@ -78,8 +77,8 @@ class Detector():
                 self.rotationFlag = False #stop
             
             if time.time() - self.rotationDuration < self.rotationFix and not self.rotationFlag:
-                    self.direction= 1
-                    self.speed = FWD_SPEED
+                    self.direction= 0
+                    self.speed = 0
 
             elif not self.rotationFlag:
                 self.rotationDuration = time.time()
@@ -89,7 +88,7 @@ class Detector():
             self.direction = 0
             self.speed = 0
         
-        mc.updateMotor(motor, self.direction, self.speed)
+        # mc.updateMotor(motor, self.direction, self.speed)
         
           
 
