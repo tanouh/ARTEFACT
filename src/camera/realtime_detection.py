@@ -178,14 +178,15 @@ class Detector():
 
         if self.arucoToFind and self.arucoToFind["dist"] < tolerance:
             if self.arucoToFind["id"] not in self.visited_Id :
+                print(" add  ")
                 self.visited_Id.append(self.arucoToFind["id"])
             # renouveller les flags
             self.arucoFlag[len(self.visited_Id)-1] = True
             if self.arucoFlag[-1] == True:
                 print("Finish finding all markers")
+            self.arucoToFind = None
         
     
-
 
     def detect_aruco_tags(self,frame,motor):
             global flagtest
