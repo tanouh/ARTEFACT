@@ -17,7 +17,7 @@ flagtest=0
 hstep = 0.1
 sec = 10*hstep
 
-FWD_SPEED = .7
+FWD_SPEED = .3
 
 
 def get_distance(height):
@@ -165,7 +165,7 @@ class Detector():
     def go_to_aruco(self, frame):
         height, width = frame.shape[:2]
         frame_center = width//2
-
+        print( "GO TO ", self.arucoToFind["id"] )
         if self.arucoToFind and self.arucoToFind["dist"] > tolerance:
             self.speed = FWD_SPEED
 
