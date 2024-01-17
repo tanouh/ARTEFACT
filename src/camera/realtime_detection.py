@@ -46,7 +46,7 @@ class Detector():
         self.arucoFlag = [False, False, False,False]
 
         self.rotationDuration = None 
-        self.rotationFix = .3
+        self.rotationFix = .5
         self.rotationFlag = True # flag if rotation is needed
 
         self.direction = 0 
