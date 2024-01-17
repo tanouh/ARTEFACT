@@ -71,6 +71,17 @@ def right_slow(middle,motor):
         motor.set_speed_left((25+(abs(middle)*0.05)))
         motor.set_speed_right(25)
 
+def move_right(motor, speed, direction): 
+        motor.set_speed_left(speed + direction * 100)
+        motor.set_speed_right(speed)
+        move_forward(motor)
+
+def move_left(motor, speed, direction):
+        motor.set_speed_right(speed + direction * 100)
+        motor.set_speed_left(speed)
+        move_forward(motor)
+
+
 def updateMotor(motor, direction, speed):
         set_speed(motor, speed)
         
@@ -81,14 +92,10 @@ def updateMotor(motor, direction, speed):
                 turn_right(motor)
         
         elif direction == -.2: # avancer vers la gauche
-                motor.set_speed_right(speed + direction * 100)
-                motor.set_speed_left(speed)
-                move_forward(motor)
+                move_left(motor, speed, abs(direction))
 
         elif direction == .2 :  # avancer vers la droite
-                motor.set_speed_left(speed - direction * 100)
-                motor.set_speed_right(speed)
-                move_forward(motor)
+                move_right(motor, speed, abs(direction))
                 
         else : 
                 stop_motor(motor)        
