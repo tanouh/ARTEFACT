@@ -12,8 +12,8 @@ def stop_motor(motor):
         motor.MotorStop(1)
 
 def set_speed(motor, new_speed):
-        motor.set_speed_right(new_speed)
-        motor.set_speed_left(new_speed)
+        motor.set_speed_right(100*new_speed)
+        motor.set_speed_left(100*new_speed)
 
 def set_step_duration(duration):
         step_duration = duration
