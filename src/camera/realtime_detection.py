@@ -47,7 +47,7 @@ class Detector():
 
         self.rotationDuration = None 
         self.rotationFix = .3
-        self.rotationFlag = False # flag if rotation is needed
+        self.rotationFlag = True # flag if rotation is needed
 
         self.direction = 0 
         self.speed = .5
