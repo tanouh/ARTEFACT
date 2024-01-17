@@ -87,10 +87,10 @@ def updateMotor(motor, direction, speed):
                 motor.set_speed_right(speed + direction * 100)
                 move_forward(motor)
 
-        elif direction == .2 :
-                motor.set_speed_left(speed + direction * 100)
+        elif direction == .2 :  # avancer vers la droite
+                motor.set_speed_left(speed - direction * 100)
                 move_forward(motor)
-                right_slow(motor) # avancer vers la droite
+                
         else : 
                 stop_motor(motor)        
 
