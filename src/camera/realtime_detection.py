@@ -60,8 +60,9 @@ class Detector():
         # mc.stop_motor(motor)
         # time.sleep(sleep)
         # flagtest=0
-
+        print(self.arucoToFind)
         if not self.arucoToFind: 
+            
             # no markers found yet, specially the one we need
             if not self.rotationDuration : 
                 self.rotationDuration = time.time() #init du timer
