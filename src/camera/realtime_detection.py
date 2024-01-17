@@ -149,7 +149,7 @@ class Detector():
         self.detect_aruco_tag_bis(frame, motor)
         self.catch_aruco()
         if self.arucoToFind :
-            print( "A CHERCHER ", self.arucoToFind.id )
+            print( "A CHERCHER ", self.arucoToFind["id"] )
 
         if (not self.arucoToFind):
             print("########## HUNTING ############")
