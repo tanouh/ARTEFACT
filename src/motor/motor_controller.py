@@ -20,12 +20,12 @@ def set_step_duration(duration):
 def move_forward(motor):
         motor.MotorRun(0, 'forward')
         motor.MotorRun(1, 'forward')
-        time.sleep(step_duration)
+        time.sleep(.3)
 
 def move_backward(motor):
         motor.MotorRun(0, 'backward')
         motor.MotorRun(1, 'backward')
-        time.sleep(step_duration)
+        time.sleep(.3)
 
 
 
@@ -84,23 +84,27 @@ def updateMotor(motor, direction, speed):
         if direction  == -1: # tourner a gauche
                 print(" tourner a gauche ")
                 turn_left(motor)  
+                stop_motor(motor)
         
         elif direction == 1: # tourner a droite
                 print(" tourner a droite ")
                 turn_right(motor)
+                stop_motor(motor)
         
         elif direction == -.2: # avancer vers la gauche
                 print(" avancer vers la gauche ")
                 move_left(motor, speed*100, abs(direction))
+                stop_motor(motor)
 
         elif direction == .2 :  # avancer vers la droite
                 print(" avancer vers la droite ")
                 move_right(motor, speed*100, abs(direction))
+                stop_motor(motor)
                 
         else : 
                 stop_motor(motor)        
 
-        stop_motor(motor)
+        
                 
 
 
