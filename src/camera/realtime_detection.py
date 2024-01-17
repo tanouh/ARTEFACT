@@ -162,7 +162,7 @@ class Detector():
                 self.direction = .2
 
         else:
-            self.speed = 0 
+            self.speed = .3 
             self.direction = 0
 
 
