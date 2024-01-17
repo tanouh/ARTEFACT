@@ -59,12 +59,12 @@ def right_slow(middle,motor):
         motor.set_speed_right(25)
 
 def move_right(motor, speed, direction): 
-        motor.set_speed_left(speed + direction * 100)
+        motor.set_speed_left(speed + direction * 50) # parameters? do not turn too quick
         motor.set_speed_right(speed)
         move_forward(motor)
 
 def move_left(motor, speed, direction):
-        motor.set_speed_right(speed + direction * 100)
+        motor.set_speed_right(speed + direction * 50) # parameters? do not turn too quick
         motor.set_speed_left(speed)
         move_forward(motor)
 
@@ -104,7 +104,7 @@ def updateMotor(motor, direction, speed):
         elif direction == 0: # avancer tout droit
                 print(" avancer tout droit ")
                 move_forward(motor)
-                
+
         else : 
                 stop_motor(motor)        
 
