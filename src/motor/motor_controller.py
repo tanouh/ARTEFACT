@@ -1,7 +1,7 @@
 import motor_driver
 import time
 
-step_duration = .5
+step_duration = .3
 
 def start_motor():
         return motor_driver.MotorDriver()
@@ -74,18 +74,27 @@ def right_slow(middle,motor):
 def updateMotor(motor, direction, speed):
         set_speed(motor, speed)
         
-        if speed == 0 : 
-                stop_motor(motor)
-        if direction  == -1: # a gauche
-                move_left_forward(motor)
+       
+        if direction  == -1: # tourner a gauche
+                turn_left(motor)  
                 print("LEFT")
-        elif direction == 1: 
-                move_right_forward(motor)
-                stop_motor(motor)
+        
+        elif direction == 1: # tourner a droite
+                turn_right(motor)
                 print("Right")
+        
+        elif direction == -.2: # avancer vers la gauche
+                motor.set_speed_right(speed + direction * 100)
+                move_forward(motor)
+
+        elif direction == .2 :
+                motor.set_speed_left(speed + direction * 100)
+                move_forward(motor)
+                right_slow(motor) # avancer vers la droite
         else : 
-                stop_motor(motor)
-                print("Just fwd")
+                stop_motor(motor)        
+
+        stop_motor(motor)
                 
 
 
