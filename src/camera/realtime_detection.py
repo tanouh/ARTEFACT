@@ -140,7 +140,7 @@ class Detector():
             
     def catch_aruco(self):
         list = self.arucoList
-        self.timerDetection = None
+        self.rotationDuration = None
         for aruco in list : 
             if aruco["id"] == self.get_marker_to_find():
                 self.arucoToFind = aruco
@@ -148,6 +148,8 @@ class Detector():
     def run(self, frame, motor):
         self.detect_aruco_tag_bis(frame, motor)
         self.catch_aruco()
+        if self.arucoToFind :
+            print( "A CHERCHER ", self.arucoToFind.id )
 
         if (not self.arucoToFind):
             print("########## HUNTING ############")
@@ -171,7 +173,7 @@ class Detector():
                 self.direction = .2
 
         else:
-            self.speed = .3 
+            self.speed = 0 
             self.direction = 0
 
         if self.arucoToFind and self.arucoToFind["dist"] < tolerance:
@@ -181,6 +183,8 @@ class Detector():
             flag[len(self.visited_Id)-1] = True
             if flag[-1] == True:
                 print("Finish finding all markers")
+        
+    
 
 
     def detect_aruco_tags(self,frame,motor):
