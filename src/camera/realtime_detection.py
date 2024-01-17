@@ -139,6 +139,7 @@ class Detector():
                 self.arucoList.append(aruco)
             
     def catch_aruco(self):
+        self.arucoList = [] # initialiser
         list = self.arucoList
         self.rotationDuration = None
         self.arucoToFind =  None
@@ -157,7 +158,7 @@ class Detector():
             print("########## HUNTING ############")
             self.hunting(-1, motor) 
         else:
-            print("########## GO TO MARKER ########")
+            print("########## GO TO MARKER ########", self.arucoToFind["id"])
             self.go_to_aruco(frame)
         
         mc.updateMotor(motor, self.direction, self.speed)
