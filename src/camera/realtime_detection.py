@@ -50,7 +50,7 @@ class Detector():
         self.rotationFlag = False # flag if rotation is needed
 
         self.direction = 0 
-        self.speed = 0
+        self.speed = .5
 
         self.visited_Id = []
 
