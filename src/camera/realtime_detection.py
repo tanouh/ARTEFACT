@@ -168,7 +168,7 @@ class Detector():
             if self.arucoToFind["center"][0] < frame_center: 
                 self.direction = -1
             else: 
-                self.direction = 2
+                self.direction = 1
 
         else:
             self.speed = .3 
