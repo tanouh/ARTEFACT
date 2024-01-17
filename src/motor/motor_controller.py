@@ -77,10 +77,12 @@ def updateMotor(motor, direction, speed):
                 set_speed(motor, speed)
                 stop_motor(motor)
         if direction  == -1: # a gauche
+                set_speed(motor, speed)
                 move_left_forward(motor)
                 stop_motor(motor)
                 print("LEFT")
         elif direction == 1: 
+                set_speed(motor, speed)
                 move_right_forward(motor)
                 stop_motor(motor)
                 print("Right")
