@@ -96,11 +96,11 @@ def updateMotor(motor, direction, speed):
         
         elif direction == -.2: # avancer vers la gauche
                 print(" avancer vers la gauche ")
-                move_left(motor, speed, abs(direction))
+                move_left(motor, speed*100, abs(direction))
 
         elif direction == .2 :  # avancer vers la droite
                 print(" avancer vers la droite ")
-                move_right(motor, speed, abs(direction))
+                move_right(motor, speed*100, abs(direction))
                 
         else : 
                 stop_motor(motor)        
