@@ -75,7 +75,7 @@ class Detector():
                 self.rotationDuration = time.time()
                 self.rotationFlag = False #stop
             
-            if time.time() - self.timerRotation < self.rotationFix and not self.rotationFlag:
+            if time.time() - self.rotationDuration < self.rotationFix and not self.rotationFlag:
                     self.direction= 0
                     self.speed = 0
 
