@@ -11,7 +11,7 @@ from motor import motor_controller as mc
 dict = cv2.aruco.DICT_6X6_50
 marker_index = 0 
 flag = [False, False, False,False]
-tolerance = 70 # should be replaced depending on experimental settings
+tolerance = 30 # should be replaced depending on experimental settings
 flagtest=0
 
 hstep = 0.1
