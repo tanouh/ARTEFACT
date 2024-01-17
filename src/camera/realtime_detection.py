@@ -79,7 +79,7 @@ class Detector():
             
             if time.time() - self.rotationDuration < self.rotationFix and not self.rotationFlag:
                     self.direction= 1
-                    self.speed = .3
+                    self.speed = FWD_SPEED
 
             elif not self.rotationFlag:
                 self.rotationDuration = time.time()
