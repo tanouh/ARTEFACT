@@ -141,9 +141,11 @@ class Detector():
     def catch_aruco(self):
         list = self.arucoList
         self.rotationDuration = None
+        self.arucoToFind =  None
         for aruco in list : 
             if aruco["id"] == self.get_marker_to_find():
                 self.arucoToFind = aruco
+        
    
     def run(self, frame, motor):
         self.detect_aruco_tag_bis(frame, motor)
