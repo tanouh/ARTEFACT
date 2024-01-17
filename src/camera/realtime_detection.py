@@ -114,6 +114,7 @@ class Detector():
 
     def detect_aruco_tag_bis(self, frame, motor):
         (corners, ids, rejected) = self.detector.detectMarkers(frame)
+        self.arucoList = [] # initialiser
         
         if len(corners) > 0:
             ids = ids.flatten()
@@ -139,7 +140,6 @@ class Detector():
                 self.arucoList.append(aruco)
             
     def catch_aruco(self):
-        self.arucoList = [] # initialiser
         list = self.arucoList
         self.rotationDuration = None
         self.arucoToFind =  None
