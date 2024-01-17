@@ -1,4 +1,5 @@
 import numpy as np
+import math 
 import cv2
 from cv2 import aruco as arU
 import time
@@ -118,7 +119,7 @@ class Detector():
                     "tl": topLeft,
                     "br": bottomRight,
                     "bl": bottomLeft,
-                    "dist": get_distance(0.5*(np.dist(topLeft, bottomLeft) + np.dist(bottomRight, topRight))) 
+                    "dist": get_distance(0.5*(math.dist(topLeft, bottomLeft) + math.dist(bottomRight, topRight))) 
                 }
                 self.arucoList.append(aruco)
             
