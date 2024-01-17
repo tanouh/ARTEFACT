@@ -27,15 +27,7 @@ def move_backward(motor):
         motor.MotorRun(1, 'backward')
         time.sleep(step_duration)
 
-def turn_left(motor):
-        motor.MotorRun(0, 'forward')
-        motor.MotorRun(1, 'backward') # ou stop ? 
-        time.sleep(step_duration)
 
-def turn_right(motor):
-        motor.MotorRun(0, 'backward') # ou stop ?
-        motor.MotorRun(1, 'forward')
-        time.sleep(step_duration)
 
 def move_right_forward(motor):
         motor.MotorRun(1, 'forward')
@@ -49,11 +41,6 @@ def modify_speed(motor, new_speed):
     set_speed(motor, new_speed)
     time.sleep(step_duration)  # Optionally, wait for some duration to see the effect
     
-def turn_around(motor,   orientation = turn_right):
-        modify_speed(motor, 60) 
-        orientation(motor)
-        time.sleep(step)
-        stop_motor(motor)
 
 def left(middle,motor):
         motor.set_speed_right((40+(abs(middle)*0.025)))
@@ -81,7 +68,15 @@ def move_left(motor, speed, direction):
         motor.set_speed_left(speed)
         move_forward(motor)
 
+def turn_left(motor):
+        motor.MotorRun(0, 'forward')
+        motor.MotorRun(1, 'backward') # ou stop ? 
+        time.sleep(.5)
 
+def turn_right(motor):
+        motor.MotorRun(0, 'backward') # ou stop ?
+        motor.MotorRun(1, 'forward')
+        time.sleep(.5)
 
 def updateMotor(motor, direction, speed):
         set_speed(motor, speed)
