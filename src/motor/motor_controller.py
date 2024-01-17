@@ -88,7 +88,6 @@ def updateMotor(motor, direction, speed):
         else : 
                 print(speed)
                 set_speed(motor, speed)
-                move_forward(motor)
                 stop_motor(motor)
                 print("Just fwd")
                 
