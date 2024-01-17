@@ -180,8 +180,8 @@ class Detector():
             if self.arucoToFind["id"] not in self.visited_Id :
                 self.visited_Id.append(self.arucoToFind["id"])
             # renouveller les flags
-            flag[len(self.visited_Id)-1] = True
-            if flag[-1] == True:
+            self.arucoFlag[len(self.visited_Id)-1] = True
+            if self.arucoFlag[-1] == True:
                 print("Finish finding all markers")
         
     
