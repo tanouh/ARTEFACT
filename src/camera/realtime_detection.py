@@ -65,6 +65,7 @@ class Detector():
             # no markers found yet, specially the one we need
             if not self.rotationDuration : 
                 self.rotationDuration = time.time() #init du timer
+                self.speed = .3
         
             if time.time() - self.rotationDuration < self.rotationFix and self.rotationFlag:
                 # if a rotation is needed
