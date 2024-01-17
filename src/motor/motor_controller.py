@@ -82,19 +82,24 @@ def move_left(motor, speed, direction):
         move_forward(motor)
 
 
+
 def updateMotor(motor, direction, speed):
         set_speed(motor, speed)
         
         if direction  == -1: # tourner a gauche
+                print(" tourner a gauche ")
                 turn_left(motor)  
         
         elif direction == 1: # tourner a droite
+                print(" tourner a droite ")
                 turn_right(motor)
         
         elif direction == -.2: # avancer vers la gauche
+                print(" avancer vers la gauche ")
                 move_left(motor, speed, abs(direction))
 
         elif direction == .2 :  # avancer vers la droite
+                print(" avancer vers la droite ")
                 move_right(motor, speed, abs(direction))
                 
         else : 
