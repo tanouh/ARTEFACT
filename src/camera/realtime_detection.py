@@ -102,22 +102,25 @@ class Detector():
         if len(corners) > 0:
             ids = ids.flatten()
 
-            topRight = (int(topRight[0]), int(topRight[1]))
-            bottomRight = (int(bottomRight[0]), int(bottomRight[1]))
-            bottomLeft = (int(bottomLeft[0]), int(bottomLeft[1]))
-            topLeft = (int(topLeft[0]), int(topLeft[1]))
-            center = (int((topLeft[0] + bottomRight[0]) / 2.0), int((topLeft[1] + bottomRight[1]) / 2.0))
-            
-            aruco = {
-                "id": markerId,
-                "center": center,
-                "tr": topRight,
-                "tl": topLeft,
-                "br": bottomRight,
-                "bl": bottomLeft,
-                "dist": get_distance(0.5*(np.dist(topLeft, bottomLeft) + np.dist(bottomRight, topRight))) 
-            }
-            self.arucoList.append(aruco)
+            for (markerCorner, markerID) in zip(corners, ids):
+                corners = markerCorner.reshape((4, 2))
+                (topLeft, topRight, bottomRight, bottomLeft) = corners
+                topRight = (int(topRight[0]), int(topRight[1]))
+                bottomRight = (int(bottomRight[0]), int(bottomRight[1]))
+                bottomLeft = (int(bottomLeft[0]), int(bottomLeft[1]))
+                topLeft = (int(topLeft[0]), int(topLeft[1]))
+                center = (int((topLeft[0] + bottomRight[0]) / 2.0), int((topLeft[1] + bottomRight[1]) / 2.0))
+                
+                aruco = {
+                    "id": markerID,
+                    "center": center,
+                    "tr": topRight,
+                    "tl": topLeft,
+                    "br": bottomRight,
+                    "bl": bottomLeft,
+                    "dist": get_distance(0.5*(np.dist(topLeft, bottomLeft) + np.dist(bottomRight, topRight))) 
+                }
+                self.arucoList.append(aruco)
             
     def catch_aruco(self):
         list = self.arucoList
