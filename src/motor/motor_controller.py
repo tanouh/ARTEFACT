@@ -1,8 +1,7 @@
 import motor_driver
 import time
 
-step_duration = 0.3
-step = 0.2
+step_duration = .5
 
 def start_motor():
         return motor_driver.MotorDriver()
@@ -85,7 +84,6 @@ def updateMotor(motor, direction, speed):
                 stop_motor(motor)
                 print("Right")
         else : 
-                move_forward(motor)
                 stop_motor(motor)
                 print("Just fwd")
                 
