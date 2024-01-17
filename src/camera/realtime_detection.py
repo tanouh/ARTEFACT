@@ -52,7 +52,8 @@ class Detector():
 
 
     # search mode on 
-    def hunting (self, motor, direction):
+    def hunting (self, direction):
+        """Find a marker by rotating himself according to the direction given"""
         # global flagtest
         # mc.modify_speed(motor,25)
         # mc.turn_right(motor)
@@ -60,13 +61,16 @@ class Detector():
         # time.sleep(sleep)
         # flagtest=0
 
-        if not self.arucoToFind:
+        if not self.arucoToFind: 
+            # no markers found yet, specially the one we need
             if not self.rotationDuration : 
-                self.rotationDuration = time.time()
+                self.rotationDuration = time.time() #init du timer
         
             if time.time() - self.rotationDuration < self.rotationFix and self.rotationFlag:
+                # if a rotation is needed
                 self.direction = direction
                 self.speed = .2
+
             elif self.rotationFlag: #need more rotation
                 self.rotationDuration = time.time()
                 self.rotationFlag = False #stop
@@ -77,7 +81,7 @@ class Detector():
 
             elif not self.rotationFlag:
                 self.rotationDuration = time.time()
-                self.rotationFlag = True # on se remet a tourner
+                self.rotationFlag = True # we keep turning around
         else:
             print("Marquer ID: ", self.arucoToFind["id"])
             self.direction = 0
@@ -135,7 +139,7 @@ class Detector():
         self.catch_aruco()
 
         if (not self.arucoToFind):
-            self.hunting()
+            self.hunting(self.direction)
         else:
             self.go_to(frame)
         
