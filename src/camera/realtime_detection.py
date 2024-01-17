@@ -139,9 +139,11 @@ class Detector():
         self.catch_aruco()
 
         if (not self.arucoToFind):
+            print("########## HUNTING ############")
             self.hunting(self.direction)
         else:
-            self.go_to(frame)
+            print("########## GO TO MARKER ########")
+            self.go_to_aruco(frame)
         
         mc.updateMotor(motor, self.direction, self.speed)
     

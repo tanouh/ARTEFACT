@@ -8,7 +8,6 @@ device_path = '/dev/v4l/by-id/usb-Suyin_HD_Camera_200910120001-video-index0'
 class Streamer():
         def __init__(self):
                 self.camera = cv2.VideoCapture(0, cv2.CAP_V4L2)
-                print(self.camera)
                 self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
                 self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
                 self.camera.set(cv2.CAP_PROP_FPS, 30)
@@ -19,12 +18,10 @@ class Streamer():
         def streaming (self,motor, func):
                 print("[STREAM] starting video stream...")
                 ret, frame = self.camera.read()
-                print(frame)
                 time.sleep(0.2)
                 # try :
                 while True :
                         ret, frame = self.camera.read()
-                        print(ret)
                         if not ret:
                                 break
                         if func is not None :
