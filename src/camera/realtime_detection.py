@@ -72,18 +72,22 @@ class Detector():
         
             if time.time() - self.rotationDuration < self.rotationFix and self.rotationFlag:
                 # if a rotation is needed
+                print("Turning , direction = ", direction )
                 self.direction = direction
                 self.speed = .2
 
-            elif self.rotationFlag: #need more rotation
+            elif self.rotationFlag: #no more rotation
+                print("Stop turning " )
                 self.rotationDuration = time.time()
                 self.rotationFlag = False # stop
             
             if time.time() - self.rotationDuration < self.rotationFix and not self.rotationFlag:
+                    print("Not Turning anymore")
                     self.direction= 0
-                    self.speed = .3
+                    self.speed = 0
 
             elif not self.rotationFlag:
+                print("More turning , direction = ", direction )
                 self.rotationDuration = time.time()
                 self.rotationFlag = True # we keep turning around
         else:
