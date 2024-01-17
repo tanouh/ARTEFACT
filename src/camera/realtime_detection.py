@@ -15,6 +15,8 @@ flagtest=0
 hstep = 0.1
 sec = 10*hstep
 
+FWD_SPEED = .7
+
 
 def get_distance(height):
     if height <= 0 : 
@@ -57,7 +59,7 @@ class Detector():
         # time.sleep(sleep)
         # flagtest=0
 
-        if not arucoToFind:
+        if not self.arucoToFind:
             if not self.rotationDuration : 
                 self.rotationDuration = time.time()
         
@@ -76,7 +78,7 @@ class Detector():
                 self.rotationDuration = time.time()
                 self.rotationFlag = True # on se remet a tourner
         else:
-            print("Marquer ID: ", arucoToFind["id"])
+            print("Marquer ID: ", self.arucoToFind["id"])
             self.direction = 0
             self.speed = 0
           
@@ -113,11 +115,11 @@ class Detector():
                 "tl": topLeft,
                 "br": bottomRight,
                 "bl": bottomLeft,
-                "dist": get_distance(0.5*(dist(topLeft, bottomLeft) + dist(bottomRight, topRight))) 
+                "dist": get_distance(0.5*(np.dist(topLeft, bottomLeft) + np.dist(bottomRight, topRight))) 
             }
             self.arucoList.append(aruco)
             
-    def catch_aruco():
+    def catch_aruco(self):
         list = self.arucoList
         self.timerDetection = None
         for aruco in list : 
