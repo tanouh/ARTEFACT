@@ -24,6 +24,7 @@ class Streamer():
                 try :
                         while True :
                                 ret, frame = self.camera.read()
+                                print(ret)
                                 if not ret:
                                         break
                                 if func is not None :
