@@ -2,6 +2,7 @@ import numpy as np
 import math 
 import cv2
 from cv2 import aruco as arU
+from math import dist
 import time
 import sys
 sys.path.append("..")
@@ -29,6 +30,7 @@ def get_distance(height):
 
  
 class Detector():
+
     def __init__(self, dico = dict):
         self.dict = arU.getPredefinedDictionary(dico)
         self.params = arU.DetectorParameters()
@@ -50,6 +52,7 @@ class Detector():
         self.direction = 0 
         self.speed = 0
 
+        self.visited_Id = []
 
     # search mode on 
     def hunting (self, direction, motor):
@@ -74,7 +77,7 @@ class Detector():
 
             elif self.rotationFlag: #need more rotation
                 self.rotationDuration = time.time()
-                self.rotationFlag = False #stop
+                self.rotationFlag = False # stop
             
             if time.time() - self.rotationDuration < self.rotationFix and not self.rotationFlag:
                     self.direction= 0
@@ -167,6 +170,12 @@ class Detector():
             self.speed = .3 
             self.direction = 0
 
+        if self.arucoToFind and self.arucoToFind["dist"] < tolerance:
+            self.visited_Id.append(self.arucoToFind["id"])
+            # renouveller les flags
+            flag[len(self.visited_Id)-1] = True
+            if flag[-1] == True:
+                print("Finish finding all markers")
 
 
     def detect_aruco_tags(self,frame,motor):
