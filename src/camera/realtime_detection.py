@@ -253,6 +253,7 @@ class Detector():
                             if (dist_marker > 65):
                                 if (deviation < 0):
                                     if(dist_marker > 100 ):
+                                    #faster if marker is far away
                                         mc.right(deviation, motor)
                                         
                                         print("\tAVANCER DROITE VITE \n")
