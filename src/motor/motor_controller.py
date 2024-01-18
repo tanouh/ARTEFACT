@@ -20,7 +20,7 @@ def set_step_duration(duration):
 def move_forward(motor):
         motor.MotorRun(0, 'forward')
         motor.MotorRun(1, 'forward')
-        time.sleep(.3)
+        time.sleep(.5)
 
 def move_backward(motor):
         motor.MotorRun(0, 'backward')
