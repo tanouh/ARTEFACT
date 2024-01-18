@@ -43,19 +43,19 @@ def modify_speed(motor, new_speed):
     
 
 def left(middle,motor):
-        motor.set_speed_right((40+((middle)**2 *0.025)))
+        motor.set_speed_right((40+((middle)**2 *0.0025)))
         motor.set_speed_left(40)
 
 def left_slow(middle,motor):
-        motor.set_speed_right((25+((middle)**2 *0.05)))
+        motor.set_speed_right((25+((middle)**2 *0.005)))
         motor.set_speed_left(25)
 
 def right(middle,motor):
-        motor.set_speed_left((40+((middle)**2 *0.025)))
+        motor.set_speed_left((40+((middle)**2 *0.0025)))
         motor.set_speed_right(40)
 
 def right_slow(middle,motor):
-        motor.set_speed_left(25+((middle)**2 *0.05))
+        motor.set_speed_left(25+((middle)**2 *0.005))
         motor.set_speed_right(25)
 
 def move_right(motor, speed, direction): 
