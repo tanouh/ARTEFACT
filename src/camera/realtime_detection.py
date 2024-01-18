@@ -168,6 +168,19 @@ class Detector():
     def go_to_aruco(self, frame):
         height, width = frame.shape[:2]
         frame_center = width//2
+
+        if self.arucoToFind and self.arucoToFind["dist"] > 3*tolerance:
+            self.speed = FWD_SPEED*2.5 # FWD_SPEED = .3
+
+            if self.arucoToFind["center"][0] < frame_center: 
+                self.direction = -.2
+            else: 
+                self.direction = .2
+
+        else:
+            self.speed = 0 
+            self.direction = 0
+
         if self.arucoToFind and self.arucoToFind["dist"] > tolerance:
             self.speed = FWD_SPEED
 
