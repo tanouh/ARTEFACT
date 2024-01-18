@@ -143,7 +143,9 @@ class Detector():
         list = self.arucoList
         self.rotationDuration = None
         self.arucoToFind =  None
+        
         for aruco in list : 
+            print(aruco["id"])
             if aruco["id"] == self.get_marker_to_find():
                 self.arucoToFind = aruco
         
