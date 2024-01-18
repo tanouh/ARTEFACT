@@ -46,7 +46,7 @@ class Detector():
         self.arucoFlag = [False, False, False,False]
 
         self.rotationDuration = None 
-        self.rotationFix = 3
+        self.rotationFix = 10
         self.rotationFlag = True # flag if rotation is needed
 
         self.direction = 0 
@@ -74,7 +74,7 @@ class Detector():
                 # if a rotation is needed
                 print("Turning , direction = ", direction )
                 self.direction = direction
-                self.speed = .3
+                self.speed = .2
 
             elif self.rotationFlag: # no more rotation
                 print("Stop turning " )
