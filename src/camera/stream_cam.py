@@ -11,8 +11,7 @@ class Streamer():
                 self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
                 self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
                 self.camera.set(cv2.CAP_PROP_FPS, 30)
-                self.camera.set(cv2.CAP_PROP_BUFFERSIZE, 1)
-
+                self.camera.set(cv2.CAP_PROP_BUFFERSIZE, 2)
 
                
         def streaming (self,motor, func):
@@ -21,6 +20,7 @@ class Streamer():
                 time.sleep(0.2)
                 # try :
                 while True :
+                        self.camera.set(cv2.CAP_PROP_POS_FRAMES, 0)
                         ret, frame = self.camera.read()
                         if not ret:
                                 break
