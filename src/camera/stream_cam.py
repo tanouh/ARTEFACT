@@ -31,8 +31,9 @@ class Streamer():
                                 continue
 
                 print("[STREAM] ending video stream...")
-                cv2.destroyAllWindows()
                 self.camera.release()
+                cv2.destroyAllWindows()
+                
 
                 # except : 
                 #         print("SHUTDOWN TO DO")
