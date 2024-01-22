@@ -98,15 +98,19 @@ def updateMotor(motor, direction, speed):
                 print(" avancer vers la gauche ")
                 move_left(motor, speed*100, abs(direction))
                 stop_motor(motor)
+                time.sleep(.5)
 
         elif direction == .2 :  # avancer vers la droite
                 print(" avancer vers la droite ")
                 move_right(motor, speed*100, abs(direction)+0.1)
                 stop_motor(motor)
+                time.sleep(.5)
+
                 
         elif direction == 0: # avancer tout droit
                 print(" avancer tout droit ")
                 move_forward(motor)
+                time.sleep(.5)
 
         else : 
                 stop_motor(motor) 
