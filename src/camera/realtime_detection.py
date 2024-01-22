@@ -44,6 +44,7 @@ class Detector():
         self.rotationFlag = True # flag if rotation is needed
 
         self.direction = 0 
+        self.moveDuration = 0
         self.speed = 0
 
         self.visited_Id = []
@@ -154,26 +155,19 @@ class Detector():
             print("########## GO TO MARKER ########", self.arucoToFind["id"])
             self.go_to_aruco(frame)
         
-        mc.updateMotor(motor, self.direction, self.speed)
+        mc.updateMotor(motor, self.direction, self.speed, self.moveDuration)
     
     def go_to_aruco(self, frame):
         height, width = frame.shape[:2]
         frame_center = width//2
-
-        if self.arucoToFind and self.arucoToFind["dist"] > 3*tolerance:
-            self.speed = FWD_SPEED*2.5 # FWD_SPEED = .3
-
-            if self.arucoToFind["center"][0] < frame_center: 
-                self.direction = -.2
-            else: 
-                self.direction = .2
-
-        else:
-            self.speed = 0 
-            self.direction = 0
-
         if self.arucoToFind and self.arucoToFind["dist"] > tolerance:
-            self.speed = FWD_SPEED
+
+            if self.arucoToFind["dist"] > 3 * tolerance : 
+                self.speed = FWD_SPEED*3 # FWD_SPEED = .3
+                self.moveDuration = 1
+            else : 
+                self.speed = FWD_SPEED*2.5 # FWD_SPEED = .3
+                self.moveDuration = .3
 
             if self.arucoToFind["center"][0] < frame_center: 
                 self.direction = -.2
@@ -183,6 +177,7 @@ class Detector():
         else:
             self.speed = 0 
             self.direction = 0
+            self.moveDuration = 0
 
         if self.arucoToFind and self.arucoToFind["dist"] < tolerance:
             if self.arucoToFind["id"] not in self.visited_Id :
