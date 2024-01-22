@@ -114,7 +114,7 @@ def updateMotor(motor, direction, speed, duration):
                 time.sleep(.5)
         else : 
                 stop_motor(motor) 
-                time.sleep(0.5)       
+                time.sleep(1000)       
 
         
                 

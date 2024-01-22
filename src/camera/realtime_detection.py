@@ -9,10 +9,9 @@ sys.path.append("..")
 from motor import motor_controller as mc
 
 dict = cv2.aruco.DICT_6X6_50
-tolerance = 60 # should be replaced depending on experimental settings
+tolerance = 70 # should be replaced depending on experimental settings
 
 FWD_SPEED = .3
-
 
 def get_distance(height):
     if height <= 0 : 
@@ -46,6 +45,7 @@ class Detector():
         self.direction = 0 
         self.moveDuration = 0
         self.speed = 0
+        self.stop_flag = False
 
         self.visited_Id = []
 
@@ -142,12 +142,15 @@ class Detector():
         if self.arucoToFind :
             print( "A CHERCHER ", self.arucoToFind["id"] )
 
-        if (not self.arucoToFind):
+        if (not self.arucoToFind and not self.stop_flag):
             print("########## HUNTING ############")
             self.hunting(-1, motor) 
-        else:
+        elif (not self.stop_flag):
             print("########## GO TO MARKER ########", self.arucoToFind["id"])
             self.go_to_aruco(frame)
+        else :
+            self.direction = 3
+            self.speed = 0
         
         mc.updateMotor(motor, self.direction, self.speed, self.moveDuration)
     
@@ -186,6 +189,7 @@ class Detector():
                 print("Finish finding all markers")
                 self.speed = 0 
                 self.direction = 0
+                self.stop_flag = True
             self.arucoToFind = None
         
 
