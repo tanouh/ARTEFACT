@@ -26,8 +26,6 @@ def move_backward(motor):
         motor.MotorRun(1, 'backward')
         time.sleep(.3)
 
-
-
 def move_right_forward(motor):
         motor.MotorRun(1, 'forward')
         time.sleep(step_duration)
@@ -109,9 +107,9 @@ def updateMotor(motor, direction, speed, duration):
                 
         elif direction == 0: # avancer tout droit
                 print(" avancer tout droit ")
-                move_forward(motor)
+                move_backward(motor)
+                stop_motor(motor) 
                 time.sleep(.5)
-
         else : 
                 stop_motor(motor) 
                 time.sleep(0.5)       
