@@ -9,7 +9,7 @@ sys.path.append("..")
 from motor import motor_controller as mc
 
 dict = cv2.aruco.DICT_6X6_50
-tolerance = 50 # should be replaced depending on experimental settings
+tolerance = 60 # should be replaced depending on experimental settings
 
 FWD_SPEED = .3
 
@@ -52,12 +52,6 @@ class Detector():
     # search mode on 
     def hunting (self, direction, motor):
         """Find a marker by rotating himself according to the direction given"""
-        # global flagtest
-        # mc.modify_speed(motor,25)
-        # mc.turn_right(motor)
-        # mc.stop_motor(motor)
-        # time.sleep(sleep)
-        # flagtest=0
         if not self.arucoToFind: 
 
             # no markers found yet, specially the one we need
@@ -163,11 +157,9 @@ class Detector():
         if self.arucoToFind and self.arucoToFind["dist"] > tolerance:
 
             if self.arucoToFind["dist"] > 3 * tolerance : 
-                print("GRAAAAAAAND")
                 self.speed = FWD_SPEED*3 # FWD_SPEED = .3
                 self.moveDuration = 1
             else : 
-                print("PETTIIIIIIIIT")
                 self.speed = FWD_SPEED # FWD_SPEED = .3
                 self.moveDuration = .5
 
@@ -187,6 +179,8 @@ class Detector():
             self.arucoFlag[len(self.visited_Id)-1] = True
             if self.arucoFlag[-1] == True:
                 print("Finish finding all markers")
+                self.speed = 0 
+                self.direction = 0
             self.arucoToFind = None
         
 
