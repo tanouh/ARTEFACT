@@ -163,9 +163,11 @@ class Detector():
         if self.arucoToFind and self.arucoToFind["dist"] > tolerance:
 
             if self.arucoToFind["dist"] > 3 * tolerance : 
+                print("GRAAAAAAAND")
                 self.speed = FWD_SPEED*3 # FWD_SPEED = .3
                 self.moveDuration = 1
             else : 
+                print("PETTIIIIIIIIT")
                 self.speed = FWD_SPEED # FWD_SPEED = .3
                 self.moveDuration = .5
 
