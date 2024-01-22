@@ -156,9 +156,10 @@ class Detector():
         frame_center = width//2
         
         if self.arucoToFind and self.arucoToFind["dist"] > tolerance:
+            print(self.arucoToFind["dist"])
             if self.arucoToFind["dist"] > 3 * tolerance:
-                self.speed = FWD_SPEED*3
-                self.moveDuration = 1
+                self.speed = FWD_SPEED*2
+                self.moveDuration = .5
             else : 
                 self.speed = FWD_SPEED
                 self.moveDuration = .5
