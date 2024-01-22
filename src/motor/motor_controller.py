@@ -71,12 +71,12 @@ def move_left(motor, speed, direction):
 def turn_left(motor):
         motor.MotorRun(0, 'forward')
         motor.MotorRun(1, 'backward') # ou stop ? 
-        time.sleep(.5)
+        time.sleep(.3)
 
 def turn_right(motor):
         motor.MotorRun(0, 'backward') # ou stop ?
         motor.MotorRun(1, 'forward')
-        time.sleep(.5)
+        time.sleep(.3)
 
 def updateMotor(motor, direction, speed):
         set_speed(motor, speed)
@@ -85,7 +85,6 @@ def updateMotor(motor, direction, speed):
                 print(" tourner a gauche ")
                 turn_left(motor)  
                 stop_motor(motor)
-                time.sleep(.3)
                 time.sleep(0.5)
         
         elif direction == 1: # tourner a droite
