@@ -100,7 +100,7 @@ def auto():
     global auto_mode
     auto_mode = True
     mc.move_forward(motor)
-    time.sleep(.5)
+    time.sleep(2)
     launch_streaming() # open camera streaming and start auto mode
     return 'go auto'
 
