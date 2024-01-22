@@ -30,7 +30,8 @@ def launch_streaming():
 def index():
         return render_template('ui.html')
 
-@app.route("/start")
+
+@app.route("/on")
 def start():
     global motor
     motor = mc.start_motor()
@@ -41,14 +42,12 @@ def start():
 def move_forward():
     if not auto_mode : 
         mc.move_forward(motor)
-        mc.move_forward(motor)
         print('Moving forward')
     return 'Moving forward'
 
 @app.route("/move_backward")
 def move_backward():
     if not auto_mode : 
-        mc.move_backward(motor)
         mc.move_backward(motor)
         print('Moving backward')
     return 'Moving backward'
@@ -57,14 +56,12 @@ def move_backward():
 def turn_left():
     if not auto_mode :  
         mc.turn_left(motor)
-        mc.turn_left(motor)
         print('Turning left')
     return 'Turning left'
 
 @app.route("/turn_right")
 def turn_right():
     if not auto_mode : 
-        mc.turn_right(motor)
         mc.turn_right(motor)
         print("Turning right")
     return 'Turning right'
@@ -108,18 +105,25 @@ def auto():
 @app.route("/Manu")
 def manu():
     print("go manu")
+    mc.stop_motor(motor)
     global auto_mode
     auto_mode = False
     return 'go manu'
+
+@app.route("/kill")
+def kill():
+    mc.stop_motor(motor)
+    for i in range(10):
+        mc.move_forward(motor)
+    mc.stop_motor(motor)
+
+    #prévenir que la voiture est partie
 
 @app.route("/video_stream")
 def video_stream():
     return 'video_stream'
     # return Response(launch_streaming(), mimetype='multipart/x-mixed-replace; boundary=frame')
-
-def launch_site():
-    app.run(host=ip_adress, port=rpi_port, debug=True) #add port = rpi port
-      
+     
 if __name__ == '__main__':
     try:
         app.run(host=ip_adress, port=rpi_port, debug=True) # add port = rpi port
@@ -128,7 +132,6 @@ if __name__ == '__main__':
         webbrowser.open_new(url)
     
     except KeyboardInterrupt:
-        start()
-        stop()
+        mc.stop_motor(motor)
     
     

@@ -86,12 +86,14 @@ def updateMotor(motor, direction, speed):
                 turn_left(motor)  
                 stop_motor(motor)
                 time.sleep(.3)
+                time.sleep(0.5)
         
         elif direction == 1: # tourner a droite
                 print(" tourner a droite ")
                 turn_right(motor)
                 stop_motor(motor)
-                time.sleep(.3)
+                time.sleep(0.5)
+
         
         elif direction == -.2: # avancer vers la gauche
                 print(" avancer vers la gauche ")
@@ -108,7 +110,8 @@ def updateMotor(motor, direction, speed):
                 move_forward(motor)
 
         else : 
-                stop_motor(motor)        
+                stop_motor(motor) 
+                time.sleep(0.5)       
 
         
                 
