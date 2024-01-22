@@ -56,12 +56,12 @@ def right_slow(middle,motor):
         motor.set_speed_right(25)
 
 def move_right(motor, speed): 
-        motor.set_speed_left(speed) # parameters? do not turn too quick
+        motor.set_speed_left(int(speed*1.25)) # parameters? do not turn too quick
         motor.set_speed_right(speed) # hope to move right more
         move_forward(motor)
 
 def move_left(motor, speed):
-        motor.set_speed_right(speed * 1.25) # parameters? do not turn too quick
+        motor.set_speed_right(int(speed*1.25)) # parameters? do not turn too quick
         motor.set_speed_left(speed)
         move_forward(motor)
 
