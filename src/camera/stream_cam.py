@@ -1,7 +1,10 @@
 import os
 import time
 import cv2
-from . import stream_cam as s, realtime_detection as rd
+from . import stream_cam as s, realtime_detection as read
+import sys
+sys.path.append("..")
+from motor import motor_controller as mc
 
 device_path = '/dev/v4l/by-id/usb-Suyin_HD_Camera_200910120001-video-index0'
 
@@ -13,29 +16,28 @@ class Streamer():
                 self.camera.set(cv2.CAP_PROP_FPS, 30)
                 self.camera.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
+
                
         def streaming (self,motor, func):
                 print("[STREAM] starting video stream...")
                 time.sleep(0.2)
-                # try :
-                while True :
-                        self.camera.set(cv2.CAP_PROP_POS_FRAMES, 0)
-                        ret, frame = self.camera.read()
-                        if not ret:
-                                break
-                        if func is not None :
-                                func(frame, motor)
-                        else : 
-                                # print("[STREAM] No function to read")
-                                continue
+                try :
+                        while True :
+                                ret, frame = self.camera.read()
+                                if not ret:
+                                        break
+                                if func is not None :
+                                        func(frame, motor)
+                                else : 
+                                        # print("[STREAM] No function to read")
+                                        continue
 
-                print("[STREAM] ending video stream...")
-                self.camera.release()
-                cv2.destroyAllWindows()
-                
-
-                # except : 
-                #         print("SHUTDOWN TO DO")
+                        print("[STREAM] ending video stream...")
+                        self.camera.release()
+                        cv2.destroyAllWindows()
+                except : 
+                        mc.stop_motor(motor)
+                        print("SHUTDOWN TO DO")
 
         def generate_frames(self, motor, func):
                 print("[STREAM] Starting video stream...")

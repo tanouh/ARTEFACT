@@ -9,13 +9,7 @@ sys.path.append("..")
 from motor import motor_controller as mc
 
 dict = cv2.aruco.DICT_6X6_50
-marker_index = 0 
-flag = [False, False, False,False]
 tolerance = 30 # should be replaced depending on experimental settings
-flagtest=0
-
-hstep = 0.1
-sec = 10*hstep
 
 FWD_SPEED = .3
 
@@ -94,10 +88,7 @@ class Detector():
             print("Marquer ID: ", self.arucoToFind["id"])
             self.direction = 0
             self.speed = 0
-        
-        # mc.updateMotor(motor, self.direction, self.speed)
-        
-          
+               
 
     # return the marker id to be found next 
     # it makes sure that the previous marker is found                  
@@ -217,7 +208,7 @@ class Detector():
             if self.flag_is_move == False: 
                 (corners, ids, rejected) = self.detector.detectMarkers(frame)
                 if ids == None:
-                    self.hunting(motor, hstep)
+                    self.hunting(motor, .3)
                     return
                 
                 mc.stop_motor(motor)
@@ -246,7 +237,7 @@ class Detector():
                                 mc.modify_speed(motor,25)
                                 mc.turn_left(motor)
                                 mc.stop_motor(motor)
-                                time.sleep(sec)
+                                time.sleep(1)
                                 flagtest=1
                             # After seeing the right marquer, 
                             # continue to get close to this marker
@@ -279,7 +270,7 @@ class Detector():
                                     # speed_right ++
                                     # speed_left --
                                     mc.move_forward(motor)
-                                    time.sleep(sec)
+                                    time.sleep(1)
                                 else:
                                     if(dist_marker > 100 ):
                                         mc.left(deviation, motor)
@@ -291,7 +282,7 @@ class Detector():
                                         # move to the right
                                         # inverse 
                                     mc.move_forward(motor)
-                                    time.sleep(sec)
+                                    time.sleep(1)
                                 self.flag_is_move = False
 
                             else:
@@ -318,126 +309,6 @@ class Detector():
 
                             # if we do not get the marker we need 
                             self.flag_is_move = False
-                            self.hunting(motor, hstep)
+                            self.hunting(motor, .3)
                             return
                     
-                    
-
-# Pour les détections des balises numérotées, 
-# peut-être faire un tableau à trois dimension avec éléments True ou False 
-# et ne pas passer au deuxième tant que i-1 n'est pas True 
-
-# faire une fonction qui renvoie le marqueur à chercher 
-
-
-
-
-                
-
-                    
-
-
-
-
-
-
-
-
-                    # global flag
-                    
-                    # if markerID % 2 == 1 and not flag: # Si trouver Impair marqueur et flag = false
-                    #     print(dist_marker)
-                    #     # execute appropriate move
-                    #     if dist_marker > 50: 
-                    #         print("Avancer")
-
-                    #         mc.modify_speed(motor, 30) # ??
-                    #         mc.turn_left(motor)  # tourner a gauche avant d'avancer pour modifier la direction
-                    #         # time.sleep(hstep)
-                    #         mc.stop_motor(motor)
-
-
-                    #         if dist_marker > 150 :
-                    #             mc.modify_speed(motor, 60) # Si tres loin marcher plus vite
-                    #             mc.move_forward(motor) # Avancer
-                    #             time.sleep(sec)
-                    #         else :
-                    #             mc.modify_speed(motor, 30) # ??
-                    #             mc.move_forward(motor) # Avancer
-                    #             time.sleep(2*step)
-                            
-                    #         mc.stop_motor(motor)
-
-                    #         mc.modify_speed(motor, 20)
-                    #         mc.turn_left(motor) # Tourner a gauche trop
-                    #         # time.sleep(hstep)
-
-                    #         mc.stop_motor(motor)
-                    #         time.sleep(hstep)
-                    #         # mc.reach_target(motor, dist_marker)
-                            
-                    #     else : 
-                    #         flag = True
-                    #         print("Marqueur Impair: Demi-tour & tourner à gauche * 2")
-                    #         mc.stop_motor(motor)
-
-                    #         mc.modify_speed(motor, 70) # modifier la vitesse 
-                    #         mc.turn_left(motor)
-                    #         time.sleep(sec)
-
-                    #         mc.stop_motor(motor)
-                    #         mc.move_forward(motor)
-                    #         time.sleep(step)
-                    #         mc.stop_motor(motor)
-                            
-                    #         # mc.turn_around(motor, mc.turn_left)
-                    #         self.flag_is_move = False
-
-                    # elif markerID % 2 == 0 and flag: # Si trouver Pair marqueur et flag = true
-                    #     # execute appropriate move
-                    #     if dist_marker > 50 : 
-                    #         print("Avancer")
-
-                    #         mc.modify_speed(motor, 30) # ??
-                    #         mc.turn_left(motor)  # tourner a gauche avant d'avancer pour modifier la direction
-                    #         # time.sleep(hstep)
-                    #         mc.stop_motor(motor)
-
-
-                    #         if dist_marker > 150 :
-                    #             mc.modify_speed(motor, 60) # Si tres loin marcher plus vite
-                    #             mc.move_forward(motor) # Avancer
-                    #             time.sleep(sec)
-                    #         else :
-                    #             mc.modify_speed(motor, 30) # ??
-                    #             mc.move_forward(motor) # Avancer
-                    #             time.sleep(2*step)
-                            
-                    #         mc.stop_motor(motor)
-
-                    #         mc.modify_speed(motor, 20)
-                    #         mc.turn_left(motor) # Tourner a gauche trop
-                    #         # time.sleep(hstep)
-
-                    #         mc.stop_motor(motor)
-                    #         time.sleep(hstep)
-                    #         # mc.reach_target(motor, dist_marker)
-                    #         self.flag_is_move = False
-                    #     else : 
-                    #         print("Marqueur Pair: Arrêter")
-                    #         mc.stop_motor(motor)
-                    #         time.sleep(20)
-                    #         self.flag_is_move = False
-                    # else:
-                    #     self.flag_is_move = False
-                    #     self.hunting(motor, hstep)
-                    #     return
-                            
-                    
-                            
-                
-
-
-
-
-
