@@ -166,18 +166,16 @@ class Detector():
                 self.speed = FWD_SPEED*3 # FWD_SPEED = .3
                 self.moveDuration = 1
             else : 
-                self.speed = FWD_SPEED*2.5 # FWD_SPEED = .3
-                self.moveDuration = .3
+                self.speed = FWD_SPEED # FWD_SPEED = .3
+                self.moveDuration = .5
 
             if self.arucoToFind["center"][0] < frame_center: 
                 self.direction = -.2
             else: 
                 self.direction = .2
-
         else:
             self.speed = 0 
             self.direction = 0
-            self.moveDuration = 0
 
         if self.arucoToFind and self.arucoToFind["dist"] < tolerance:
             if self.arucoToFind["id"] not in self.visited_Id :
