@@ -44,8 +44,8 @@ def auto():
 def index():
     return render_template('ui.html')
 
-@app.route("/ping")
-def requesting():
+@app.route("/ping", methods=['POST'])
+def ping():
     value='http://137.194.127.137:5000/com?nature=ping&id=b'
     request.post(url=value,data={})
     return("Sent to", value)
