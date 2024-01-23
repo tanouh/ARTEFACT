@@ -20,7 +20,7 @@ ping_flag = True
 auto_mode = False
 move_flag = Value("b",False)
 
-def launch_streaming(move_flag):
+def launch_streaming():
     streamer = s.Streamer()
     time.sleep(0.5)
     global motor
