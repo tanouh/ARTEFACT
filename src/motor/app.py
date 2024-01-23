@@ -53,17 +53,22 @@ def auto():
     return 'go auto'
 # Multi-threading à implémenter
 
+
+def send_request(nature, error_message):
+    url_ = "http://137.194.127.137:5000/com?nature="+nature+"&id=b"
+    try :
+        request.post(url=url_, value={})
+    except: 
+        print(error_message+" failed")
+
 @app.route("/")
 def index():
     return render_template('ui.html')
 
 @app.route("/ping", methods=['POST'])
 def ping():
-    try :
-        request.post(url='http://137.194.127.137:5000/com?nature=ping&id=b',data={})
-        return("Sent to", 'http://137.194.127.137:5000/com?nature=ping&id=b')
-    except Exception:
-        return 'failed to ping'
+    send_request("ping","Ping")
+    return 'Sending ping ...'
     
 @app.route("/on")
 def turn_on():
@@ -73,8 +78,9 @@ def turn_on():
 
 @app.route("/stop")
 def stop():
-    global move_flag
-    move_flag.value = False
+    if auto_mode :
+        global move_flag
+        move_flag.value = False
     mc.stop_motor(motor)
     print("Stopping")
     return 'Stopping'
@@ -124,15 +130,10 @@ def move_left_forward():
 @app.route('/speed', methods=['POST'])
 def speed():
     data = request.get_json() # Récupère les données envoyées
-    speed = data.get('value') # Accède à la valeur entière
-    mc.modify_speed(motor,speed) # Change la vitesse
-    print(speed) # Affiche la valeur reçue dans la console
+    speed = data.get('value') # Accède à la valeur entière   
+    # modifier le speed ici ...
+
     return 'speed'
-
-
-@app.route("/sendrequest",methods=["GET"])
-def sendrequest():
-    return render_template('request.html')
 
 @app.route("/Auto")
 def run():
@@ -141,25 +142,24 @@ def run():
 @app.route("/Manu")
 def manu():
     init_motor(auto_flag=False)
-    return 'go manu'
+    return 'Go manu : en attente de commande'
 
 @app.route("/kill", methods = ['POST', 'GET'])
 def kill():
     global move_flag
+    move_flag.value = False
+    if motor :
+        mc.move_forward(motor) 
+        time.sleep(1)
+    send_request("", "Killing")
 
-    if move_flag.value == False : 
-        if motor :
-            print("Motor ")
-            mc.stop_motor(motor)
-            time.sleep(.5)
-            mc.move_forward(motor) 
-            time.sleep(.5)
     return 'KILLED !'
-
     #prévenir que la voiture est partie
-   
+
 @app.route("/depart", methods = ['POST', 'GET'])
 def depart():
+    send_request("depart", "Departure")
+
     return auto()
 
 @app.route("/video_stream")
