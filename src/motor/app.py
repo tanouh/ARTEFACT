@@ -48,7 +48,7 @@ def index():
 def myping():
     parameter = "-n" if platform.system().lower() == "windows" else "-c"
 
-    command = ["ping", parameter, "1", "http://137.194.13.82:5000/com?nature=ping&id=b"]
+    command = ["ping", parameter, "1", "http://137.194.127.137:5000/com?nature=ping&id=b"]
     response = subprocess.call(command)
 
     if response == 0:
