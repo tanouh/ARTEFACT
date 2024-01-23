@@ -1,8 +1,6 @@
 from flask import Flask, render_template , request
 import webbrowser
 from multiprocessing import Process, Value
-import platform
-import subprocess
 import motor_controller as mc 
 import time
 import sys
@@ -18,26 +16,37 @@ rpi_port = 5000
 motor = None
 ping_flag = True
 auto_mode = False
-move_flag = Value("b",True)
+move_flag = Value("b",False)
 
 def launch_streaming():
-    streamer = s.Streamer()
-    time.sleep(0.5)
+    global move_flag
     global motor
-    if auto_mode : 
-            detector = rd.Detector()
-            print (move_flag.value)
-            p = Process(target = streamer.streaming, args = ([motor, detector.run, move_flag.value])) # open camera streaming and start auto mode
-            p.start()
+
+
+    streamer = s.Streamer()
+    detector = rd.Detector()
+    while move_flag.value : 
+        p = Process(target = streamer.streaming, args = (motor, detector.run)) # open camera streaming and start auto mode
+        p.start()
+    
+    p.terminate()
+    p.join()
     return 
-        
+
+def init_motor (auto_flag):
+    global motor 
+    global move_flag
+    if not motor:
+        motor = mc.start_motor()
+    if not move_flag.value : 
+        move_flag.value = True
+    global auto_mode 
+    auto_mode = auto_flag
+    
+           
 def auto():
     print("go auto")
-    global motor
-    if not motor :
-        motor = mc.start_motor()
-    global auto_mode
-    auto_mode = True
+    init_motor(auto_flag=True)
     mc.move_forward(motor)
     time.sleep(2)
     launch_streaming()
@@ -50,13 +59,15 @@ def index():
 
 @app.route("/ping", methods=['POST'])
 def ping():
-    request.post(url='http://137.194.127.137:5000/com?nature=ping&id=b',data={})
-    return("Sent to", 'http://137.194.127.137:5000/com?nature=ping&id=b')
+    try :
+        request.post(url='http://137.194.127.137:5000/com?nature=ping&id=b',data={})
+        return("Sent to", 'http://137.194.127.137:5000/com?nature=ping&id=b')
+    except Exception:
+        return 'failed to ping'
     
 @app.route("/on")
 def turn_on():
-    global motor
-    motor = mc.start_motor()
+    init_motor()
     print("Starting")
     return 'Starting...'
 
@@ -118,11 +129,6 @@ def speed():
     print(speed) # Affiche la valeur reçue dans la console
     return 'speed'
 
-@app.route("/requesting",methods=["POST"])
-def requesting():
-    value='http://137.194.1:5000/com?nature=ping&id=b'
-    request.post(url=value,data={})
-    return("Sent to", value)
 
 @app.route("/sendrequest",methods=["GET"])
 def sendrequest():
@@ -134,24 +140,21 @@ def run():
 
 @app.route("/Manu")
 def manu():
-    print("go manu")
-    global move_flag
-    move_flag.value = True
-    mc.stop_motor(motor)
-    global auto_mode
-    auto_mode = False
+    init_motor(auto_flag=False)
     return 'go manu'
 
 @app.route("/kill", methods = ['POST', 'GET'])
 def kill():
+    global move_flag
+
     if move_flag.value == False : 
-        if not motor :
+        if motor :
             print("Motor ")
             mc.stop_motor(motor)
             time.sleep(.5)
             mc.move_forward(motor) 
             time.sleep(.5)
-    return 'KILLED ! '
+    return 'KILLED !'
 
     #prévenir que la voiture est partie
    
