@@ -58,7 +58,7 @@ def myping():
         return 'Ping failed'
     
 @app.route("/on")
-def start():
+def turn_on():
     global motor
     motor = mc.start_motor()
     print("Starting")
