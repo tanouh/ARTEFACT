@@ -1,4 +1,4 @@
-from flask import Flask, render_template , request, url_for
+from flask import Flask, render_template , request
 import webbrowser
 import platform
 import subprocess
@@ -29,7 +29,17 @@ def launch_streaming():
                 detector = rd.Detector()
                 return streamer.streaming(motor, detector.run)
         
-
+def auto():
+    print("go auto")
+    global motor
+    if not motor :
+        motor = mc.start_motor()
+    global auto_mode
+    auto_mode = True
+    mc.move_forward(motor)
+    time.sleep(2)
+    launch_streaming() # open camera streaming and start auto mode
+    return 'go auto'
 
 @app.route("/")
 def index():
@@ -113,7 +123,7 @@ def speed():
 @app.route("/requesting",methods=["POST"])
 def requesting():
     value=request.args.get('url')
-    requests.post(url=value,data={})
+    request.post(url=value,data={})
     return("Sent to", value)
 
 @app.route("/sendrequest",methods=["GET"])
@@ -121,17 +131,8 @@ def sendrequest():
     return render_template('request.html')
 
 @app.route("/Auto")
-def auto():
-    print("go auto")
-    global motor
-    if not motor :
-        motor = mc.start_motor()
-    global auto_mode
-    auto_mode = True
-    mc.move_forward(motor)
-    time.sleep(2)
-    launch_streaming() # open camera streaming and start auto mode
-    return 'go auto'
+def run():
+    return auto()
 
 @app.route("/Manu")
 def manu():
@@ -151,8 +152,7 @@ def kill():
 @app.route("/start")
 def start():
     print("Starting request got ...")
-    index_url = url_for('/Auto')
-    return 'starting collaborative request'
+    return auto()
 
 
 if __name__ == '__main__':
