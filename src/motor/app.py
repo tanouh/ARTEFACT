@@ -39,6 +39,7 @@ def auto():
     time.sleep(2)
     launch_streaming() # open camera streaming and start auto mode
     return 'go auto'
+# Multi-threading à implémenter
 
 @app.route("/")
 def index():
@@ -46,8 +47,8 @@ def index():
 
 @app.route("/ping", methods=['POST'])
 def ping():
-    request.post(url=value,data={})
-    return("Sent to", value)
+    request.post(url='http://137.194.1:5000/com?nature=ping&id=b',data={})
+    return("Sent to", 'http://137.194.1:5000/com?nature=ping&id=b')
     
 @app.route("/on")
 def turn_on():
@@ -114,7 +115,7 @@ def speed():
 
 @app.route("/requesting",methods=["POST"])
 def requesting():
-    value='http://137.194.127.137:5000/com?nature=ping&id=b'
+    value='http://137.194.1:5000/com?nature=ping&id=b'
     request.post(url=value,data={})
     return("Sent to", value)
 
@@ -136,7 +137,9 @@ def manu():
 
 @app.route("/kill", methods = ['POST', 'GET'])
 def kill():
+
     if not motor :
+        print("Motor ")
         mc.stop_motor(motor)
         time.sleep(.5)
         mc.move_forward(motor) 
