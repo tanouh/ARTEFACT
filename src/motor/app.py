@@ -46,7 +46,6 @@ def index():
 
 @app.route("/ping", methods=['POST'])
 def ping():
-    value='http://137.194.127.137:5000/com?nature=ping&id=b'
     request.post(url=value,data={})
     return("Sent to", value)
     
@@ -139,6 +138,9 @@ def manu():
 def kill():
     if not motor :
         mc.stop_motor(motor)
+        time.sleep(.5)
+        mc.move_forward(motor) 
+        time.sleep(.5)
     return 'KILLED ! '
 
     #prévenir que la voiture est partie
