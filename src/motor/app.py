@@ -26,14 +26,14 @@ def launch_streaming():
     global motor
     if auto_mode : 
             detector = rd.Detector()
-            p = Process(target = streamer.streaming, args = ([motor, detector.run, move_flag.Value])) # open camera streaming and start auto mode
+            p = Process(target = streamer.streaming, args = ([motor, detector.run, move_flag.value])) # open camera streaming and start auto mode
             p.start()
     return 
         
 def auto():
     print("go auto")
     global move_flag
-    move_flag.Value = True
+    move_flag.value = True
     global motor
     if not motor :
         motor = mc.start_motor()
@@ -57,7 +57,7 @@ def ping():
 @app.route("/on")
 def turn_on():
     global move_flag
-    move_flag.Value = True
+    move_flag.value = True
     global motor
     motor = mc.start_motor()
     print("Starting")
@@ -66,7 +66,7 @@ def turn_on():
 @app.route("/stop")
 def stop():
     global move_flag
-    move_flag.Value = False
+    move_flag.value = False
     mc.stop_motor(motor)
     print("Stopping")
     return 'Stopping'
@@ -139,7 +139,7 @@ def run():
 def manu():
     print("go manu")
     global move_flag
-    move_flag.Value = True
+    move_flag.value = True
     mc.stop_motor(motor)
     global auto_mode
     auto_mode = False
