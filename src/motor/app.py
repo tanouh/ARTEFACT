@@ -145,7 +145,7 @@ def kill():
 
     #prévenir que la voiture est partie
    
-@app.route("/depart", methods = ['POST'])
+@app.route("/depart", methods = ['POST', 'GET'])
 def depart():
     return auto()
 
