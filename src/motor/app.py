@@ -1,7 +1,10 @@
-from flask import Flask, render_template , request, Response
+from flask import Flask, render_template , request, Response, url_for, subprocess
 import webbrowser
+import platform
+import subprocess
 import motor_controller as mc 
 import time
+import requests
 import sys
 sys.path.append("..")
 from camera import stream_cam as s, realtime_detection as rd
@@ -11,8 +14,9 @@ app = Flask(__name__)
 
 hostname = 'robotpi-40'
 ip_adress = '137.194.173.40'
-rpi_port = 8080
+rpi_port = 5000
 motor = None
+ping_flag = True
 
 auto_mode = False
 
@@ -25,18 +29,37 @@ def launch_streaming():
         else :
                 detector = rd.Detector()
                 return streamer.streaming(motor, detector.run)
+        
+
 
 @app.route("/")
 def index():
-        return render_template('ui.html')
+    return render_template('ui.html')
 
+@app.route("/ping")
+def myping():
+    parameter = "-n" if platform.system().lower() == "windows" else "-c"
 
+    command = ["ping", parameter, "1", "http://137.194.13.82:5000/com?nature=ping&id=b"]
+    response = subprocess.call(command)
+
+    if response == 0:
+        return 'Ping successful'
+    else:
+        return 'Ping failed'
+    
 @app.route("/on")
 def start():
     global motor
     motor = mc.start_motor()
     print("Starting")
     return 'Starting...'
+
+@app.route("/stop")
+def stop():
+    mc.stop_motor(motor)
+    print("Stopping")
+    return 'Stopping'
 
 @app.route("/move_forward")
 def move_forward():
@@ -66,12 +89,6 @@ def turn_right():
         print("Turning right")
     return 'Turning right'
 
-@app.route("/stop")
-def stop():
-    mc.stop_motor(motor)
-    print("Stopping")
-    return 'Stopping'
-
 @app.route("/move_right_forward")
 def move_right_forward():
     if not auto_mode:
@@ -94,9 +111,22 @@ def speed():
     print(speed) # Affiche la valeur reçue dans la console
     return 'speed'
 
+@app.route("/requesting",methods=["POST"])
+def requesting():
+    value=request.args.get('url')
+    requests.post(url=value,data={})
+    return("Sent to", value)
+
+@app.route("/sendrequest",methods=["GET"])
+def sendrequest():
+    return render_template('request.html')
+
 @app.route("/Auto")
 def auto():
     print("go auto")
+    global motor
+    if not motor :
+        motor = mc.start_motor()
     global auto_mode
     auto_mode = True
     mc.move_forward(motor)
@@ -115,17 +145,17 @@ def manu():
 @app.route("/kill")
 def kill():
     mc.stop_motor(motor)
-    for i in range(10):
-        mc.move_forward(motor)
-    mc.stop_motor(motor)
-
+    print("KILLED!")
+    
     #prévenir que la voiture est partie
+   
+@app.route("/start")
+def start():
+    print("Starting request got ...")
+    index_url = url_for('/Auto')
+    return 'starting collaborative request'
 
-@app.route("/video_stream")
-def video_stream():
-    return 'video_stream'
-    # return Response(launch_streaming(), mimetype='multipart/x-mixed-replace; boundary=frame')
-     
+
 if __name__ == '__main__':
     try:
         app.run(host=ip_adress, port=rpi_port, debug=True) # add port = rpi port
