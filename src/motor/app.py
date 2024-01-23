@@ -1,10 +1,9 @@
-from flask import Flask, render_template , request, Response, url_for, subprocess
+from flask import Flask, render_template , request, url_for
 import webbrowser
 import platform
 import subprocess
 import motor_controller as mc 
 import time
-import requests
 import sys
 sys.path.append("..")
 from camera import stream_cam as s, realtime_detection as rd
@@ -146,7 +145,7 @@ def manu():
 def kill():
     mc.stop_motor(motor)
     print("KILLED!")
-    
+
     #prévenir que la voiture est partie
    
 @app.route("/start")
