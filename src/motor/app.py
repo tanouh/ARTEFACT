@@ -143,7 +143,8 @@ def manu():
 
 @app.route("/kill", methods = ['POST'])
 def kill():
-    mc.stop_motor(motor)
+    if not motor :
+        mc.stop_motor(motor)
     return 'KILLED ! '
 
     #prévenir que la voiture est partie
