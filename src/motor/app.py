@@ -134,7 +134,7 @@ def manu():
     auto_mode = False
     return 'go manu'
 
-@app.route("/kill", methods = ['POST'])
+@app.route("/kill", methods = ['POST', 'GET'])
 def kill():
     if not motor :
         mc.stop_motor(motor)
