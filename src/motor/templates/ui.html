@@ -231,6 +231,9 @@
         fetch('/Auto')
       }
     }
+    function sendPing(){
+      fetch('/Ping')
+    }
  </script>
 </head>
 <body>
@@ -238,6 +241,7 @@
     <h1>TEAM 8 B</h1>
     <p>Bienvenue sur le site de conduite de la voiture du groupe 8 équipe B</p>
      <button id="monBouton" onclick="changerTexteEtCouleur()">Manuel</button>
+     <button id="ping" onclick="sendPing()">Ping</button>
   </header>
   <div id='image1'>
             <p class="image-superposee"> <img src="https://media.ldlc.com/r1600/ld/products/00/06/01/38/LD0006013848.jpg" width="300" height="300">
