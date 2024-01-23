@@ -1,5 +1,6 @@
 from flask import Flask, render_template , request
 import webbrowser
+from multiprocessing import Process, Value
 import platform
 import subprocess
 import motor_controller as mc 
@@ -17,19 +18,22 @@ rpi_port = 5000
 motor = None
 ping_flag = True
 auto_mode = False
+move_flag = Value("b",False)
 
-def launch_streaming():
-        streamer = s.Streamer()
-        time.sleep(0.5)
-        global motor
-        if not auto_mode : 
-                return streamer.streaming(motor, None)
-        else :
-                detector = rd.Detector()
-                return streamer.streaming(motor, detector.run)
+def launch_streaming(move_flag):
+    streamer = s.Streamer()
+    time.sleep(0.5)
+    global motor
+    if auto_mode : 
+            detector = rd.Detector()
+            p = Process(target = streamer.streaming, args = ([motor, detector.run, move_flag.Value])) # open camera streaming and start auto mode
+            p.start()
+    return 
         
 def auto():
     print("go auto")
+    global move_flag
+    move_flag.Value = True
     global motor
     if not motor :
         motor = mc.start_motor()
@@ -37,7 +41,7 @@ def auto():
     auto_mode = True
     mc.move_forward(motor)
     time.sleep(2)
-    launch_streaming() # open camera streaming and start auto mode
+    launch_streaming()
     return 'go auto'
 # Multi-threading à implémenter
 
@@ -52,6 +56,8 @@ def ping():
     
 @app.route("/on")
 def turn_on():
+    global move_flag
+    move_flag.Value = True
     global motor
     motor = mc.start_motor()
     print("Starting")
@@ -59,6 +65,8 @@ def turn_on():
 
 @app.route("/stop")
 def stop():
+    global move_flag
+    move_flag.Value = False
     mc.stop_motor(motor)
     print("Stopping")
     return 'Stopping'
@@ -130,6 +138,8 @@ def run():
 @app.route("/Manu")
 def manu():
     print("go manu")
+    global move_flag
+    move_flag.Value = True
     mc.stop_motor(motor)
     global auto_mode
     auto_mode = False
@@ -137,13 +147,13 @@ def manu():
 
 @app.route("/kill", methods = ['POST', 'GET'])
 def kill():
-
-    if not motor :
-        print("Motor ")
-        mc.stop_motor(motor)
-        time.sleep(.5)
-        mc.move_forward(motor) 
-        time.sleep(.5)
+    if move_flag.value == False : 
+        if not motor :
+            print("Motor ")
+            mc.stop_motor(motor)
+            time.sleep(.5)
+            mc.move_forward(motor) 
+            time.sleep(.5)
     return 'KILLED ! '
 
     #prévenir que la voiture est partie
