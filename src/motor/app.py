@@ -45,16 +45,10 @@ def index():
     return render_template('ui.html')
 
 @app.route("/ping")
-def myping():
-    parameter = "-n" if platform.system().lower() == "windows" else "-c"
-
-    command = ["ping", parameter, "1", "http://137.194.127.137:5000/com?nature=ping&id=b"]
-    response = subprocess.call(command)
-
-    if response == 0:
-        return 'Ping successful'
-    else:
-        return 'Ping failed'
+def requesting():
+    value='http://137.194.127.137:5000/com?nature=ping&id=b'
+    request.post(url=value,data={})
+    return("Sent to", value)
     
 @app.route("/on")
 def turn_on():
@@ -121,7 +115,7 @@ def speed():
 
 @app.route("/requesting",methods=["POST"])
 def requesting():
-    value=request.args.get('url')
+    value='http://137.194.127.137:5000/com?nature=ping&id=b'
     request.post(url=value,data={})
     return("Sent to", value)
 
