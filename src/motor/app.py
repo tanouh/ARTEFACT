@@ -47,8 +47,8 @@ def index():
 
 @app.route("/ping", methods=['POST'])
 def ping():
-    request.post(url='http://137.194.1:5000/com?nature=ping&id=b',data={})
-    return("Sent to", 'http://137.194.1:5000/com?nature=ping&id=b')
+    request.post(url='http://137.194.127.137:5000/com?nature=ping&id=b',data={})
+    return("Sent to", 'http://137.194.127.137:5000/com?nature=ping&id=b')
     
 @app.route("/on")
 def turn_on():
