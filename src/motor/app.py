@@ -153,6 +153,11 @@ def start():
     print("Starting request got ...")
     return auto()
 
+@app.route("/video_stream")
+def video_stream():
+    return 'video_stream'
+    # return Response(launch_streaming(), mimetype='multipart/x-mixed-replace; boundary=frame')
+     
 
 if __name__ == '__main__':
     try:
