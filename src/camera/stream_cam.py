@@ -39,41 +39,6 @@ class Streamer():
                         mc.stop_motor(motor)
                         print("SHUTDOWN TO DO")
 
-        def generate_frames(self, motor, func):
-                print("[STREAM] Starting video stream...")
-                while True:
-                        ret, frame = self.camera.read()
-                        if not ret:
-                                break
-                        if func is not None:
-                                func(frame, motor)  # 处理图像的函数，如果需要的话
-
-                        ret, buffer = cv2.imencode('.jpg', frame)
-                        if not ret:
-                                break
-
-                        frame_bytes = buffer.tobytes()
-                        yield (b'--frame\r\n'
-                                b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
-
-        # def streaming(self, motor, func):
-        #         if func is None:
-        #                 return self.generate_frames_without_processing(motor)
-        #         else:
-        #                 return self.generate_frames(motor, func)
-
-        def generate_frames_without_processing(self, motor):
-                print("[STREAM] Starting video stream without processing...")
-                while True:
-                        ret, frame = self.camera.read()
-                        if not ret:
-                                break
-                        ret, buffer = cv2.imencode('.jpg', frame)
-                        if not ret:
-                                break
-                        frame_bytes = buffer.tobytes()
-                        yield (b'--frame\r\n'
-                                b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
 
         def release(self):
                 print("[STREAM] Ending video stream...")

@@ -16,7 +16,6 @@ ip_adress = '137.194.173.40'
 rpi_port = 5000
 motor = None
 ping_flag = True
-
 auto_mode = False
 
 def launch_streaming():
