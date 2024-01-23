@@ -150,7 +150,6 @@ def kill():
    
 @app.route("/start")
 def start():
-    print("Starting request got ...")
     return auto()
 
 @app.route("/video_stream")
