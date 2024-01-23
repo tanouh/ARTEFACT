@@ -144,7 +144,7 @@ def manu():
 @app.route("/kill")
 def kill():
     mc.stop_motor(motor)
-    print("KILLED!")
+    return 'KILLED ! '
 
     #prévenir que la voiture est partie
    
