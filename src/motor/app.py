@@ -141,14 +141,14 @@ def manu():
     auto_mode = False
     return 'go manu'
 
-@app.route("/kill")
+@app.route("/kill", methods = ['POST'])
 def kill():
     mc.stop_motor(motor)
     return 'KILLED ! '
 
     #prévenir que la voiture est partie
    
-@app.route("/start")
+@app.route("/start", methods = ['POST'])
 def start():
     return auto()
 
