@@ -148,8 +148,8 @@ def kill():
 
     #prévenir que la voiture est partie
    
-@app.route("/start", methods = ['POST'])
-def start():
+@app.route("/depart", methods = ['POST'])
+def depart():
     return auto()
 
 @app.route("/video_stream")
