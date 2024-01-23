@@ -18,7 +18,7 @@ rpi_port = 5000
 motor = None
 ping_flag = True
 auto_mode = False
-move_flag = Value("b",False)
+move_flag = Value("b",True)
 
 def launch_streaming():
     streamer = s.Streamer()
@@ -32,7 +32,6 @@ def launch_streaming():
     return 
         
 def auto():
-    move_flag.value = True
     print("go auto")
     global motor
     if not motor :
@@ -56,8 +55,6 @@ def ping():
     
 @app.route("/on")
 def turn_on():
-    global move_flag
-    move_flag.value = True
     global motor
     motor = mc.start_motor()
     print("Starting")
