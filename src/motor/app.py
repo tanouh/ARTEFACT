@@ -4,6 +4,8 @@ from multiprocessing import Process, Value
 import motor_controller as mc 
 import time
 import sys
+import pygame
+from pygame.locals import *
 sys.path.append("..")
 from camera import stream_cam as s, realtime_detection as rd
 
@@ -142,6 +144,7 @@ def run():
 @app.route("/Manu")
 def manu():
     init_motor(False)
+    # init_joystick()
     return 'Go manu : en attente de commande'
 
 @app.route("/kill", methods = ['POST', 'GET'])
@@ -171,6 +174,9 @@ if __name__ == '__main__':
     # Ouvrir le navigateur vers l'URL du serveur
     url = f"http://{ip_adress}:{rpi_port}"
     webbrowser.open_new(url)
+
+    # pygame.init()
+
 
     while ping_flag.value : 
         communicate(servers, "ping")
