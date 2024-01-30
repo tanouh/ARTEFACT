@@ -18,17 +18,17 @@ ping_flag = True
 auto_mode = False
 move_flag = Value("b",False)
 
+servers =["137.194.173.38:8000","137.194.173.40:8000","137.194.173.37:8000","137.194.173.36:8000","137.194.173.39:8000"]
+
+
 def launch_streaming():
     global move_flag
     global motor
-
-
     streamer = s.Streamer()
     detector = rd.Detector()
+    p = Process(target = streamer.streaming, args = (motor, detector.run)) # open camera streaming and start auto mode
     while move_flag.value : 
-        p = Process(target = streamer.streaming, args = (motor, detector.run)) # open camera streaming and start auto mode
         p.start()
-    
     p.terminate()
     p.join()
     return 
@@ -42,8 +42,7 @@ def init_motor (auto_flag):
         move_flag.value = True
     global auto_mode 
     auto_mode = auto_flag
-    
-           
+             
 def auto():
     print("go auto")
     init_motor(auto_flag=True)
@@ -51,15 +50,21 @@ def auto():
     time.sleep(2)
     launch_streaming()
     return 'go auto'
-# Multi-threading à implémenter
 
+def send_request(nature, ip):
+    try: request.post("http://"+ip+"/com?nature="+nature+"&id=b",data={})
+    except:
+        return(False)
+    return(True)
 
-def send_request(nature, error_message):
-    url_ = "http://137.194.127.137:5000/com?nature="+nature+"&id=b"
-    try :
-        request.post(url=url_, value={})
-    except: 
-        print(error_message+" failed")
+def communicate (list, nature):
+    processes = []
+    for i in list:
+        p = Process(target=send_request, args=(nature, i))
+        processes.append(p)
+        p.start()
+    for p in processes:
+        p.join()
 
 @app.route("/")
 def index():
@@ -151,7 +156,7 @@ def kill():
     if motor :
         mc.move_forward(motor) 
         time.sleep(1)
-    send_request("", "Killing")
+    communicate(servers, "Im gone ! 8b")
 
     return 'KILLED !'
     #prévenir que la voiture est partie
