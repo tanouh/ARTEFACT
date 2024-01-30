@@ -1,4 +1,3 @@
-
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -8,15 +7,18 @@ body {
   background-position: middle;
   color: #fff;
 }
+
 header {
-  background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent noir pour le contraste */
+  background-color: rgba(0, 0, 0, 0.7);
+  /* Fond semi-transparent noir pour le contraste */
   text-align: center;
   padding: 20px 0;
 }
 
 
 footer {
-  background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent noir pour le pied de page */
+  background-color: rgba(0, 0, 0, 0.7);
+  /* Fond semi-transparent noir pour le pied de page */
   text-align: center;
   padding: 10px 0;
   position: absolute;
@@ -35,7 +37,8 @@ footer {
 video {
   width: 100%;
 }
-    /* Style de base du bouton */
+
+/* Style de base du bouton */
 #monBouton {
   padding: 10px 20px;
   background-color: #3498db;
@@ -44,171 +47,253 @@ video {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 /* Style du bouton lorsqu'il est survolé */
 #monBouton:hover {
   background-color: #7fb3d5;
 }
+
 /* Style du bouton lorsqu'il est actif (clic) */
 #monBouton.active {
   background-color: #e74c3c;
 }
+
 /* Style du bouton lorsqu'il est à la fois actif et survolé */
 #monBouton.active:hover {
   background-color: #bdc3c7;
 }
+
 .image-superposee {
   position: absolute;
   top: 37%;
   left: 3%;
   /* Pour éviter que l'image dépasse du conteneur */
   object-fit: cover;
-  border-radius: 50%; /* Pour un cercle */
+  border-radius: 50%;
+  /* Pour un cercle */
 }
 
 .direction-button {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        background-color: #3498db;
-        color: #fff;
-        text-align: center;
-        line-height: 20px;
-        position: absolute;
-        cursor: pointer;
-    }
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #3498db;
+  color: #fff;
+  text-align: center;
+  line-height: 20px;
+  position: absolute;
+  cursor: pointer;
+}
 
-    .direction-button.nord:hover {
-         background: darkgrey;
-           }
-    .direction-button.nord:active {
-        background: royalblue;
-        color: black;
-        }
-    .direction-button.nord-ouest:hover {
-         background: darkgrey;
-           }
-    .direction-button.nord-ouest:active {
-        background: royalblue;
-        color: black;
-        }
-    .direction-button.nord-est:hover {
-         background: darkgrey;
-           }
-    .direction-button.nord-est:active {
-        background: royalblue;
-        color: black;
-        }
-    .direction-button.est:hover {
-         background: darkgrey;
-           }
-    .direction-button.est:active {
-        background: royalblue;
-        color: black;
-        }
-    .direction-button.ouest:hover {
-         background: darkgrey;
-           }
-    .direction-button.ouest:active {
-        background: royalblue;
-        color: black;
-        }
-    .direction-button.sud:hover {
-         background: darkgrey;
-           }
-    .direction-button.sud:active {
-        background: royalblue;
-        color: black;
-        }
-    .direction-button.sud-est:hover {
-         background: darkgrey;
-           }
-    .direction-button.sud-est:active {
-        background: royalblue;
-        color: black;
-        }
-    .direction-button.sud-ouest:hover {
-         background: darkgrey;
-           }
-    .direction-button.sud-ouest:active {
-        background: royalblue;
-        color: black;
-        }
+.direction-button.nord:hover {
+  background: darkgrey;
+}
 
-    .direction-button.centre:hover {
-         background: darkgrey;
-           }
-    .direction-button.centre:active {
-        background: royalblue;
-        color: black;
-        }
-      
-    .direction-button.top:active {
-          background: red
-        }
+.direction-button.nord:active {
+  background: royalblue;
+  color: black;
+}
 
-    .direction-button.nord,
-    .direction-button.nord-est,
-    .direction-button.est,
-    .direction-button.sud-est,
-    .direction-button.sud,
-    .direction-button.sud-ouest,
-    .direction-button.ouest,
-    .direction-button.nord-ouest {
-        background-color: darkred;
-    }
+.direction-button.nord-ouest:hover {
+  background: darkgrey;
+}
 
-    .direction-button.centre {
-      background-color: black
-    }
+.direction-button.nord-ouest:active {
+  background: royalblue;
+  color: black;
+}
 
-    .direction-button.top{
-      background-color: green
-    }
+.direction-button.nord-est:hover {
+  background: darkgrey;
+}
 
-    .nord { top: 39%; left: 9%; }
-    .nord-est { top: 43%; left: 13.5%; }
-    .est { top: 51%; left: 15.5%; }
-    .sud-est { top: 59%; left: 13.5%; }
-    .sud { top: 63%; left: 9%; }
-    .sud-ouest { top: 59%; left: 5%; }
-    .ouest {top: 51%; left: 3%; }
-    .nord-ouest { top: 43%; left: 5%; }
-    .centre {top: 51%; left:9%}
-    .top {top:25%; left:9%}
+.direction-button.nord-est:active {
+  background: royalblue;
+  color: black;
+}
 
-    #barre{
-      position: absolute;
-      right:90px;
-      top:220px
-    }
+.direction-button.est:hover {
+  background: darkgrey;
+}
+
+.direction-button.est:active {
+  background: royalblue;
+  color: black;
+}
+
+.direction-button.ouest:hover {
+  background: darkgrey;
+}
+
+.direction-button.ouest:active {
+  background: royalblue;
+  color: black;
+}
+
+.direction-button.sud:hover {
+  background: darkgrey;
+}
+
+.direction-button.sud:active {
+  background: royalblue;
+  color: black;
+}
+
+.direction-button.sud-est:hover {
+  background: darkgrey;
+}
+
+.direction-button.sud-est:active {
+  background: royalblue;
+  color: black;
+}
+
+.direction-button.sud-ouest:hover {
+  background: darkgrey;
+}
+
+.direction-button.sud-ouest:active {
+  background: royalblue;
+  color: black;
+}
+
+.direction-button.centre:hover {
+  background: darkgrey;
+}
+
+.direction-button.centre:active {
+  background: royalblue;
+  color: black;
+}
+
+.direction-button.top:active {
+  background: red
+}
+
+.direction-button.nord,
+.direction-button.nord-est,
+.direction-button.est,
+.direction-button.sud-est,
+.direction-button.sud,
+.direction-button.sud-ouest,
+.direction-button.ouest,
+.direction-button.nord-ouest {
+  background-color: darkred;
+}
+
+.direction-button.centre {
+  background-color: black
+}
+
+.direction-button.top {
+  background-color: green
+}
+
+.nord {
+  top: 39%;
+  left: 9%;
+}
+
+.nord-est {
+  top: 43%;
+  left: 13.5%;
+}
+
+.est {
+  top: 51%;
+  left: 15.5%;
+}
+
+.sud-est {
+  top: 59%;
+  left: 13.5%;
+}
+
+.sud {
+  top: 63%;
+  left: 9%;
+}
+
+.sud-ouest {
+  top: 59%;
+  left: 5%;
+}
+
+.ouest {
+  top: 51%;
+  left: 3%;
+}
+
+.nord-ouest {
+  top: 43%;
+  left: 5%;
+}
+
+.centre {
+  top: 51%;
+  left: 9%
+}
+
+.top {
+  top: 25%;
+  left: 9%
+}
+
+#barre {
+  position: absolute;
+  right: 90px;
+  top: 220px
+}
 
 input[type=range] {
-  width: 35px; /* Largeur de la barre */
-  height: 550px; /* Hauteur de la barre */
-  -webkit-appearance: none; /* Empêche les styles par défaut pour WebKit */
-  appearance: none; /* Empêche les styles par défaut */
-  background: #ddd; /* Couleur de fond de la barre */
-  border-radius: 10px; /* Bord arrondi de la barre */
-  outline: none; /* Supprime la bordure par défaut */
+  width: 35px;
+  /* Largeur de la barre */
+  height: 550px;
+  /* Hauteur de la barre */
+  -webkit-appearance: none;
+  /* Empêche les styles par défaut pour WebKit */
+  appearance: none;
+  /* Empêche les styles par défaut */
+  background: #ddd;
+  /* Couleur de fond de la barre */
+  border-radius: 10px;
+  /* Bord arrondi de la barre */
+  outline: none;
+  /* Supprime la bordure par défaut */
   margin: 10px;
 }
 
 /* Modifier l'apparence de la partie remplie de la barre */
 input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Empêche les styles par défaut pour WebKit */
-  appearance: none; /* Empêche les styles par défaut */
-  width: 40px; /* Largeur du curseur */
-  height: 40px; /* Hauteur du curseur */
-  border-radius: 50%; /* Rend le curseur rond */
-  background: darkred; /* Couleur du curseur */
-  cursor: pointer; /* Change le curseur lorsqu'il est survolé */
+  -webkit-appearance: none;
+  /* Empêche les styles par défaut pour WebKit */
+  appearance: none;
+  /* Empêche les styles par défaut */
+  width: 40px;
+  /* Largeur du curseur */
+  height: 40px;
+  /* Hauteur du curseur */
+  border-radius: 50%;
+  /* Rend le curseur rond */
+  background: darkred;
+  /* Couleur du curseur */
+  cursor: pointer;
+  /* Change le curseur lorsqu'il est survolé */
 }
+
 input[type=range]::-moz-range-thumb {
-  -webkit-appearance: none; /* Empêche les styles par défaut pour WebKit */
-  appearance: none; /* Empêche les styles par défaut */
-  width: 40px; /* Largeur du curseur */
-  height: 40px; /* Hauteur du curseur */
-  border-radius: 50%; /* Rend le curseur rond */
-  background: darkred; /* Couleur du curseur */
-  cursor: pointer; /* Change le curseur lorsqu'il est survolé */
+  -webkit-appearance: none;
+  /* Empêche les styles par défaut pour WebKit */
+  appearance: none;
+  /* Empêche les styles par défaut */
+  width: 40px;
+  /* Largeur du curseur */
+  height: 40px;
+  /* Hauteur du curseur */
+  border-radius: 50%;
+  /* Rend le curseur rond */
+  background: darkred;
+  /* Couleur du curseur */
+  cursor: pointer;
+  /* Change le curseur lorsqu'il est survolé */
 }

@@ -14,9 +14,6 @@ def set_speed(motor, new_speed):
         motor.set_speed_right(100*new_speed)
         motor.set_speed_left(100*new_speed)
 
-def set_step_duration(duration):
-        step_duration = duration
-
 def move_forward(motor):
         motor.MotorRun(0, 'forward')
         motor.MotorRun(1, 'forward')

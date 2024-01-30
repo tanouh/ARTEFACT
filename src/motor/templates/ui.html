@@ -1,224 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <title>TEAM 8 B</title>
-  <style>
-    body{
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-image: url('https://www.motorsinside.com/images/photo/article/f12022/miniature/1500/c-ferrari-f1-75-2.webp');
-    background-size: cover;
-    background-position: middle;
-    color: #fff;
-  }
-  header {
-    background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent noir pour le contraste */
-    text-align: center;
-    padding: 20px 0;
-  }
-  
-  
-  footer {
-    background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent noir pour le pied de page */
-    text-align: center;
-    padding: 10px 0;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-  }
-  
-  #live-video {
-    width: 60%;
-    margin: 20px auto;
-    border-radius: 5px;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  }
-  
-  video {
-    width: 100%;
-  }
-      /* Style de base du bouton */
-  #monBouton {
-    padding: 10px 20px;
-    background-color: #3498db;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  /* Style du bouton lorsqu'il est survolé */
-  #monBouton:hover {
-    background-color: #7fb3d5;
-  }
-  /* Style du bouton lorsqu'il est actif (clic) */
-  #monBouton.active {
-    background-color: #e74c3c;
-  }
-  /* Style du bouton lorsqu'il est à la fois actif et survolé */
-  #monBouton.active:hover {
-    background-color: #bdc3c7;
-  }
-  .image-superposee {
-    position: absolute;
-    top: 37%;
-    left: 3%;
-    /* Pour éviter que l'image dépasse du conteneur */
-    object-fit: cover;
-    border-radius: 50%; /* Pour un cercle */
-  }
-  
-  .direction-button {
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-          background-color: #3498db;
-          color: #fff;
-          text-align: center;
-          line-height: 20px;
-          position: absolute;
-          cursor: pointer;
-      }
-  
-      .direction-button.nord:hover {
-           background: darkgrey;
-             }
-      .direction-button.nord:active {
-          background: royalblue;
-          color: black;
-          }
-      .direction-button.nord-ouest:hover {
-           background: darkgrey;
-             }
-      .direction-button.nord-ouest:active {
-          background: royalblue;
-          color: black;
-          }
-      .direction-button.nord-est:hover {
-           background: darkgrey;
-             }
-      .direction-button.nord-est:active {
-          background: royalblue;
-          color: black;
-          }
-      .direction-button.est:hover {
-           background: darkgrey;
-             }
-      .direction-button.est:active {
-          background: royalblue;
-          color: black;
-          }
-      .direction-button.ouest:hover {
-           background: darkgrey;
-             }
-      .direction-button.ouest:active {
-          background: royalblue;
-          color: black;
-          }
-      .direction-button.sud:hover {
-           background: darkgrey;
-             }
-      .direction-button.sud:active {
-          background: royalblue;
-          color: black;
-          }
-      .direction-button.sud-est:hover {
-           background: darkgrey;
-             }
-      .direction-button.sud-est:active {
-          background: royalblue;
-          color: black;
-          }
-      .direction-button.sud-ouest:hover {
-           background: darkgrey;
-             }
-      .direction-button.sud-ouest:active {
-          background: royalblue;
-          color: black;
-          }
-  
-      .direction-button.centre:hover {
-           background: darkgrey;
-             }
-      .direction-button.centre:active {
-          background: royalblue;
-          color: black;
-          }
-        
-      .direction-button.top:active {
-            background: red
-          }
-  
-      .direction-button.nord,
-      .direction-button.nord-est,
-      .direction-button.est,
-      .direction-button.sud-est,
-      .direction-button.sud,
-      .direction-button.sud-ouest,
-      .direction-button.ouest,
-      .direction-button.nord-ouest {
-          background-color: darkred;
-      }
-  
-      .direction-button.centre {
-        background-color: black
-      }
-  
-      .direction-button.top{
-        background-color: green
-      }
-  
-      .nord { top: 39%; left: 9%; }
-      .nord-est { top: 43%; left: 13.5%; }
-      .est { top: 51%; left: 15.5%; }
-      .sud-est { top: 59%; left: 13.5%; }
-      .sud { top: 63%; left: 9%; }
-      .sud-ouest { top: 59%; left: 5%; }
-      .ouest {top: 51%; left: 3%; }
-      .nord-ouest { top: 43%; left: 5%; }
-      .centre {top: 51%; left:9%}
-      .top {top:25%; left:9%}
-  
-      #barre{
-        position: absolute;
-        right:90px;
-        top:220px
-      }
-  
-  input[type=range] {
-    width: 35px; /* Largeur de la barre */
-    height: 550px; /* Hauteur de la barre */
-    -webkit-appearance: none; /* Empêche les styles par défaut pour WebKit */
-    appearance: none; /* Empêche les styles par défaut */
-    background: #ddd; /* Couleur de fond de la barre */
-    border-radius: 10px; /* Bord arrondi de la barre */
-    outline: none; /* Supprime la bordure par défaut */
-    margin: 10px;
-  }
-  
-  /* Modifier l'apparence de la partie remplie de la barre */
-  input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Empêche les styles par défaut pour WebKit */
-    appearance: none; /* Empêche les styles par défaut */
-    width: 40px; /* Largeur du curseur */
-    height: 40px; /* Hauteur du curseur */
-    border-radius: 50%; /* Rend le curseur rond */
-    background: darkred; /* Couleur du curseur */
-    cursor: pointer; /* Change le curseur lorsqu'il est survolé */
-  }
-  input[type=range]::-moz-range-thumb {
-    -webkit-appearance: none; /* Empêche les styles par défaut pour WebKit */
-    appearance: none; /* Empêche les styles par défaut */
-    width: 40px; /* Largeur du curseur */
-    height: 40px; /* Hauteur du curseur */
-    border-radius: 50%; /* Rend le curseur rond */
-    background: darkred; /* Couleur du curseur */
-    cursor: pointer; /* Change le curseur lorsqu'il est survolé */
-  }
-</style>
-<script>
+  <link rel="stylesheet" href="./style.css">
+  <script>
     function changerTexteEtCouleur() {
       var bouton = document.getElementById("monBouton");
       if (bouton.classList.contains("active")) {
@@ -231,33 +18,116 @@
         fetch('/Auto')
       }
     }
-    function sendPing(){
+    function sendPing() {
       fetch('/Ping')
     }
- </script>
+  </script>
 </head>
+
 <body>
   <header>
     <h1>TEAM 8 B</h1>
     <p>Bienvenue sur le site de conduite de la voiture du groupe 8 équipe B</p>
-     <button id="monBouton" onclick="changerTexteEtCouleur()">Manuel</button>
-     <button id="monBouton" onclick="sendPing()">Ping</button>
+    <button id="monBouton" onclick="changerTexteEtCouleur()">Manuel</button>
+    <button id="monBouton" onclick="sendPing()">Ping</button>
   </header>
   <div id='image1'>
-            <p class="image-superposee"> <img src="https://media.ldlc.com/r1600/ld/products/00/06/01/38/LD0006013848.jpg" width="300" height="300">
-        </div>
-<div >
-        <button class="direction-button nord" onclick="moveForward()">N</button>
-        <button class="direction-button nord-est" onclick="moveForwardRight()">NE</buttonv>
-        <button class="direction-button est" onclick="turnRight()">E</button>
-        <button class="direction-button sud-est">SE</button>
-        <button class="direction-button sud" onclick="moveBackward()">S</button>
-        <button class="direction-button sud-ouest">SO</button>
-        <button class="direction-button ouest" onclick="turnLeft()">O</button>
-        <button class="direction-button nord-ouest" onclick="moveForwardLeft()">NO</button>
-        <button class="direction-button centre" onclick="stop()">Stop</button>
-        <button class="direction-button top" onclick="start()">Start</button>
-    </div>
+    <p class="image-superposee"> <img src="https://media.ldlc.com/r1600/ld/products/00/06/01/38/LD0006013848.jpg"
+        width="300" height="300">
+  </div>
+  <div>
+    <button class="direction-button nord" onclick="moveForward()">N</button>
+    <button class="direction-button nord-est" onclick="moveForwardRight()">NE</buttonv>
+      <button class="direction-button est" onclick="turnRight()">E</button>
+      <button class="direction-button sud-est">SE</button>
+      <button class="direction-button sud" onclick="moveBackward()">S</button>
+      <button class="direction-button sud-ouest">SO</button>
+      <button class="direction-button ouest" onclick="turnLeft()">O</button>
+      <button class="direction-button nord-ouest" onclick="moveForwardLeft()">NO</button>
+      <button class="direction-button centre" onclick="stop()">Stop</button>
+      <button class="direction-button top" onclick="start()">Start</button>
+  </div>
+  <script>
+    function start() {
+      slider.value = 50;
+      output.innerHTML = 50;
+      fetch('/on')
+    }
+    function moveForward() {
+      fetch('/move_forward');
+    }
+
+    function moveBackward() {
+      fetch('/move_backward');
+    }
+
+    function turnLeft() {
+      fetch('/turn_left');
+    }
+
+    function turnRight() {
+      fetch('/turn_right');
+    }
+    function stop() {
+      slider.value = 0;
+      output.innerHTML = 0;
+      fetch('/stop');
+    }
+    function moveForwardRight() {
+      fetch('/move_right_forward')
+    }
+    function moveForwardLeft() {
+      fetch('/move_left_forward')
+    }
+    // Add event listener on keydown
+    document.addEventListener('keydown', (event) => {
+      var name = event.key;
+      var code = event.code;
+
+      if (event.ctrlKey && code === 'KeyC') {
+        alert('End of control.');
+        fetch('/stop');
+        // stop program
+      }
+      if (code == 'ShiftLeft') {
+        fetch('/start')
+      }
+      if (code === 'ArrowUp') {
+        fetch('/move_forward'); //envoie l'info au code python
+      }
+      else if (code === 'ArrowDown') {
+        fetch('/move_backward');
+      }
+      else if (code === 'ArrowLeft') {
+        fetch('/turn_left');
+      }
+      else if (code === 'ArrowRight') {
+        fetch('/turn_right');
+      }
+      else if (code === 'ShiftRight') {
+        fetch('/stop');
+      }
+      else if (code === 'KeyW') {
+        fetch('/move_forward');
+      }
+      else if (code === 'KeyS') {
+        fetch('/move_backward');
+      }
+      else if (code === 'KeyA') {
+        fetch('/turn_left');
+      }
+      else if (code === 'KeyD') {
+        fetch('/turn_right');
+      }
+      else if (code === 'KeyQ') {
+        fetch('/move_left_forward');
+      }
+      else if (code === 'KeyE') {
+        fetch('/move_right_forward');
+      }
+    }, false);
+  </script>
+
   <main>
     <div id="live-video">
       <video controls autoplay>
@@ -269,12 +139,11 @@
     </div>
   </main>
   <div id="barre">
-  <input type="range" orient="vertical" min="0" max="100" value="0" id="slider">
-  <!-- Affichage de la valeur sélectionnée -->
-  <p>Vitesse en %: <span id="valeurSelectionnee"></span></p>
-    </div>
-  
-  <script>
+    <input type="range" orient="vertical" min="0" max="100" value="0" id="slider">
+    <!-- Affichage de la valeur sélectionnée -->
+    <p>Vitesse en %: <span id="valeurSelectionnee"></span></p>
+  </div>
+  <script defer>
     // Récupérer l'élément input range
     var slider = document.getElementById("slider");
     // Récupérer l'élément span pour afficher la valeur sélectionnée
@@ -284,99 +153,20 @@
     output.innerHTML = slider.value;
 
     // Mettre à jour la valeur affichée lorsque la barre de défilement est déplacée
-    slider.oninput = function() {
+    slider.oninput = function () {
       output.innerHTML = this.value;
       fetch('/speed', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json', // Spécifie le type de contenu JSON
-},
-  body: JSON.stringify({value : slider.value }), // Données à envoyer sous forme JSON
-})};
-
-    function start(){
-            slider.value=50;
-            output.innerHTML = 50;
-            fetch('/on')
-        }
-        function moveForward() {
-            fetch('/move_forward');
-        }
-
-        function moveBackward() {
-            fetch('/move_backward');
-        }
-
-        function turnLeft() {
-            fetch('/turn_left');
-        }
-
-        function turnRight() {
-            fetch('/turn_right');
-        }
-        function stop() {
-            slider.value=0;
-            output.innerHTML = 0;
-            fetch('/stop');
-        }
-        function moveForwardRight(){
-          fetch('/move_right_forward')
-        }
-        function moveForwardLeft(){
-          fetch('/move_left_forward')
-        }
-
-  // Add event listener on keydown
-  document.addEventListener('keydown', (event) => {
-            var name = event.key;
-            var code = event.code;
-            
-            if (event.ctrlKey && code === 'KeyC') {
-                alert ('End of control.');
-                fetch('/stop');
-                // stop program
-            }
-            if (code == 'ShiftLeft'){
-                fetch('/start')
-            }
-            if (code === 'ArrowUp') {
-               fetch('/move_forward'); //envoie l'info au code python
-            }
-            else if (code === 'ArrowDown') {
-                fetch('/move_backward');
-            }
-            else if (code === 'ArrowLeft') {
-                fetch('/turn_left');
-            }
-            else if (code === 'ArrowRight'){
-                fetch('/turn_right');
-            }
-            else if (code === 'ShiftRight') {
-                fetch('/stop');
-            }
-            else if (code === 'KeyW') {
-                fetch('/move_forward');
-            }
-            else if (code === 'KeyS') {
-                fetch('/move_backward');
-            }
-            else if (code === 'KeyA') {
-                fetch('/turn_left');
-            }
-            else if (code === 'KeyD'){
-                fetch('/turn_right');
-            }
-            else if (code === 'KeyQ'){
-                fetch('/move_left_forward');
-            }
-            else if (code === 'KeyE'){
-                fetch('/move_right_forward');
-            }
-        }, false);
-
-</script>
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json', // Spécifie le type de contenu JSON
+        },
+        body: JSON.stringify({ value: slider.value }), // Données à envoyer sous forme JSON
+      })
+    };
+  </script>
   <footer>
     <p>&copy; 2023 TEAM 8 B. Tous droits réservés.</p>
   </footer>
 </body>
+
 </html>
