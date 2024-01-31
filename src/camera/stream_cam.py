@@ -27,7 +27,7 @@ class Streamer():
                                 if not ret:
                                         break
                                 if func is not None :
-                                        print("go here ... ")
+                                        print("go to detection ... ")
                                         func(frame, motor)
                                 else : 
                                         continue  # print("[STREAM] No function to read")
