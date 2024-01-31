@@ -22,10 +22,13 @@ class Streamer():
                 print("[STREAM] starting video stream...")
                 time.sleep(0.5)
                 try :   
+                        print(" auto mode  = "auto)
                         while auto :
                                 ret, frame = self.camera.read()
                                 if not ret:
                                         break
+                                print ("ret camera read = ", ret)
+                                
                                 if func is not None :
                                         print("go to detection ... ")
                                         func(frame, motor)
