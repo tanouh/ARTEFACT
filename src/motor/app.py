@@ -28,13 +28,11 @@ def launch_streaming():
     global motor
     streamer = s.Streamer()
     detector = rd.Detector()
-    p = Process(target = streamer.streaming, args = (motor, detector.run)) # open camera streaming and start auto mode
-    while auto_flag.value : 
-        print (auto_flag.value)
-        p.start()
-
-    p.terminate()
-    p.join()
+    p = Process(target = streamer.streaming, args = (motor, detector.run, auto_flag.value)) # open camera streaming and start auto mode
+    p.start()
+    if auto_flag.value == False:
+        p.terminate()
+        p.join()
     return 
 
 def init_motor (flag):
