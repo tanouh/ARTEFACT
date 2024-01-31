@@ -44,7 +44,6 @@ def init_motor (flag):
              
 def auto():
     print("go auto")
-    init_motor(True)
     mc.move_forward(motor)
     time.sleep(2)
     launch_streaming()

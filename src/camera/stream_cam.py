@@ -22,6 +22,8 @@ class Streamer():
                 print("[STREAM] starting video stream...")
                 time.sleep(0.5)
                 try :   
+                        mc.set_speed(motor, 0)
+                        print("Modeee auto ? ",auto)
                         while auto :
                                 ret, frame = self.camera.read()
                                 if not ret:
