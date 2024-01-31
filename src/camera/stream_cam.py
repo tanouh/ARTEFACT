@@ -27,7 +27,7 @@ class Streamer():
                                 ret, frame = self.camera.read()
                                 if not ret:
                                         break
-
+                                print (ret)
                                 if func is not None :
                                         print("go to detection ... ")
                                         func(frame, motor)
