@@ -176,10 +176,8 @@ if __name__ == '__main__':
     webbrowser.open_new(url)
 
     # pygame.init()
-
-
-    while ping_flag.value : 
-        communicate(servers, "ping")
+    # while ping_flag.value : 
+    #     communicate(servers, "ping")
 
     for p in processes : 
         p.join()
