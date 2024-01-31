@@ -22,15 +22,15 @@ class Streamer():
                 print("[STREAM] starting video stream...")
                 time.sleep(0.5)
                 try :   
-                        while True :
-                                ret, frame = self.camera.read()
-                                if not ret:
-                                        break
-                                if func is not None :
-                                        func(frame, motor)
-                                else : 
-                                        # print("[STREAM] No function to read")
-                                        continue       
+                        # while True :
+                        ret, frame = self.camera.read()
+                        if not ret:
+                                return
+                        if func is not None :
+                                func(frame, motor)
+                        else : 
+                               return  # print("[STREAM] No function to read")
+                                
                 except : 
                         self.release()
                         mc.stop_motor(motor)
