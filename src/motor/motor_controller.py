@@ -36,6 +36,7 @@ def modify_speed(motor, new_speed):
     time.sleep(step_duration)  # Optionally, wait for some duration to see the effect
     
 
+# parameters below are purely experimental 
 def left(middle,motor):
         motor.set_speed_right((40+((middle)**2 *0.0025)))
         motor.set_speed_left(40)
@@ -58,8 +59,7 @@ def move_right(motor, speed):
         motor.set_speed_right(speed) # hope to move right more
         move_forward(motor)
 
-def move_left(motor, speed):
-        
+def move_left(motor, speed): 
         motor.set_speed_right(int(speed*1.0025)) # parameters? do not turn too quick
         motor.set_speed_left(speed)
         move_forward(motor)

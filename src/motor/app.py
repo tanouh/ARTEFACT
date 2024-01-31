@@ -1,13 +1,12 @@
 from flask import Flask, render_template , request
 import webbrowser
+from mylib import *
 from multiprocessing import Process, Value
 import motor_controller as mc 
 import time
 import sys
-import pygame
-from pygame.locals import *
 sys.path.append("..")
-from camera import stream_cam as s, realtime_detection as rd
+from camera import stream_cam as s
 
 
 app = Flask(__name__)
@@ -20,10 +19,8 @@ ping_flag = Value("b", True)
 auto_flag = Value("b",False)
 processes = []
 
-servers = ["137.194.173.38:8000","137.194.173.40:8000","137.194.173.37:8000","137.194.173.36:8000","137.194.173.39:8000"]
-
-
 def launch_streaming():
+    ''' Launch the camera streamin in a child process'''
     global auto_flag
     global motor
     time.sleep(0.3)
@@ -36,6 +33,7 @@ def launch_streaming():
     return 
 
 def init_motor (flag):
+    '''Initialize the motor driver'''
     global motor 
     global auto_flag
     if not motor:
@@ -43,6 +41,7 @@ def init_motor (flag):
     auto_flag.value = flag
              
 def auto():
+    '''Engage the automatic mode'''
     print("go auto")
     mc.move_forward(motor)
     time.sleep(2)
@@ -50,31 +49,13 @@ def auto():
     launch_streaming()
     return 'go auto'
 
-def send_request(nature, ip):
-    try: request.post("http://"+ip+"/com?nature="+nature+"&id=b",data={})
-    except:
-        return(False)
-    return(True)
-
-def communicate (list, nature):
-    global processes
-    for i in list:
-        p = Process(target=send_request, args=(nature, i))
-        processes.append(p)
-        p.start()
-
-def pinging ():
-    global ping_flag
-    while ping_flag.value : 
-        communicate(servers, "ping")
-
 @app.route("/")
 def index():
     return render_template('ui.html')
 
 @app.route("/ping", methods=['POST'])
 def ping():
-    communicate(servers, "ping")
+    communicate("ping")
     return 'Sending ping ...'
     
 @app.route("/on")
@@ -161,13 +142,15 @@ def kill():
     if motor :
         mc.move_forward(motor) 
         time.sleep(1)
-    communicate(servers, "kill")
+    communicate("kill")
     return 'KILLED !'
     #prévenir que la voiture est partie
 
 @app.route("/depart", methods = ['POST', 'GET'])
 def depart():
-    communicate(servers, "depart")
+    global ping_flag 
+    ping_flag.value = False
+    communicate("depart")
     return auto()
 
 @app.route("/video_stream")
@@ -183,7 +166,7 @@ if __name__ == '__main__':
         url = f"http://{ip_adress}:{rpi_port}"
         webbrowser.open_new(url)
 
-        pping = Process(target = pinging, args = {})
+        pping = Process(target = pinging, args = (ping_flag.value))
         pping.start()
         processes.append(pping)
 

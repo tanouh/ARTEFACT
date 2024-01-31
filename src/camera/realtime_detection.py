@@ -7,13 +7,15 @@ import time
 import sys
 sys.path.append("..")
 from motor import motor_controller as mc
+from mylib import communicate
+
 
 dict = cv2.aruco.DICT_6X6_50
 tolerance = 60 # should be replaced depending on experimental settings
-
 FWD_SPEED = .3
 
 def get_distance(height):
+    '''Calculates the distance estimations based on the height of the markers'''
     if height <= 0 : 
         return 0 
     elif 0 < height and height <= 400 :
@@ -88,6 +90,7 @@ class Detector():
     # return the marker id to be found next 
     # it makes sure that the previous marker is found                  
     def get_marker_to_find(self):
+        '''It corresponds to the specification : may be changed in future versions'''
         if not self.arucoFlag[0]:
             return 1
         elif self.arucoFlag[0] and not self.arucoFlag[1]:
@@ -98,7 +101,8 @@ class Detector():
             return 9
 
 
-    def detect_aruco_tag_bis(self, frame, motor):
+    def detect_aruco_tag_bis(self, frame):
+        '''Identify the aruco tag and create a structure encapsulating its information'''
         (corners, ids, rejected) = self.detector.detectMarkers(frame)
         self.arucoList = [] # initialiser
 
@@ -126,6 +130,7 @@ class Detector():
                 self.arucoList.append(aruco)
             
     def catch_aruco(self):
+        '''Test if the aruco detected is currently the one the robot should be looking for.'''
         list = self.arucoList
         self.rotationDuration = None
         self.arucoToFind =  None
@@ -137,6 +142,7 @@ class Detector():
         
    
     def run(self, frame, motor):
+        '''The main function'''
         self.detect_aruco_tag_bis(frame, motor)
         self.catch_aruco()
         if self.arucoToFind :
@@ -155,13 +161,16 @@ class Detector():
         mc.updateMotor(motor, self.direction, self.speed, self.moveDuration)
     
     def go_to_aruco(self, frame):
+        '''Calculates all the movement parameters according to the distance between the aruco and the robot'''
         height, width = frame.shape[:2]
         frame_center = width//2
         
         if self.arucoToFind and self.arucoToFind["dist"] > tolerance:
             print(self.arucoToFind["dist"])
             
-            if self.arucoToFind["dist"] > 5 * tolerance:
+            # here the robot speed and movement duration are determined by the distance between
+
+            if self.arucoToFind["dist"] > 5 * tolerance: 
                 self.speed = FWD_SPEED*2
                 self.moveDuration = 1.5
             elif self.arucoToFind["dist"] > 3 * tolerance:
@@ -176,17 +185,27 @@ class Detector():
             else: 
                 self.direction = .2
         else:
+
+            # here the aruco we are looking for is not detected yet so we engage the hunting mode
             if self.arucoToFind : 
                 self.speed = .3
                 self.direction = 0
             else : 
+            
+            # we do not have any aruco to find anymore so we stop the robot
                 self.speed = 0
                 self.direction = 0
         
-        if self.arucoToFind and self.arucoToFind["dist"] < tolerance:
+        # we upadate the future aruco to find
+        if self.arucoToFind and self.arucoToFind["dist"] < tolerance: 
+            
+            # in order to count arucos found until then 
+            # we manage not to add the same aruco more than once
             if self.arucoToFind["id"] not in self.visited_Id :
                 print(" add  ", self.arucoToFind["id"])
                 self.visited_Id.append(self.arucoToFind["id"])
+                communicate("ping")
+            
             # renouveller les flags
             self.arucoFlag[len(self.visited_Id)-1] = True
             if self.arucoFlag[-1] == True:
@@ -194,4 +213,5 @@ class Detector():
                 self.speed = 0 
                 self.direction = 0
                 self.stop_flag = True
+                communicate("kill")
             self.arucoToFind = None

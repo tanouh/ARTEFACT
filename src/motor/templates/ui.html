@@ -319,7 +319,7 @@
       }
     }
     function sendPing() {
-      fetch('/Ping')
+      fetch('/ping')
     }
   </script>
 </head>
@@ -335,6 +335,59 @@
     <p class="image-superposee"> <img src="https://media.ldlc.com/r1600/ld/products/00/06/01/38/LD0006013848.jpg"
         width="300" height="300">
   </div>
+  <script>
+    // Wait for the page to load
+    document.addEventListener("DOMContentLoaded", function () {
+      // Verify that the navigator supports gamepad
+      if ("getGamepads" in navigator) {
+        // Updt gamepad status
+        function updateGamepadStatus() {
+          const gamepads = navigator.getGamepads();
+          const gamepad = gamepads[0]; // we admit we only have one gamepad
+
+          if (gamepad) {
+            const statusElement = document.getElementById("gamepadStatus");
+            statusElement.textContent = "Gamepad connected";
+
+            // controlling the robot from the gamepad stick
+            const leftStickX = gamepad.axes[0]; // horizontal left stick
+            const leftStickY = gamepad.axes[1]; // vertical left stick
+
+
+            if (leftStickX !== undefined) {
+              if (leftStickX < -.5) { // to the left
+                fetch("/turn_left")
+              } else if (leftStickX > .5) { // to the right
+                fetch("/turn_right")
+              } else {
+                fetch("/stop")
+              }
+            } else if (leftStickY !== undefined) {
+              if (leftStickY < -.5) { // forward
+                fetch("/move_forward")
+              } else if (leftStickY > .5) { // backward
+                fetch("/move_backward")
+              } else {
+                fetch("/stop")
+              }
+            }
+
+
+          } else {
+            document.getElementById("gamepadStatus").textContent = "Gamepad not connected";
+          }
+
+          // update gamepad status regularly
+          requestAnimationFrame(updateGamepadStatus);
+        }
+
+        // launch gamepad status update
+        updateGamepadStatus();
+      } else {
+        document.getElementById("gamepadStatus").textContent = "Gamepad API not supported";
+      }
+    });
+  </script>
   <div>
     <button class="direction-button nord" onclick="moveForward()">N</button>
     <button class="direction-button nord-est" onclick="moveForwardRight()">NE</buttonv>
