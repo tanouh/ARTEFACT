@@ -25,11 +25,11 @@ class Streamer():
                         while auto :
                                 ret, frame = self.camera.read()
                                 if not ret:
-                                        return
+                                        break
                                 if func is not None :
                                         func(frame, motor)
                                 else : 
-                                return  # print("[STREAM] No function to read")
+                                        continue  # print("[STREAM] No function to read")
                                         
                 except : 
                         self.release()
