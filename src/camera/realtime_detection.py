@@ -9,7 +9,7 @@ sys.path.append("..")
 from motor import motor_controller as mc
 
 dict = cv2.aruco.DICT_6X6_50
-tolerance = 70 # should be replaced depending on experimental settings
+tolerance = 60 # should be replaced depending on experimental settings
 
 FWD_SPEED = .3
 
@@ -160,10 +160,14 @@ class Detector():
         
         if self.arucoToFind and self.arucoToFind["dist"] > tolerance:
             print(self.arucoToFind["dist"])
-            if self.arucoToFind["dist"] > 3 * tolerance:
+            
+            if self.arucoToFind["dist"] > 5 * tolerance:
+                self.speed = FWD_SPEED*2
+                self.moveDuration = 1.5
+            elif self.arucoToFind["dist"] > 3 * tolerance:
                 self.speed = FWD_SPEED*2
                 self.moveDuration = .5
-            else : 
+            else :
                 self.speed = FWD_SPEED
                 self.moveDuration = .5
 

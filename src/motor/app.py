@@ -185,6 +185,7 @@ if __name__ == '__main__':
 
         pping = Process(target = pinging, args = {})
         pping.start()
+        processes.append(pping)
 
     except KeyboardInterrupt:
         if motor:
