@@ -1,10 +1,11 @@
 import os
 import time
 import cv2
-from . import stream_cam as s, realtime_detection as read
+from . import stream_cam as s, realtime_detection as rd
 import sys
 sys.path.append("..")
 from motor import motor_controller as mc
+
 
 device_path = '/dev/v4l/by-id/usb-Suyin_HD_Camera_200910120001-video-index0'
 
@@ -18,8 +19,10 @@ class Streamer():
 
 
                
-        def streaming (self,motor, func, auto):
+        def streaming (self,motor, auto):
+                detector = rd.Detector()
                 print("[STREAM] starting video stream...")
+
                 time.sleep(0.5)
                 try :   
                         while auto :
@@ -28,12 +31,12 @@ class Streamer():
                                 print(self.camera.read())
                                 if not ret:
                                         break
-                               
-                                if func is not None :
-                                        print("go to detection ... ")
-                                        func(frame, motor)
-                                else : 
-                                        continue  # print("[STREAM] No function to read")
+                                detector.run(frame, motor)
+                                # if func is not None :
+                                #         print("go to detection ... ")
+                                #         func(frame, motor)
+                                # else : 
+                                #         continue  # print("[STREAM] No function to read")
                                         
                 except : 
                         self.release()
