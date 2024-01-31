@@ -79,6 +79,8 @@ def ping():
     
 @app.route("/on")
 def turn_on():
+    global ping_flag
+    ping_flag.value = True 
     init_motor(False)
     print("Starting")
     return 'Starting...'
