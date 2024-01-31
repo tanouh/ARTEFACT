@@ -24,13 +24,13 @@ servers = ["137.194.173.38:8000","137.194.173.40:8000","137.194.173.37:8000","13
 
 
 def launch_streaming():
-    global move_flag
+    global auto_flag
     global motor
     streamer = s.Streamer()
     detector = rd.Detector()
     p = Process(target = streamer.streaming, args = (motor, detector.run, auto_flag.value)) # open camera streaming and start auto mode
     p.start()
-    if auto_flag.value == False:
+    if not auto_flag.value :
         p.terminate()
         p.join()
     return 
