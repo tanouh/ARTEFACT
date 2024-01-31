@@ -47,6 +47,7 @@ def auto():
     print("go auto")
     mc.move_forward(motor)
     time.sleep(2)
+    mc.stop_motor(motor)
     launch_streaming()
     return 'go auto'
 
