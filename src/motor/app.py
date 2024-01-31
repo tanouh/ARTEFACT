@@ -31,6 +31,7 @@ def launch_streaming():
     p = Process(target = streamer.streaming, args = (motor, detector.run)) # open camera streaming and start auto mode
     while auto_flag.value : 
         p.start()
+
     p.terminate()
     p.join()
     return 
@@ -170,16 +171,22 @@ def video_stream():
      
 
 if __name__ == '__main__':
-    app.run(host=ip_adress, port=rpi_port, debug=True) # add port = rpi port
-    # Ouvrir le navigateur vers l'URL du serveur
-    url = f"http://{ip_adress}:{rpi_port}"
-    webbrowser.open_new(url)
+    try:
+        app.run(host=ip_adress, port=rpi_port, debug=True) # add port = rpi port
+        # Ouvrir le navigateur vers l'URL du serveur
+        url = f"http://{ip_adress}:{rpi_port}"
+        webbrowser.open_new(url)
+    except KeyboardInterrupt:
+        if motor:
+            mc.stop_motor(motor)
+        for p in processes : 
+            p.join()
+
 
     # pygame.init()
     # while ping_flag.value : 
     #     communicate(servers, "ping")
 
-    for p in processes : 
-        p.join()
+    
     
     
