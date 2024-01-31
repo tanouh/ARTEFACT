@@ -9,7 +9,7 @@ sys.path.append("..")
 from motor import motor_controller as mc
 
 dict = cv2.aruco.DICT_6X6_50
-tolerance = 65 # should be replaced depending on experimental settings
+tolerance = 70 # should be replaced depending on experimental settings
 
 FWD_SPEED = .3
 

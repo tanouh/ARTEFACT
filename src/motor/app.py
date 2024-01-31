@@ -63,6 +63,11 @@ def communicate (list, nature):
         processes.append(p)
         p.start()
 
+def pinging ():
+    global ping_flag
+    while ping_flag.value : 
+        communicate(servers, "ping")
+
 @app.route("/")
 def index():
     return render_template('ui.html')
@@ -175,6 +180,10 @@ if __name__ == '__main__':
         # Ouvrir le navigateur vers l'URL du serveur
         url = f"http://{ip_adress}:{rpi_port}"
         webbrowser.open_new(url)
+
+        pping = Process(target = pinging, args = {})
+        pping.start()
+
     except KeyboardInterrupt:
         if motor:
             mc.stop_motor(motor)
@@ -183,8 +192,7 @@ if __name__ == '__main__':
 
 
     # pygame.init()
-    # while ping_flag.value : 
-    #     communicate(servers, "ping")
+    
 
     
     

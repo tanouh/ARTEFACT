@@ -18,9 +18,7 @@ def streaming (motor, auto):
                 time.sleep(0.5)
                 try :   
                         while auto :
-                                print(" [TEST] while ")
                                 ret, frame = streamer.camera.read()
-                                print(streamer.camera.read())
                                 if not ret:
                                         break
                                 detector.run(frame, motor)
