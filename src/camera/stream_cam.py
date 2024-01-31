@@ -25,9 +25,10 @@ class Streamer():
                         while auto :
                                 print(" [TEST] while ")
                                 ret, frame = self.camera.read()
+                                print(ret)
                                 if not ret:
                                         break
-                                print (ret)
+                               
                                 if func is not None :
                                         print("go to detection ... ")
                                         func(frame, motor)
