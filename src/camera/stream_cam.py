@@ -25,7 +25,7 @@ class Streamer():
                         while auto :
                                 print(" [TEST] while ")
                                 ret, frame = self.camera.read()
-                                print(ret)
+                                print(self.camera)
                                 if not ret:
                                         break
                                
