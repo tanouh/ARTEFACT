@@ -17,8 +17,8 @@ def communicate (nature):
         processes.append(p)
         p.start()
 
-def pinging(bool):
-    while bool : 
+def pinging(flag):
+    while flag.value : 
         pg()
         time.sleep(5)
 

@@ -160,12 +160,8 @@ if __name__ == '__main__':
     try:
         app.run(host=ip_adress, port=rpi_port, debug=True) # add port = rpi port 
 
-        # Ouvrir le navigateur vers l'URL du serveur
-        
-        url = f"http://{ip_adress}:{rpi_port}"
-        webbrowser.open_new(url) 
 
-        pping = Process(target = pinging, args = (ping_flag.value,))
+        pping = Process(target = pinging, args = (ping_flag,))
         pping.start()
         processes.append(pping)
 
