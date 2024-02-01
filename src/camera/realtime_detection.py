@@ -141,6 +141,8 @@ class Detector():
    
     def run(self, frame, motor):
         '''The main function'''
+
+        print("DANS OK RUN ")
         self.detect_aruco_tag_bis(frame, motor)
         self.catch_aruco()
         if self.arucoToFind :
