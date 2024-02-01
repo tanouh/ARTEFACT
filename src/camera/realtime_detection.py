@@ -63,7 +63,7 @@ class Detector():
                 # if a rotation is needed
                 print("Turning , direction = ", direction )
                 self.direction = direction
-                self.speed = .2
+                self.speed = .205
 
             elif self.rotationFlag: # no more rotation
                 print("Stop turning " )
