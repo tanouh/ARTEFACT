@@ -107,7 +107,7 @@ def updateMotor(motor, direction, speed, duration):
         elif direction == 0: # avancer tout droit
                 print("demi-tour")
                 move_backward(motor)
-                time.sleep(1)
+                time.sleep(2)
                 stop_motor(motor) 
                 time.sleep(.5)
         else : 
