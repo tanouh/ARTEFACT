@@ -55,12 +55,12 @@ def right_slow(middle,motor):
 
 def move_right(motor, speed): 
         print(int(speed*1.25))
-        motor.set_speed_left(int(speed*1.0035)) # parameters? do not turn too quick
+        motor.set_speed_left(int(speed*1.0040)) # parameters? do not turn too quick
         motor.set_speed_right(speed) # hope to move right more
         move_forward(motor)
 
 def move_left(motor, speed): 
-        motor.set_speed_right(int(speed*1.0025)) # parameters? do not turn too quick
+        motor.set_speed_right(int(speed*1.0015)) # parameters? do not turn too quick
         motor.set_speed_left(speed)
         move_forward(motor)
 
@@ -81,13 +81,13 @@ def updateMotor(motor, direction, speed, duration):
                 print(" tourner a gauche ")
                 turn_left(motor)  
                 stop_motor(motor)
-                time.sleep(.3)
+                time.sleep(.5)
         
         elif direction == 1: # tourner a droite
                 print(" tourner a droite ")
                 turn_right(motor)
                 stop_motor(motor)
-                time.sleep(.3)
+                time.sleep(.5)
  
         elif direction == -.2: # avancer vers la gauche
                 print(" avancer vers la gauche ")
@@ -107,7 +107,7 @@ def updateMotor(motor, direction, speed, duration):
         elif direction == 0: # avancer tout droit
                 print("demi-tour")
                 move_backward(motor)
-                time.sleep(5)
+                time.sleep(1)
                 stop_motor(motor) 
                 time.sleep(.5)
         else : 

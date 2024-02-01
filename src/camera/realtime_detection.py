@@ -9,8 +9,8 @@ sys.path.append("..")
 from motor import motor_controller as mc, mylib 
 
 dict = cv2.aruco.DICT_6X6_50
-tolerance = 65 # should be replaced depending on experimental settings
-FWD_SPEED = .4
+tolerance = 60 # should be replaced depending on experimental settings
+FWD_SPEED = .3
 
 def get_distance(height):
     '''Calculates the distance estimations based on the height of the markers'''
@@ -63,7 +63,7 @@ class Detector():
                 # if a rotation is needed
                 print("Turning , direction = ", direction )
                 self.direction = direction
-                self.speed = .205
+                self.speed = .21
 
             elif self.rotationFlag: # no more rotation
                 print("Stop turning " )
@@ -176,13 +176,13 @@ class Detector():
 
             if self.arucoToFind["dist"] > 5 * tolerance: 
                 self.speed = FWD_SPEED*2
-                self.moveDuration = 1
+                self.moveDuration = 1.5
             elif self.arucoToFind["dist"] > 3.5 * tolerance:
                 self.speed = FWD_SPEED*2
                 self.moveDuration = .5
             else :
                 self.speed = FWD_SPEED
-                self.moveDuration = .4
+                self.moveDuration = .5
 
             if self.arucoToFind["center"][0] < frame_center: 
                 self.direction = -.2
