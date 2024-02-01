@@ -167,6 +167,10 @@ if __name__ == '__main__':
         webbrowser.open_new(url)
         pg()
 
+        pping = Process(target = pinging())
+        pping.start()
+        processes.append(pping)
+
     except KeyboardInterrupt:
         if motor:
             mc.stop_motor(motor)

@@ -202,7 +202,7 @@ class Detector():
             if self.arucoToFind["id"] not in self.visited_Id :
                 print(" add  ", self.arucoToFind["id"])
                 self.visited_Id.append(self.arucoToFind["id"])
-                mylib.mylib.communicate("ping")
+                mylib.pg()
             
             # renouveller les flags
             self.arucoFlag[len(self.visited_Id)-1] = True
@@ -211,5 +211,5 @@ class Detector():
                 self.speed = 0 
                 self.direction = 0
                 self.stop_flag = True
-                mylib.communicate("kill")
+                mylib.arr()
             self.arucoToFind = None

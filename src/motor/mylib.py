@@ -1,10 +1,7 @@
 from multiprocessing import Process
 from flask import request
 import requests
-
-import requests
 from time import *
-from multiprocessing import Process #Si vous l'avez déjà pas la peine de l'importer
 
 def send_request(nature, i):
     server = "137.194.173." + str(i) + ":8000"
@@ -20,10 +17,10 @@ def communicate (nature):
         processes.append(p)
         p.start()
 
-def pinging (ping_flag):
-    while ping_flag : 
-        communicate("ping")
-
+def pinging():
+    while True : 
+        pg()
+        time.sleep(5)
 
 def dep():
     def pingplease(ip):
