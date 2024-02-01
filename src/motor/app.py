@@ -55,7 +55,7 @@ def index():
 
 @app.route("/ping", methods=['POST'])
 def ping():
-    communicate("ping")
+    ping()
     return 'Sending ping ...'
     
 @app.route("/on")
@@ -166,9 +166,7 @@ if __name__ == '__main__':
         url = f"http://{ip_adress}:{rpi_port}"
         webbrowser.open_new(url)
 
-        pping = Process(target = ping, args = {})
-        pping.start()
-        processes.append(pping)
+        ping()
 
     except KeyboardInterrupt:
         if motor:
