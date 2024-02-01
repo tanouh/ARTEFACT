@@ -90,11 +90,11 @@ class Detector():
     def get_marker_to_find(self):
         '''It corresponds to the specification : may be changed in future versions'''
         if not self.arucoFlag[0]:
-            return 1
+            return 2
         elif self.arucoFlag[0] and not self.arucoFlag[1]:
-            return 3
+            return 4
         elif self.arucoFlag[0] and self.arucoFlag[1] and not self.arucoFlag[2]:
-            return 5
+            return 6
         else:
             return 9
 
