@@ -47,6 +47,10 @@ def init_motor (flag):
 def auto():
     '''Engage the automatic mode'''
     print("go auto")
+
+    global ping_flag
+    ping_flag.value = False 
+
     init_motor(True)
     mc.move_forward(motor)
     time.sleep(5)
