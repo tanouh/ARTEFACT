@@ -39,7 +39,7 @@ def dep():
 
 
         
-def ping():
+def pg():
     def pingplease(ip):
         try: requests.post("http://"+ip+"/com?nature=ping&id=b",data={})
         except:

@@ -55,7 +55,7 @@ def index():
 
 @app.route("/ping", methods=['POST', 'GET'])
 def ping():
-    mylib.ping()
+    pg()
     return 'Sending ping ...'
     
 @app.route("/on")
