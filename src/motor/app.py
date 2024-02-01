@@ -139,9 +139,6 @@ def manu():
 def kill():
     global auto_flag
     auto_flag.value = False
-    if motor :
-        mc.move_forward(motor) 
-        time.sleep(1)
     arr()
     return 'KILLED !'
     #prévenir que la voiture est partie
@@ -161,13 +158,14 @@ def video_stream():
 
 if __name__ == '__main__':
     try:
-        app.run(host=ip_adress, port=rpi_port, debug=True) # add port = rpi port
-        # Ouvrir le navigateur vers l'URL du serveur
-        url = f"http://{ip_adress}:{rpi_port}"
-        webbrowser.open_new(url)
-        pg()
+        app.run(host=ip_adress, port=rpi_port, debug=True) # add port = rpi port 
 
-        pping = Process(target = pinging(), args = {})
+        # Ouvrir le navigateur vers l'URL du serveur
+        
+        url = f"http://{ip_adress}:{rpi_port}"
+        webbrowser.open_new(url) 
+        
+        pping = Process(target = pinging(), args = (ping_flag.value,))
         pping.start()
         processes.append(pping)
 
