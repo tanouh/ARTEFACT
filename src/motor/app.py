@@ -166,7 +166,7 @@ if __name__ == '__main__':
         url = f"http://{ip_adress}:{rpi_port}"
         webbrowser.open_new(url)
 
-        ping()
+        pg()
 
     except KeyboardInterrupt:
         if motor:
