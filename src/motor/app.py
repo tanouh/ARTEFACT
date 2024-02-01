@@ -43,7 +43,7 @@ def init_motor (flag):
 def auto():
     '''Engage the automatic mode'''
     print("go auto")
-    init_motor(motor)
+    init_motor(True)
     mc.move_forward(motor)
     time.sleep(5)
     mc.stop_motor(motor)
