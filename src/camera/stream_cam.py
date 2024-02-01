@@ -16,7 +16,6 @@ def streaming (motor, auto):
         streamer = s.Streamer()
         print("[STREAM] starting video stream...")
 
-        print(auto.value)
         time.sleep(0.5)
         try :   
                 while auto.value :
@@ -25,6 +24,7 @@ def streaming (motor, auto):
                         if not ret:
                                 break
                         detector.run(frame, motor)
+                        print(auto.value)
                         # if func is not None :
                         #         print("go to detection ... ")
                         #         func(frame, motor)
