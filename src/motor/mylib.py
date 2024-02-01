@@ -27,7 +27,7 @@ def pinging(flag):
 
 def dep():
     def pingplease(ip):
-        try: requests.post("http://"+ip+"/com?nature=depart&id=b",data={})
+        try: requests.post("http://"+ip+"/com?nature=depart&id=b",data={},timeout=1)
         except:
             return(False)
         return(True)
@@ -40,7 +40,7 @@ def dep():
      
 def pg():
     def pingplease(ip):
-        try: requests.post("http://"+ip+"/com?nature=ping&id=b",data={})
+        try: requests.post("http://"+ip+"/com?nature=ping&id=b",data={},timeout=1)
         except:
             return(False)
         return(True)
@@ -53,7 +53,7 @@ def pg():
         
 def arr():
     def pingplease(ip):
-        try: requests.post("http://"+ip+"/com?nature=arrive&id=b",data={})
+        try: requests.post("http://"+ip+"/com?nature=arrive&id=b",data={},timeout=1)
         except:
             return(False)
         return(True)
