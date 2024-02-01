@@ -26,15 +26,16 @@ def launch_streaming():
     global motor
     global delta
     time.sleep(0.3)
-
+    return(s.streaming(motor,auto_flag))
     # streamer.streaming(motor, detector.run, auto_flag.value)
+    """
     p = Process(target = s.streaming, args = (motor, auto_flag,)) # open camera streaming and start auto mode
     p.start()
     if not auto_flag.value :
         p.terminate()
         p.join()
     return 
-
+    """
 def init_motor (flag):
     '''Initialize the motor driver'''
     global motor 
@@ -156,7 +157,9 @@ def depart():
     global ping_flag 
     ping_flag.value = False
     dep()
-    return auto()
+    p=Process(target=auto,args=())
+    p.start()
+    return ("Depart reçu")
 
 @app.route("/video_stream")
 def video_stream():
