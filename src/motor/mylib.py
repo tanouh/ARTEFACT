@@ -19,6 +19,7 @@ def communicate (nature):
 
 def pinging(flag):
     while flag.value : 
+        print("ping")
         pg()
         time.sleep(1)
 
