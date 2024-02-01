@@ -18,23 +18,23 @@ def streaming (motor, auto):
         print("[STREAM] starting video stream...")
 
         time.sleep(0.5)
-        # try :   
-        while auto.value :
-                ret, frame = streamer.camera.read()
-                if not ret:
-                        break
-                detector.run(frame, motor)
-                # if func is not None :
-                #         print("go to detection ... ")
-                #         func(frame, motor)
-                # else : 
-                #         continue  # print("[STREAM] No function to read")
-                        
-        # except : 
-        #         streamer.release()
-        #         mc.stop_motor(motor)
-        #         time.sleep(10)
-        #         print("SHUTDOWN")
+        try :   
+                while auto.value :
+                        ret, frame = streamer.camera.read()
+                        if not ret:
+                                break
+                        detector.run(frame, motor)
+                        # if func is not None :
+                        #         print("go to detection ... ")
+                        #         func(frame, motor)
+                        # else : 
+                        #         continue  # print("[STREAM] No function to read")
+                                
+        except : 
+                streamer.release()
+                mc.stop_motor(motor)
+                time.sleep(10)
+                print("SHUTDOWN")
 
 
 
