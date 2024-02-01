@@ -34,7 +34,7 @@ Les bibliothèques externes de python utilisées :
   ## Déroulement du projet
  ### Partie I:
  1. **Le choix du design du robot** : 
- Nous avons opté pour une forme légèrement réduite en largeur à l'avant du robot voiture s'inspirant des véhicules de Formule 1, visant à garantir un aérodynamisme optimal et ainsi améliorer ses performances globales.
+ Nous avons opté pour une forme légèrement réduite en largeur à l'avant de la voiture s'inspirant des véhicules de Formule 1, visant à garantir un aérodynamisme optimal et ainsi améliorer ses performances globales.
 
  2. **La première évaluation** : 
  - Un premier parcours en mode manuel qui consistait à piloter le robot jusqu'à une zone cîble. 
