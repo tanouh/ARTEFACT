@@ -53,9 +53,9 @@ def auto():
 def index():
     return render_template('ui.html')
 
-@app.route("/ping", methods=['POST'])
+@app.route("/ping", methods=['POST', 'GET'])
 def ping():
-    ping()
+    mylib.ping()
     return 'Sending ping ...'
     
 @app.route("/on")
