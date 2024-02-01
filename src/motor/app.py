@@ -142,7 +142,7 @@ def kill():
     if motor :
         mc.move_forward(motor) 
         time.sleep(1)
-    communicate("kill")
+    arr()
     return 'KILLED !'
     #prévenir que la voiture est partie
 
@@ -150,7 +150,7 @@ def kill():
 def depart():
     global ping_flag 
     ping_flag.value = False
-    communicate("depart")
+    dep()
     return auto()
 
 @app.route("/video_stream")
@@ -166,7 +166,7 @@ if __name__ == '__main__':
         url = f"http://{ip_adress}:{rpi_port}"
         webbrowser.open_new(url)
 
-        pping = Process(target = pinging, args = (ping_flag.value))
+        pping = Process(target = ping, args = {})
         pping.start()
         processes.append(pping)
 
