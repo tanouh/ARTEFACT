@@ -1,7 +1,7 @@
 from multiprocessing import Process
 from flask import request
 import requests
-from time import *
+import time
 
 def send_request(nature, i):
     server = "137.194.173." + str(i) + ":8000"
