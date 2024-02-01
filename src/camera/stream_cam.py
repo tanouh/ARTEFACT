@@ -16,6 +16,7 @@ def streaming (motor, auto):
         streamer = s.Streamer()
         print("[STREAM] starting video stream...")
 
+        print(auto.value)
         time.sleep(0.5)
         try :   
                 while auto.value :
