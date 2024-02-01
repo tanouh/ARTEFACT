@@ -31,4 +31,19 @@ Les bibliothèques externes de python utilisées :
 - ***Flask*** : pour le serveur web
 - ***smbus*** : pour la communication entre la carte RPI et le Motor Driver
 
- 
+  ## Déroulement du projet
+ ### Partie I:
+ 1. **Le choix du design du robot** : 
+ Nous avons opté pour une forme légèrement réduite en largeur à l'avant du robot voiture s'inspirant des véhicules de Formule 1, visant à garantir un aérodynamisme optimal et ainsi améliorer ses performances globales.
+
+ 2. **La première évaluation** : 
+ - Un premier parcours en mode manuel qui consistait à piloter le robot jusqu'à une zone cîble. 
+ - Un parcours en mode autonome où la trajectoire du robot était conditionnée par la détection de marqueurs pair/impair 
+
+
+### Partie II
+ 3. **Le parcours collaboratif** : 
+ - Chaque groupe, composé de plusieurs équipes, effectuent un relais. La coordination des voitures est gérée par un serveur central qu'on a choisi d'implanter dans chaque robot.
+
+ 4. **Dernière épreuve individuelle** : 
+ - Il s'agit d'une course en conduite manuelle.   
