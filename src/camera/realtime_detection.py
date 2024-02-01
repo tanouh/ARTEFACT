@@ -145,6 +145,7 @@ class Detector():
         print("DANS OK RUN ")
         self.detect_aruco_tag_bis(frame, motor)
         self.catch_aruco()
+        print("CATCH ARUCO OKKK")
         if self.arucoToFind :
             print( "A CHERCHER ", self.arucoToFind["id"] )
 
