@@ -60,7 +60,7 @@ def move_right(motor, speed):
         move_forward(motor)
 
 def move_left(motor, speed): 
-        motor.set_speed_right(int(speed*1.0050)) # parameters? do not turn too quick
+        motor.set_speed_right(int(speed*1.0070)) # parameters? do not turn too quick
         motor.set_speed_left(speed)
         move_forward(motor)
 

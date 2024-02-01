@@ -9,7 +9,7 @@ sys.path.append("..")
 from motor import motor_controller as mc, mylib 
 
 dict = cv2.aruco.DICT_6X6_50
-tolerance = 60 # should be replaced depending on experimental settings
+tolerance = 57 # should be replaced depending on experimental settings
 FWD_SPEED = .4
 
 def get_distance(height):
