@@ -6,9 +6,7 @@ from math import dist
 import time
 import sys
 sys.path.append("..")
-from motor import motor_controller as mc, realtime_detection as rd, mylib 
-
-
+from motor import motor_controller as mc, mylib 
 
 dict = cv2.aruco.DICT_6X6_50
 tolerance = 60 # should be replaced depending on experimental settings
