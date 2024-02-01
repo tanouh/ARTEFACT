@@ -164,8 +164,8 @@ if __name__ == '__main__':
         
         url = f"http://{ip_adress}:{rpi_port}"
         webbrowser.open_new(url) 
-        
-        pping = Process(target = pinging(), args = (ping_flag.value,))
+
+        pping = Process(target = pinging, args = (ping_flag.value,))
         pping.start()
         processes.append(pping)
 
