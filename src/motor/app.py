@@ -43,6 +43,7 @@ def init_motor (flag):
 def auto():
     '''Engage the automatic mode'''
     print("go auto")
+    init_motor(motor)
     mc.move_forward(motor)
     time.sleep(5)
     mc.stop_motor(motor)
@@ -126,7 +127,6 @@ def speed():
 
 @app.route("/Auto")
 def run():
-    init_motor(True)
     return auto()
 
 @app.route("/Manu")
@@ -150,7 +150,6 @@ def kill():
 def depart():
     global ping_flag 
     ping_flag.value = False
-    init_motor(True)
     dep()
     return auto()
 
