@@ -34,8 +34,7 @@ def dep():
         p = Process(target=pingplease, args=(i,))
         p.start()
 
-
-        
+     
 def pg():
     def pingplease(ip):
         try: requests.post("http://"+ip+"/com?nature=ping&id=b",data={})
