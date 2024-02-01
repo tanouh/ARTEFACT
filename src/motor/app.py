@@ -139,6 +139,9 @@ def manu():
 def kill():
     global auto_flag
     auto_flag.value = False
+    if motor:
+        mc.stop_motor(motor)
+        time.sleep(1)
     arr()
     return 'KILLED !'
     #prévenir que la voiture est partie
@@ -147,6 +150,7 @@ def kill():
 def depart():
     global ping_flag 
     ping_flag.value = False
+    init_motor(True)
     dep()
     return auto()
 
