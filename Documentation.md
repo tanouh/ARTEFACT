@@ -15,7 +15,7 @@ Le code source est répartie sous plusieurs modules :
 - Module du moteur : 
     - Templates : 
         - **ui.html**: code source de l'interface web
-    - **PCA9685.py** : script l'alimentation des moteurs, directement tiré de : [source](https://www.waveshare.com/wiki/Motor_Driver_HAT)
+    - **PCA9685.py** : script pour l'alimentation des moteurs, directement tiré de : [source](https://www.waveshare.com/wiki/Motor_Driver_HAT)
     - **motor_controller.py** : bibliothèques de fonctions liées aux mouvements du robot
     - **motor_driver.py**: 
         - `class MotorDriver()`: module pour piloter les moteurs 
