@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 hostname = 'robotpi-40'
 ip_adress = '137.194.173.40'
-rpi_port = 8000
+rpi_port = 5000
 motor = None
 ping_flag = Value("b", True)
 auto_flag = Value("b",False)
@@ -165,7 +165,6 @@ if __name__ == '__main__':
         # Ouvrir le navigateur vers l'URL du serveur
         url = f"http://{ip_adress}:{rpi_port}"
         webbrowser.open_new(url)
-
         pg()
 
     except KeyboardInterrupt:
