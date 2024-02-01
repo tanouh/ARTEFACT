@@ -167,6 +167,9 @@ class Detector():
         
         if self.arucoToFind and self.arucoToFind["dist"] > tolerance:
             print(self.arucoToFind["dist"])
+
+            # ping the server when the targetted aruco is found
+            mylib.pg()
             
             # here the robot speed and movement duration are determined by the distance between
 

@@ -156,6 +156,7 @@ def kill():
 def depart():
     global ping_flag 
     ping_flag.value = False
+    print(ping_flag.value)
     dep()
     p=Process(target=auto,args=())
     p.start()
