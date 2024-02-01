@@ -175,7 +175,7 @@ class Detector():
             if self.arucoToFind["dist"] > 5 * tolerance: 
                 self.speed = FWD_SPEED*2
                 self.moveDuration = 1
-            elif self.arucoToFind["dist"] > 3 * tolerance:
+            elif self.arucoToFind["dist"] > 3.5 * tolerance:
                 self.speed = FWD_SPEED*2
                 self.moveDuration = .5
             else :
