@@ -21,7 +21,7 @@ def pinging(flag):
     try: 
         while flag.value : 
             pg()
-            time.sleep(1)
+            time.sleep(5)
     except KeyboardInterrupt:
         print("End pinging")
 

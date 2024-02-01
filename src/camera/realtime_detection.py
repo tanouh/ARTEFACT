@@ -101,11 +101,12 @@ class Detector():
 
     def detect_aruco_tag_bis(self, frame):
         '''Identify the aruco tag and create a structure encapsulating its information'''
+        print("OKKK detect")
         (corners, ids, rejected) = self.detector.detectMarkers(frame)
         self.arucoList = [] # initialiser
 
         if len(corners) > 0:
-            print("OKKK CORNERS")
+            
             ids = ids.flatten()
 
             for (markerCorner, markerID) in zip(corners, ids):
