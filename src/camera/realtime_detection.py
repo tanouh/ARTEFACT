@@ -63,7 +63,7 @@ class Detector():
                 # if a rotation is needed
                 print("Turning , direction = ", direction )
                 self.direction = direction
-                self.speed = .2
+                self.speed = .4
 
             elif self.rotationFlag: # no more rotation
                 print("Stop turning " )
@@ -191,7 +191,7 @@ class Detector():
 
             # here the aruco we are looking for is not detected yet so we engage the hunting mode
             if self.arucoToFind : 
-                self.speed = FWD_SPEED
+                self.speed = .3
                 self.direction = 0
             else : 
             
