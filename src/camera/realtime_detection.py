@@ -191,7 +191,7 @@ class Detector():
 
             # here the aruco we are looking for is not detected yet so we engage the hunting mode
             if self.arucoToFind : 
-                self.speed = .3
+                self.speed = FWD_SPEED
                 self.direction = 0
             else : 
             
