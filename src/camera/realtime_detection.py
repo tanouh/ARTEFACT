@@ -10,7 +10,7 @@ from motor import motor_controller as mc, mylib
 
 dict = cv2.aruco.DICT_6X6_50
 tolerance = 60 # should be replaced depending on experimental settings
-FWD_SPEED = .3
+FWD_SPEED = .4
 
 def get_distance(height):
     '''Calculates the distance estimations based on the height of the markers'''
@@ -177,7 +177,7 @@ class Detector():
             if self.arucoToFind["dist"] > 5 * tolerance: 
                 self.speed = FWD_SPEED*2
                 self.moveDuration = 1.5
-            elif self.arucoToFind["dist"] > 3.5 * tolerance:
+            elif self.arucoToFind["dist"] > 3 * tolerance:
                 self.speed = FWD_SPEED*2
                 self.moveDuration = .5
             else :
