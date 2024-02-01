@@ -145,8 +145,8 @@ def kill():
 
 @app.route("/depart", methods = ['POST', 'GET'])
 def depart():
-    global ping_flag 
-    ping_flag.value = False
+    # global ping_flag 
+    # ping_flag.value = False
     dep()
     return auto()
 
