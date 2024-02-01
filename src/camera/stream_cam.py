@@ -14,14 +14,13 @@ def streaming (motor, auto):
         '''Engage the streaming'''
         detector = rd.Detector()
         streamer = s.Streamer()
+        
         print("[STREAM] starting video stream...")
 
         time.sleep(0.5)
         try :   
-                print(auto.value)
                 while auto.value :
                         ret, frame = streamer.camera.read()
-                        print(ret)
                         if not ret:
                                 break
                         detector.run(frame, motor)

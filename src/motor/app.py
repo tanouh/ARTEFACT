@@ -18,16 +18,21 @@ motor = None
 ping_flag = Value("b", True)
 auto_flag = Value("b",False)
 processes = []
+delta = 0 
 
 def launch_streaming():
     ''' Launch the camera streamin in a child process'''
     global auto_flag
     global motor
+    global delta
     time.sleep(0.3)
+
     # streamer.streaming(motor, detector.run, auto_flag.value)
+    print(auto_flag.value)
     p = Process(target = s.streaming, args = (motor, auto_flag,)) # open camera streaming and start auto mode
     p.start()
     if not auto_flag.value :
+        print(time.time() - delta)
         p.terminate()
         p.join()
     return 
@@ -52,6 +57,8 @@ def auto():
 
 @app.route("/")
 def index():
+    global delta
+    delta = time.time()
     return render_template('ui.html')
 
 @app.route("/ping", methods=['POST', 'GET'])
