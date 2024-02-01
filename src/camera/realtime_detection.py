@@ -150,7 +150,7 @@ class Detector():
 
         if (not self.arucoToFind and not self.stop_flag):
             print("########## HUNTING ############")
-            self.hunting(1) 
+            self.hunting(-1) 
         elif (not self.stop_flag):
             print("########## GO TO MARKER ########", self.arucoToFind["id"])
             self.go_to_aruco(frame)
