@@ -127,8 +127,6 @@ class Detector():
                     "dist": get_distance(0.5*(math.dist(topLeft, bottomLeft) + math.dist(bottomRight, topRight))) 
                 }
                 self.arucoList.append(aruco)
-
-        print("ARUCO TAAGGG")
             
     def catch_aruco(self):
         '''Test if the aruco detected is currently the one the robot should be looking for.'''
