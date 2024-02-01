@@ -101,7 +101,6 @@ class Detector():
 
     def detect_aruco_tag_bis(self, frame):
         '''Identify the aruco tag and create a structure encapsulating its information'''
-        print("OKKK detect")
         (corners, ids, rejected) = self.detector.detectMarkers(frame)
         self.arucoList = [] # initialiser
 
@@ -146,10 +145,8 @@ class Detector():
     def run(self, frame, motor):
         '''The main function'''
 
-        print("DANS OK RUN ")
         self.detect_aruco_tag_bis(frame, motor)
         self.catch_aruco()
-        print("CATCH ARUCO OKKK")
         if self.arucoToFind :
             print( "A CHERCHER ", self.arucoToFind["id"] )
 

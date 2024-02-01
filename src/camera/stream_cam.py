@@ -18,13 +18,13 @@ def streaming (motor, auto):
 
         time.sleep(0.5)
         try :   
+                print(auto.value)
                 while auto.value :
                         ret, frame = streamer.camera.read()
                         print(ret)
                         if not ret:
                                 break
                         detector.run(frame, motor)
-                        print(auto.value)
                         # if func is not None :
                         #         print("go to detection ... ")
                         #         func(frame, motor)
