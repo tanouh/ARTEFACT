@@ -18,9 +18,12 @@ def communicate (nature):
         p.start()
 
 def pinging(flag):
-    while flag.value : 
-        pg()
-        time.sleep(1)
+    try: 
+        while flag.value : 
+            pg()
+            time.sleep(1)
+    except KeyboardInterrupt:
+        print("End pinging")
 
 def dep():
     def pingplease(ip):
