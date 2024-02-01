@@ -28,11 +28,9 @@ def launch_streaming():
     time.sleep(0.3)
 
     # streamer.streaming(motor, detector.run, auto_flag.value)
-    print(auto_flag.value)
     p = Process(target = s.streaming, args = (motor, auto_flag,)) # open camera streaming and start auto mode
     p.start()
     if not auto_flag.value :
-        print(time.time() - delta)
         p.terminate()
         p.join()
     return 
