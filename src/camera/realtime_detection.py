@@ -6,8 +6,8 @@ from math import dist
 import time
 import sys
 sys.path.append("..")
-from motor import motor_controller as mc, realtime_detection as rd
-from mylib import communicate
+from motor import motor_controller as mc, realtime_detection as rd, mylib 
+
 
 
 dict = cv2.aruco.DICT_6X6_50
@@ -204,7 +204,7 @@ class Detector():
             if self.arucoToFind["id"] not in self.visited_Id :
                 print(" add  ", self.arucoToFind["id"])
                 self.visited_Id.append(self.arucoToFind["id"])
-                communicate("ping")
+                mylib.mylib.communicate("ping")
             
             # renouveller les flags
             self.arucoFlag[len(self.visited_Id)-1] = True
@@ -213,5 +213,5 @@ class Detector():
                 self.speed = 0 
                 self.direction = 0
                 self.stop_flag = True
-                communicate("kill")
+                mylib.communicate("kill")
             self.arucoToFind = None
