@@ -20,7 +20,7 @@ def communicate (nature):
 def pinging(flag):
     while flag.value : 
         pg()
-        time.sleep(5)
+        time.sleep(1)
 
 def dep():
     def pingplease(ip):
