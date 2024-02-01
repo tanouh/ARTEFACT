@@ -156,11 +156,13 @@ def video_stream():
     # return Response(launch_streaming(), mimetype='multipart/x-mixed-replace; boundary=frame')
      
 try:
-    app.run(host=ip_adress, port=rpi_port, debug=True) # add port = rpi port 
+    
     ping_flag.value = True
     pping = Process(target = pinging, args = (ping_flag,))
     pping.start()
     processes.append(pping)
+    
+    app.run(host=ip_adress, port=rpi_port, debug=True) # add port = rpi port 
 
 except KeyboardInterrupt:
     if motor:
