@@ -18,11 +18,11 @@ Contrôle à distance à travers une interface web générée par le serveur de 
 ### Conduite autonome 
 Etant donné un cahier des charges spécifiques, le robot est capable d'exécuter ses tâches automatiquement : ici, il s'agit d'un parcours suivant la détection de marqueurs Aruco.
 
-## Exécutions
+## Exécution
 Le répertoire de dépôt se trouve dans  : 
 `~/repo/teamb/`
 
 Pour lancer le serveur depuis répertoire mentionné ci-dessus :
 `python3 ./src/motor/app.py` 
 
-Une fois que le serveur est laissé, les commandes manuelles et l'enclechement du mode autonome se fait sur la page web :  [http//:137.194.173.40:5000](http//:137.194.173.40:5000)
+Une fois que le serveur est lancé, les commandes manuelles et l'enclechement du mode autonome se fait sur la page web :  [http//:137.194.173.40:5000](http//:137.194.173.40:5000)
