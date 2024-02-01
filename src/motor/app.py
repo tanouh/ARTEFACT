@@ -155,21 +155,18 @@ def video_stream():
     return 'video_stream'
     # return Response(launch_streaming(), mimetype='multipart/x-mixed-replace; boundary=frame')
      
+try:
+    app.run(host=ip_adress, port=rpi_port, debug=True) # add port = rpi port 
+    ping_flag.value = True
+    pping = Process(target = pinging, args = (ping_flag,))
+    pping.start()
+    processes.append(pping)
 
-if __name__ == '__main__':
-    try:
-        app.run(host=ip_adress, port=rpi_port, debug=True) # add port = rpi port 
-
-
-        pping = Process(target = pinging, args = (ping_flag,))
-        pping.start()
-        processes.append(pping)
-
-    except KeyboardInterrupt:
-        if motor:
-            mc.stop_motor(motor)
-        for p in processes : 
-            p.join()
+except KeyboardInterrupt:
+    if motor:
+        mc.stop_motor(motor)
+    for p in processes : 
+        p.join()
 
 
     # pygame.init()
