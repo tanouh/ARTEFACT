@@ -9,7 +9,7 @@ sys.path.append("..")
 from motor import motor_controller as mc, mylib 
 
 dict = cv2.aruco.DICT_6X6_50
-tolerance = 60 # should be replaced depending on experimental settings
+tolerance = 65 # should be replaced depending on experimental settings
 FWD_SPEED = .4
 
 def get_distance(height):
@@ -144,7 +144,7 @@ class Detector():
         '''The main function'''
 
         self.detect_aruco_tag_bis(frame)
-        print("detect okk")
+        #print("detect okk")
         self.catch_aruco()
         if self.arucoToFind :
             print( "A CHERCHER ", self.arucoToFind["id"] )
@@ -182,7 +182,7 @@ class Detector():
                 self.moveDuration = .5
             else :
                 self.speed = FWD_SPEED
-                self.moveDuration = .3
+                self.moveDuration = .4
 
             if self.arucoToFind["center"][0] < frame_center: 
                 self.direction = -.2
