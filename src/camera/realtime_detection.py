@@ -144,6 +144,7 @@ class Detector():
         '''The main function'''
 
         self.detect_aruco_tag_bis(frame)
+        print("detect okk")
         self.catch_aruco()
         if self.arucoToFind :
             print( "A CHERCHER ", self.arucoToFind["id"] )
