@@ -50,7 +50,7 @@ class Detector():
         self.visited_Id = []
 
     # search mode on 
-    def hunting (self, direction, motor):
+    def hunting (self, direction):
         """Find a marker by rotating himself according to the direction given"""
         if not self.arucoToFind: 
 
@@ -145,14 +145,14 @@ class Detector():
     def run(self, frame, motor):
         '''The main function'''
 
-        self.detect_aruco_tag_bis(frame, motor)
+        self.detect_aruco_tag_bis(frame)
         self.catch_aruco()
         if self.arucoToFind :
             print( "A CHERCHER ", self.arucoToFind["id"] )
 
         if (not self.arucoToFind and not self.stop_flag):
             print("########## HUNTING ############")
-            self.hunting(-1, motor) 
+            self.hunting(-1) 
         elif (not self.stop_flag):
             print("########## GO TO MARKER ########", self.arucoToFind["id"])
             self.go_to_aruco(frame)
