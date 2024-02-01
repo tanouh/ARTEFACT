@@ -6,7 +6,7 @@ from math import dist
 import time
 import sys
 sys.path.append("..")
-from motor import motor_controller as mc
+from motor import motor_controller as mc, realtime_detection as rd
 from mylib import communicate
 
 
