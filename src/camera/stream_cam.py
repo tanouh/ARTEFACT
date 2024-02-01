@@ -21,6 +21,7 @@ def streaming (motor, auto):
         try :   
                 while auto.value :
                         ret, frame = streamer.camera.read()
+                        ret, frame = streamer.camera.read()
                         if not ret:
                                 break
                         detector.run(frame, motor)
@@ -65,6 +66,7 @@ class Streamer():
         def generate_frames(self, motor, func):
                 print("[STREAM] Starting video stream...")
                 while True:
+                        ret, frame = self.camera.read()
                         ret, frame = self.camera.read()
                         if not ret:
                                 break
