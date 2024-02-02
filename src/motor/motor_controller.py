@@ -14,6 +14,7 @@ def set_speed(motor, new_speed):
         if new_speed > 1 : 
                 motor.set_speed_right(new_speed)
                 motor.set_speed_left(new_speed)
+                print(motor.speed)
         if new_speed <= 1 :
                 motor.set_speed_right(100*new_speed)
                 motor.set_speed_left(100*new_speed)
