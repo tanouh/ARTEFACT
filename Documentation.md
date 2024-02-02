@@ -34,7 +34,7 @@ Les bibliothèques externes de python utilisées :
   ## Déroulement du projet
  ### Partie I:
  1. **Le choix du design du robot** : 
- Nous avons opté pour une forme légèrement réduite en largeur à l'avant de la voiture s'inspirant des véhicules de Formule 1, visant à garantir un aérodynamisme optimal et ainsi améliorer ses performances globales.
+ Nous avons opté pour une forme légèrement réduite en largeur à l'avant de la voiture s'inspirant des véhicules de Formule 1, visant à garantir un aérodynamisme optimal et ainsi améliorer ses performances globales. N'étant que 3 dans le groupe, nous avons largement priviligiés l'efficacité du robot à son esthétique sur lequel on ne s'est concentré lorsque l'on avait déjà un programme fonctionnel.
 
  2. **La première évaluation** : 
  - Un premier parcours en mode manuel qui consistait à piloter le robot jusqu'à une zone cîble. 
@@ -44,6 +44,7 @@ Les bibliothèques externes de python utilisées :
 ### Partie II
  3. **Le parcours collaboratif** : 
  - Chaque groupe, composé de plusieurs équipes, effectuent un relais. La coordination des voitures est gérée par un serveur central qu'on a choisi d'implanter dans chaque robot.
+Les commandes relatives à l'envoie et réception de ping par notre robot sont effectué sur un thread different.
 
  4. **Dernière épreuve individuelle** : 
  - Il s'agit d'une course en conduite manuelle.   
