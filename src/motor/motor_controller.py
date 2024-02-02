@@ -74,12 +74,12 @@ def turn_left(motor):
         motor.MotorRun(0, 'forward')
         motor.MotorRun(1, 'backward') # ou stop ? 
         #time.sleep(.15)
-        stop_motor(motor)
+        #stop_motor(motor)
 def turn_right(motor):
         motor.MotorRun(0, 'backward') # ou stop ?
         motor.MotorRun(1, 'forward')
         #time.sleep(.15)
-        stop_motor(motor)
+        #stop_motor(motor)
 
 def updateMotor(motor, direction, speed, duration):
         set_speed(motor, speed)
