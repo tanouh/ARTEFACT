@@ -134,6 +134,7 @@ def speed():
     speed = data.get('value') # Accède à la valeur entière   
     # modifier le speed ici ...
     if motor : 
+        mc.stop_motor(motor)
         mc.set_speed(motor, int(speed))
     return 'speed'
 
