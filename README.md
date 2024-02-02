@@ -13,10 +13,12 @@ Les fonctionnalités ont été implémentées majoritairement en Python.
 
 ## Fonctionnalités principales
 ### Conduite manuelle
-Contrôle à distance à travers une interface web générée par le serveur de la carte.
+Contrôle à distance à travers une interface web générée par le serveur de la carte. Réaliser des fonctions telles que avancer, reculer, tourner à gauche et tourner à droite, etc. Capable à effectuer des ajustements de vitesse, via la barre de vitesse sur le site web.
 
 ### Conduite autonome 
-Etant donné un cahier des charges spécifiques, le robot est capable d'exécuter ses tâches automatiquement : ici, il s'agit d'un parcours suivant la détection de marqueurs Aruco.
+Etant donné un cahier des charges spécifiques, le robot est capable d'exécuter ses tâches automatiquement : ici, il s'agit d'un parcours suivant la détection de marqueurs Aruco. Il est capable de chercher et rapproche successivement 3 marqueurs Aruco de numéro différents. Après avoir réussi de trouver ces 3 marqueurs, il va rentourner à la zone d'arrive qui est marqué 9.
+
+De plus, ce robot est capable de faire l'exchange des messages avec un serveur central, pour communiquer son état.
 
 ## Exécution
 Le répertoire de dépôt se trouve dans  : 
