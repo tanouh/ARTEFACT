@@ -25,4 +25,4 @@ Le répertoire de dépôt se trouve dans  :
 Pour lancer le serveur depuis répertoire mentionné ci-dessus :
 `python3 ./src/motor/app.py` 
 
-Une fois que le serveur est lancé, les commandes manuelles et l'enclechement du mode autonome se fait sur la page web :  [http//:137.194.173.40:5000](http//:137.194.173.40:5000)
+Une fois que le serveur est lancé, les commandes manuelles et l'enclechement du mode autonome se fait sur la page web :  [http://137.194.173.40:5000/](http://137.194.173.40:5000/)
