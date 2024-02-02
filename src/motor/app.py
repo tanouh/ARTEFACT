@@ -133,7 +133,6 @@ def speed():
     data = request.get_json() # Récupère les données envoyées
     speed = data.get('value') # Accède à la valeur entière   
     # modifier le speed ici ...
-    print(speed)
     if motor : 
         mc.set_speed(motor, int(speed))
     return 'speed'
