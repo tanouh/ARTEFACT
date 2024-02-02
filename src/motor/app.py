@@ -136,6 +136,7 @@ def speed():
     if motor : 
         mc.stop_motor(motor)
         mc.set_speed(motor, int(speed))
+        mc.move_forward(motor)
     return 'speed'
 
 @app.route("/Auto")
