@@ -19,7 +19,7 @@ pwm = p.PCA9685(0x40, debug=False)
 pwm.setPWMFreq(50)
 
 class MotorDriver():
-    def __init__(self, speed=50):
+    def __init__(self, speed=70):
         self.PWMA = 0
         self.AIN1 = 1 # right positive
         self.AIN2 = 2 # right negative
